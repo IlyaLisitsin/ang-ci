@@ -6,12 +6,15 @@ sudo: required
 branches:
   only:
     - master
+cache:
+  directories:
+    - node_modules
 before_script:
   - npm install -g @angular/cli
 script:
   - ng lint
   - npm run test-headless
-  - ng build --prod --base-href https://ilyalisitsin.github.io/
+  - ng build --prod --base-href /ang-ci/
 deploy:
   provider: pages
   skip_cleanup: true
