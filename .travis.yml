@@ -11,7 +11,7 @@ before_script:
 script:
   - ng lint
   - npm run test-headless
-  - ng build --prod --base-href https://ilyalisitsin.github.io/ang-cli/
+  - ng build --prod --base-href https://ilyalisitsin.github.io/
 deploy:
   provider: pages
   skip_cleanup: true
