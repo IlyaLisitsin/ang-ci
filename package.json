@@ -7,6 +7,7 @@
     "start": "ng serve --port 4500",
     "build": "ng build --prod",
     "test": "ng test",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -44,6 +45,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.4.2"
+    "typescript": "~2.8.0"
   }
 }
