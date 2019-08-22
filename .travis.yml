@@ -12,3 +12,10 @@ script:
   - ng lint
   - npm run test-headless
   - ng build --prod --base-href https://ilyalisitsin.github.io/ang-cli/
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/ang-cli
+  on:
+    branch: master
