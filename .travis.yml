@@ -9,7 +9,8 @@ branches:
 cache:
   directories:
     - node_modules
-before_script:
+#before_script:
+install:
   - npm install -g @angular/cli
 script:
   - ng lint
