@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
   }
 
   private canNavigate(route: ActivatedRouteSnapshot) {
+    console.log('ROUTE', route)
     return true;
   }
 }
