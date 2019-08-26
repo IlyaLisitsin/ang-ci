@@ -17,6 +17,7 @@ script:
   - ng lint
   - npm run test-headless
   - ng build --prod --base-href /ang-ci/
+  - mv dist/index.html dist/404.html
 deploy:
   provider: pages
   skip_cleanup: true
