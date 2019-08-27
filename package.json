@@ -11,6 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "pre-commit": [ "lint", "test" ],
   "private": true,
   "dependencies": {
     "@angular-devkit/core": "^8.2.2",
