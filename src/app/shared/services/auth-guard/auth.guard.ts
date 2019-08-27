@@ -5,14 +5,14 @@ import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operators';
 
 
-import { LoginService } from '../login/login.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  isAuthorized$: Observable<boolean> = of(false);
+  isAuthorized$: Observable<boolean>;
 
   constructor(
-    loginService: LoginService,
+    loginService: AuthService,
     private router: Router,
   ) {
     this.isAuthorized$ = loginService.isAuthorized$;

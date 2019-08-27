@@ -1,3 +1,23 @@
-<p>
-  sign-in works!
-</p>
+<div *ngIf="signIn; else signUp">
+  here is sign in form
+  <div *ngIf="signInFailedMessage" class="sign-in-error-message">Sign in failed!</div>
+  <form [formGroup]="signInForm">
+    <input placeholder="email" [formControl]="signInEmail" />
+    <input placeholder="password" [formControl]="signInPassword" />
+    <button (click)="submitSignInForm()">Submit</button>
+  </form>
+</div>
+
+<ng-template #signUp>
+  <div>
+    here is signup form
+    <form [formGroup]="signInForm">
+      <input placeholder="login" />
+      <input placeholder="email" />
+      <input placeholder="password" />
+      <input placeholder="confirm password" />
+    </form>
+  </div>
+</ng-template>
+
+<button (click)="viewToggle()">go to sugnup</button>
