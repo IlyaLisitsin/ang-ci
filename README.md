@@ -1,8 +1,9 @@
 # Ang-CI
 
+Start witch `git clone https://github.com/IlyaLisitsin/ang-ci`
+
 ## Install the dependencies
 Run `npm i` to install the dependencies
-
 
 ## Run the dev server
 Run `npm run start` for a dev server. Navigate to `http://localhost:4500/`. The app will automatically reload if you change any of the source files.
