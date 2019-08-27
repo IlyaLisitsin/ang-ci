@@ -44,6 +44,7 @@ export class SignInComponent implements OnInit {
     .pipe(
       map((isSuccess: boolean) => {
         this.signInFailedMessage = !isSuccess;
+        return isSuccess;
       }),
     ).subscribe();
   }

@@ -32,8 +32,8 @@ export class AuthService {
 
   public login(userFields: UserFileds) {
     const body = { user: userFields };
-    // this.http.post(AUTH_APIS.login, data).subscribe(el => console.log(34324, el));
-    return this.http.post('http://localhost:5000/api/users/login', body)
+    return this.http.post(AUTH_APIS.login, body)
+    // return this.http.post('http://localhost:5000/api/users/login', body)
       .pipe(
         map((response: HttpResponse<UserResponse>) => {
           if (response && response['user']) {
@@ -43,7 +43,10 @@ export class AuthService {
 
           return response;
         }),
-        catchError(() => this.isAuthorized$ = of(false)),
+        catchError(() => {
+          this.isAuthorized$ = of(false);
+          return this.isAuthorized$;
+        }),
       );
   }
 
