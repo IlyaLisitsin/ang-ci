@@ -8,21 +8,38 @@ $color: #c72c50;
 * {
   box-sizing: border-box;
 }
+button {
+  text-transform: uppercase;
+  padding: 0.5em 1.2em;
+  border: 0.2em solid $color;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background: $color;
 
+  &:hover, &:focus {
+    background: transparent;
+    color: $color;
+    outline: none;
+    cursor: pointer;
+  }
+}
 .container {
   padding: 60px;
   font-family: Arial, sans-serif;
-  // border: 2px solid #e8e8e8;
-  border-radius: 20px;
   margin: 150px auto;
   width: 350px;
-  height: 300px;
+  min-height: 300px;
+  text-align: center;
   background: #f5f5f5;
 }
 
 .login-form {
-  text-align: center;
-
   input {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -36,24 +53,5 @@ $color: #c72c50;
     }
   }
 
-  button {
-    text-transform: uppercase;
-    padding: 0.5em 1.2em;
-    border: 0.2em solid $color;
-    margin: 0 0.3em 0.3em 0;
-    border-radius: 0.5em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-weight: 600;
-    color: #ffffff;
-    text-align: center;
-    transition: all 0.2s;
-    background: $color;
 
-    &:hover {
-      background: transparent;
-      color: $color;
-      cursor: pointer;
-    }
-  }
 }
