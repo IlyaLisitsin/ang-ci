@@ -12,13 +12,14 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 export class SignInComponent implements OnInit {
   signInView = true;
   isAuthFailed = false;
+  isRegisterFailed = false;
 
   signInForm: FormGroup;
   signUpForm: FormGroup;
 
   signInEmail = new FormControl('', [
     Validators.required,
-    // Validators.email,
+    Validators.email,
   ]);
   signInPassword = new FormControl('', [
     Validators.required,
@@ -71,7 +72,7 @@ export class SignInComponent implements OnInit {
   checkPasswords(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
       return this.signUpPassword.value === control.value
-        ? { passwordsMatchFail: { value: control.value } } : null;
+        ? null : { passwordsMatchFail: { value: control.value } };
     };
   }
 
@@ -80,12 +81,26 @@ export class SignInComponent implements OnInit {
       email: this.signInForm.value.signInEmail,
       password: this.signInForm.value.signInPassword
     })
-    .pipe(
-      map((isSuccess: boolean) => {
-        this.isAuthFailed = !isSuccess;
-        return isSuccess;
-      }),
-    ).subscribe();
+      .pipe(
+        map((isAuthSuccess: boolean) => {
+          this.isAuthFailed = !isAuthSuccess;
+          return isAuthSuccess;
+        }),
+      ).subscribe();
+  }
+
+  submitSignUpForm() {
+    !this.signUpForm.invalid && this.authService.register({
+      login: this.signUpForm.value.signUpLogin,
+      email: this.signUpForm.value.signUpEmail,
+      password: this.signUpForm.value.signUpPassword,
+    })
+      .pipe(
+        map((isAuthSuccess: boolean) => {
+          this.isAuthFailed = !isAuthSuccess;
+          return isAuthSuccess;
+        }),
+      ).subscribe();
   }
 
 }

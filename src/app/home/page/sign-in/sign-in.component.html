@@ -13,12 +13,13 @@
         <input matInput placeholder="password" type="password" [formControl]="signInPassword" />
         <mat-error *ngIf="signInPassword.invalid">The password is required</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="submitSignInForm()">Submit</button>
+      <button mat-raised-button color="primary" (click)="submitSignInForm()">Sign in</button>
     </form>
   </div>
 
   <ng-template #signUp>
     <div>
+      <mat-error *ngIf="isRegisterFailed">Register failed</mat-error>
       <form
         [formGroup]="signUpForm"
         class="login-form"
@@ -32,15 +33,16 @@
           <mat-error *ngIf="signUpEmail.invalid">Type the proper email</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="password" [formControl]="signUpPassword" />
+          <input matInput placeholder="password" type="password" [formControl]="signUpPassword" />
           <mat-error *ngIf="signUpPassword.invalid">Password should be at least 5 symbols</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="confirm password" type="password" [formControl]="signUpConfirmPassword" />
           <mat-error *ngIf="signUpConfirmPassword.invalid">Passwords don't match!</mat-error>
         </mat-form-field>
+        <button mat-raised-button color="primary" (click)="submitSignUpForm()">Sign up</button>
       </form>
     </div>
   </ng-template>
-   <button mat-raised-button color="primary" (click)="viewToggle()">Sign up</button>
+  <button mat-raised-button color="primary" (click)="viewToggle()">Go to {{signInView ? 'Sign up' : 'Sign in'}}</button>
 </div>

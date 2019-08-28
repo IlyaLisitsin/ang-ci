@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 import { AUTH_APIS } from '../../constants/apis';
 
-interface UserFileds {
+interface UserSignInFields {
   email: string;
   password: string;
 }
@@ -20,6 +20,12 @@ interface UserResponse {
   };
 }
 
+interface UserSignUpFields {
+  login: string;
+  email: string;
+  password: string;
+}
+
 @Injectable()
 export class AuthService {
   isAuthorized$: Observable<boolean> = of(false);
@@ -30,24 +36,36 @@ export class AuthService {
     private router: Router,
   ) { }
 
-  public login(userFields: UserFileds) {
-    const body = { user: userFields };
+  public login(userSignInFields: UserSignInFields): Observable<boolean | HttpResponse<UserResponse>> {
+    const body = { user: userSignInFields };
     return this.http.post(AUTH_APIS.login, body)
-    // return this.http.post('http://localhost:5000/api/users/login', body)
       .pipe(
-        map((response: HttpResponse<UserResponse>) => {
-          if (response && response['user']) {
-            this.isAuthorized$ = of(true);
-          }
-          this.router.navigate(['']);
-
-          return response;
-        }),
-        catchError(() => {
-          this.isAuthorized$ = of(false);
-          return this.isAuthorized$;
-        }),
+        map((response: HttpResponse<UserResponse>) => this.authMapper(response)),
+        catchError(() => this.authCatcher()),
       );
+  }
+
+  public register(userSignUpFields: UserSignUpFields) {
+    const body = { user: userSignUpFields };
+    return this.http.post(AUTH_APIS.register, body)
+      .pipe(
+        map((response: HttpResponse<UserResponse>) => this.authMapper(response)),
+        catchError(() => this.authCatcher()),
+      );
+  }
+
+  private authMapper(response: HttpResponse<UserResponse>): HttpResponse<UserResponse> {
+    if (response && response['user']) {
+      this.isAuthorized$ = of(true);
+    }
+    this.router.navigate(['']);
+    return response;
+
+  }
+
+  private authCatcher() {
+    this.isAuthorized$ = of(false);
+    return this.isAuthorized$;
   }
 
   public getToken() { return this.token; }
