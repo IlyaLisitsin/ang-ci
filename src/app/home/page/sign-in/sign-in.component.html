@@ -1,23 +1,46 @@
-<div *ngIf="signIn; else signUp">
-  here is sign in form
-  <div *ngIf="signInFailedMessage" class="sign-in-error-message">Sign in failed!</div>
-  <form [formGroup]="signInForm">
-    <input placeholder="email" [formControl]="signInEmail" />
-    <input placeholder="password" [formControl]="signInPassword" />
-    <button (click)="submitSignInForm()">Submit</button>
-  </form>
-</div>
-
-<ng-template #signUp>
-  <div>
-    here is signup form
-    <form [formGroup]="signInForm">
-      <input placeholder="login" />
-      <input placeholder="email" />
-      <input placeholder="password" />
-      <input placeholder="confirm password" />
+<div class="container">
+  <div *ngIf="signInView; else signUp">
+    <mat-error *ngIf="isAuthFailed">Auth failed</mat-error>
+    <form
+      [formGroup]="signInForm"
+      class="login-form"
+    >
+      <mat-form-field>
+        <input matInput placeholder="email" [formControl]="signInEmail" />
+        <mat-error *ngIf="signInEmail.invalid">Type the proper email</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="password" type="password" [formControl]="signInPassword" />
+        <mat-error *ngIf="signInPassword.invalid">The password is required</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="submitSignInForm()">Submit</button>
     </form>
   </div>
-</ng-template>
 
-<button (click)="viewToggle()">go to sugnup</button>
+  <ng-template #signUp>
+    <div>
+      <form
+        [formGroup]="signUpForm"
+        class="login-form"
+      >
+        <mat-form-field>
+          <input matInput placeholder="login" [formControl]="signUpLogin" />
+          <mat-error *ngIf="signUpLogin.invalid">Login should be at least 5 non-character symbols</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="email" [formControl]="signUpEmail" />
+          <mat-error *ngIf="signUpEmail.invalid">Type the proper email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="password" [formControl]="signUpPassword" />
+          <mat-error *ngIf="signUpPassword.invalid">Password should be at least 5 symbols</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="confirm password" type="password" [formControl]="signUpConfirmPassword" />
+          <mat-error *ngIf="signUpConfirmPassword.invalid">Passwords don't match!</mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </ng-template>
+   <button mat-raised-button color="primary" (click)="viewToggle()">Sign up</button>
+</div>
