@@ -4,12 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { SignInComponent } from './page/sign-in/sign-in.component';
+import { MaterialModule } from '../material.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   declarations: [
     HomePageComponent,
