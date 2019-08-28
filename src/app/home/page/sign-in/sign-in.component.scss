@@ -1,7 +1,10 @@
+@import "../../../../styles/variables";
+
 :host {
-  .sign-in-error-message {
-    color: red;
+  span {
+    color: $pink;
   }
+<<<<<<< HEAD
 }
 $color: #c72c50;
 
@@ -47,11 +50,65 @@ button {
     border-bottom: 2px solid $color;
     background: none;
     margin-bottom: 30px;
+=======
 
-    &:focus {
-      outline: none;
-    }
+  .container {
+    padding: 60px;
+    font-family: Arial, sans-serif;
+    border-radius: 20px;
+    margin: 150px auto;
+    width: 350px;
+    height: auto;
+    background: #f5f5f5;
   }
 
+  .mat-raised-button {
+    width: 100%;
+  }
 
+  //.login-form {
+  //  text-align: center;
+  //
+  //  input {
+  //    font-size: 18px;
+  //    padding: 10px 10px 10px 5px;
+  //    border: none;
+  //    border-bottom: 2px solid $color;
+  //    background: none;
+  //    margin-bottom: 30px;
+  //
+  //    &:focus {
+  //      outline: none;
+  //    }
+  //  }
+  //
+  //  button {
+  //    text-transform: uppercase;
+  //    padding: 0.5em 1.2em;
+  //    border: 0.2em solid $color;
+  //    margin: 0 0.3em 0.3em 0;
+  //    border-radius: 0.5em;
+  //    box-sizing: border-box;
+  //    text-decoration: none;
+  //    font-weight: 600;
+  //    color: #ffffff;
+  //    text-align: center;
+  //    transition: all 0.2s;
+  //    background: $color;
+  //
+  //    &:hover {
+  //      background: transparent;
+  //      color: $color;
+  //      cursor: pointer;
+  //    }
+  //  }
+  //}
 }
+>>>>>>> 95044c8502fad5d73a573adc7fadb44c5abfdc91
+
+
+
+<<<<<<< HEAD
+}
+=======
+>>>>>>> 95044c8502fad5d73a573adc7fadb44c5abfdc91
