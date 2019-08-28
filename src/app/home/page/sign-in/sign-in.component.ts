@@ -1,8 +1,6 @@
-import { Component, isDevMode, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
-
-console.log(isDevMode(), 'is dev mode');
 
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
