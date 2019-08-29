@@ -3,13 +3,14 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { map } from 'rxjs/operators';
 
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import {UserResponse} from '../../../shared/models/UserResponse';
 
 @Component({
   selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
+  templateUrl: './sign-in-page.component.html',
+  styleUrls: ['./sign-in-page.component.scss'],
 })
-export class SignInComponent implements OnInit {
+export class SignInPageComponent implements OnInit {
   signInView = true;
   isAuthFailed = false;
   isRegisterFailed = false;
@@ -82,9 +83,9 @@ export class SignInComponent implements OnInit {
       password: this.signInForm.value.signInPassword
     })
       .pipe(
-        map((isAuthSuccess: boolean) => {
-          this.isAuthFailed = !isAuthSuccess;
-          return isAuthSuccess;
+        map((isAuthUserSuccess: UserResponse) => {
+          this.isAuthFailed = !isAuthUserSuccess;
+          return isAuthUserSuccess;
         }),
       ).subscribe();
   }
@@ -96,9 +97,9 @@ export class SignInComponent implements OnInit {
       password: this.signUpForm.value.signUpPassword,
     })
       .pipe(
-        map((isAuthSuccess: boolean) => {
-          this.isAuthFailed = !isAuthSuccess;
-          return isAuthSuccess;
+        map((isAuthUserSuccess: UserResponse) => {
+          this.isAuthFailed = !isAuthUserSuccess;
+          return isAuthUserSuccess;
         }),
       ).subscribe();
   }

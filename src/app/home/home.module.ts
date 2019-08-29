@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageComponent } from './page/home-page/home-page.component';
-import { SignInComponent } from './page/sign-in/sign-in.component';
+import { SignInPageComponent } from './page/sign-in-page/sign-in-page.component';
 import { MaterialModule } from '../material.module';
+import { HomeService } from './services/home/home.service';
 
 
 @NgModule({
@@ -15,9 +16,11 @@ import { MaterialModule } from '../material.module';
   ],
   declarations: [
     HomePageComponent,
-    SignInComponent
+    SignInPageComponent
   ],
-  providers: []
+  providers: [
+    HomeService
+  ]
 
 })
 export class HomeModule { }

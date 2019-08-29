@@ -3,14 +3,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SignInComponent } from './sign-in.component';
+import { SignInPageComponent } from './sign-in-page.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import {MaterialModule} from '../../../material.module';
 
 
-describe('SignInComponent', () => {
-  let component: SignInComponent;
-  let fixture: ComponentFixture<SignInComponent>;
+describe('SignInPageComponent', () => {
+  let component: SignInPageComponent;
+  let fixture: ComponentFixture<SignInPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,13 +23,13 @@ describe('SignInComponent', () => {
       providers: [
         AuthService,
       ],
-      declarations: [ SignInComponent ]
+      declarations: [ SignInPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignInComponent);
+    fixture = TestBed.createComponent(SignInPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

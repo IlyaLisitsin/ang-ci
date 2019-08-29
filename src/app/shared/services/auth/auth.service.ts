@@ -28,15 +28,15 @@ interface UserSignUpFields {
 
 @Injectable()
 export class AuthService {
-  isAuthorized$: Observable<boolean> = of(false);
-  token: string;
+  authorizedUser$: Observable<null | UserResponse> = of(null);
+  authorizedUser: UserResponse | null;
 
   constructor(
     private http: HttpClient,
     private router: Router,
   ) { }
 
-  public login(userSignInFields: UserSignInFields): Observable<boolean | HttpResponse<UserResponse>> {
+  public login(userSignInFields: UserSignInFields): Observable<UserResponse | HttpResponse<UserResponse>> {
     const body = { user: userSignInFields };
     return this.http.post(AUTH_APIS.login, body)
       .pipe(
@@ -56,18 +56,21 @@ export class AuthService {
 
   private authMapper(response: HttpResponse<UserResponse>): HttpResponse<UserResponse> {
     if (response && response['user']) {
-      this.isAuthorized$ = of(true);
+      this.authorizedUser$ = of(response['user']);
+      this.authorizedUser = response['user'];
     }
     this.router.navigate(['']);
     return response;
+  }
 
+  public resetUser() {
+    this.authorizedUser$ = of(null);
+    this.authorizedUser = null;
+    this.router.navigate(['sign-in']);
   }
 
   private authCatcher() {
-    this.isAuthorized$ = of(false);
-    return this.isAuthorized$;
+    this.authorizedUser$ = of(null);
+    return this.authorizedUser$;
   }
-
-  public getToken() { return this.token; }
-
 }

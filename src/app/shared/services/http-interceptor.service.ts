@@ -3,6 +3,8 @@ import { HttpHandler, HttpInterceptor, HttpEvent, HttpRequest, HttpErrorResponse
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './auth/auth.service';
+import { catchError } from 'rxjs/operators';
+import { resetUserErrorMessages } from '../constants/apis';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
@@ -11,29 +13,30 @@ export class HttpInterceptorService implements HttpInterceptor {
     private authService: AuthService,
   ) {}
 
-  private onResponseError(error: HttpErrorResponse) {
+  private onResponseError(errorResponse: HttpErrorResponse) {
     // if (error.status === this.authFailStatusCode) {
       // this.store.dispatch(new AuthActions.RefreshAuthTokens());
     // }
 
-    return Observable.throw(error);
+    if (resetUserErrorMessages.includes(errorResponse.error.errorMessage)) {
+      this.authService.resetUser();
+    }
+    return Observable.throw(errorResponse);
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     const authHeaders = {
-      authorization: `Token ${this.authService.getToken()}`
+      ...(this.authService.authorizedUser ? { Authorization: `Token ${this.authService.authorizedUser['token']}` } : null)
     };
 
-    const authRequest = request.clone(
-    //   {
-    //   setHeaders: { ...authHeaders },
-    // }
-    );
+    const authRequest = request.clone({
+      setHeaders: { ...authHeaders },
+    });
 
     return next
-      .handle(authRequest);
-      // .catch(error => this.onResponseError(error));
+      .handle(authRequest).pipe(
+        catchError(error => this.onResponseError(error))
+      );
   }
 
 }

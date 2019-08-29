@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomePageComponent } from './home/page/home-page/home-page.component';
 import { AuthGuard } from './shared/services/auth-guard/auth.guard';
-import { SignInComponent } from './home/page/sign-in/sign-in.component';
+import { SignInPageComponent } from './home/page/sign-in-page/sign-in-page.component';
 
 export const routes: Routes = [
   {
@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'sign-in',
-    component: SignInComponent,
+    component: SignInPageComponent,
   }
 ];
 
