@@ -5,11 +5,10 @@
     color: $pink;
   }
 
-  .container {
+  mat-card {
     padding: 60px;
     font-family: Arial, sans-serif;
-    border-radius: 20px;
-    margin: 150px auto;
+    margin: 5em auto;
     width: 350px;
     height: auto;
     background: #f5f5f5;
@@ -18,7 +17,14 @@
   .mat-raised-button {
     width: 100%;
   }
-
+  .mat-form-field {
+    display: block;
+    margin-bottom: 1em;
+  }
+  button {
+    margin-bottom: 0.5em;
+    line-height: 45px;
+  }
   //.login-form {
   //  text-align: center;
   //
@@ -57,6 +63,3 @@
   //  }
   //}
 }
-
-
-
