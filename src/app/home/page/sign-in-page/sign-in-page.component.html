@@ -1,10 +1,7 @@
 <mat-card>
   <div *ngIf="signInView; else signUp">
     <mat-error *ngIf="isAuthFailed">Authorization failed</mat-error>
-    <form
-      [formGroup]="signInForm"
-      class="login-form"
-    >
+    <form [formGroup]="signInForm" class="login-form">
       <mat-form-field>
         <input matInput placeholder="email" type="email" [formControl]="signInEmail" />
         <mat-icon matSuffix>person</mat-icon>
@@ -22,10 +19,7 @@
   <ng-template #signUp>
     <div>
       <mat-error *ngIf="isRegisterFailed">Registration failed</mat-error>
-      <form
-        [formGroup]="signUpForm"
-        class="login-form"
-      >
+      <form [formGroup]="signUpForm" class="login-form">
         <mat-form-field>
           <input matInput placeholder="login" [formControl]="signUpLogin" />
           <mat-error *ngIf="signUpLogin.invalid">Login should be at least 5 non-character symbols</mat-error>
@@ -47,4 +41,4 @@
     </div>
   </ng-template>
   <button mat-raised-button color="primary" (click)="viewToggle()">Go to {{signInView ? 'Sign up' : 'Sign in'}}</button>
-                                          </mat-card>
+</mat-card>
