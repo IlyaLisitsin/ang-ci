@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { SignInPageComponent } from './sign-in-page.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import {MaterialModule} from '../../../material.module';
+import { MaterialModule } from '../../../material.module';
 
 
 describe('SignInPageComponent', () => {

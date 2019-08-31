@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { map } from 'rxjs/operators';
 
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import {UserResponse} from '../../../shared/models/UserResponse';
+import { UserResponse } from '../../../shared/models/UserResponse';
 
 @Component({
   selector: 'app-sign-in',
