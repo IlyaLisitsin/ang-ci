@@ -83,7 +83,7 @@ export class SignInPageComponent implements OnInit {
       password: this.signInForm.value.signInPassword
     })
       .pipe(
-        map((isAuthUserSuccess: UserResponse) => {
+        map((isAuthUserSuccess: boolean) => {
           this.isAuthFailed = !isAuthUserSuccess;
           return isAuthUserSuccess;
         }),
@@ -97,7 +97,7 @@ export class SignInPageComponent implements OnInit {
       password: this.signUpForm.value.signUpPassword,
     })
       .pipe(
-        map((isAuthUserSuccess: UserResponse) => {
+        map((isAuthUserSuccess: boolean) => {
           this.isAuthFailed = !isAuthUserSuccess;
           return isAuthUserSuccess;
         }),

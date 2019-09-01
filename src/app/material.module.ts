@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const modules = [
   BrowserAnimationsModule,
@@ -13,7 +14,8 @@ const modules = [
   MatInputModule,
   MatFormFieldModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

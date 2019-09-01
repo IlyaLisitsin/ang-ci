@@ -9,8 +9,8 @@ export class HomeService {
     private http: HttpClient,
   ) { }
 
-  kek() {
-    this.http.get(AUTH_APIS.current).subscribe(el => console.log(el));
+  getUser() {
+    return this.http.get(AUTH_APIS.current);
   }
 
 }
