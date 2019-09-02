@@ -1,0 +1,14 @@
+:host {
+  .main-image {
+    height: 150px;
+  }
+
+  .main-image-container {
+    max-width: 100%
+  }
+
+  .cropped-image {
+    height: 80px;
+    background: radial-gradient(black, transparent);
+  }
+}

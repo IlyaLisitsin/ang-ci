@@ -1,12 +1,20 @@
-<p>
-  home-page works!
-
-
-<!--  <div>-->
-<!--    <img [src]="authService.authorizedUser.userAvatar" />-->
-<!--  </div>-->
-<!--  <img [src]="authService.authorizedUser.userAvatar" />-->
-<!--  <button (click)="logout">logout</button>-->
-</p>
+<h4 class="mat-typography mat-body-2">{{login}}</h4>
+<img [src]="userAvatar" />
+<app-upload-image (updateAvatar)="updateAvatar()"></app-upload-image>
+<button mat-button color="primary" (click)="logout()">logout</button>
+<mat-tab-group>
+  <mat-tab label="feed">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">home</mat-icon>
+    </ng-template>
+    Feed will be there
+  </mat-tab>
+  <mat-tab label="Second">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">person</mat-icon>
+    </ng-template>
+    User pisc will be there
+  </mat-tab>
+</mat-tab-group>
 <mat-spinner class="spinner" *ngIf="showSpinner"></mat-spinner>
 

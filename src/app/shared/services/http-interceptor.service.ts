@@ -31,6 +31,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     if (resetUserErrorMessages.includes(errorResponse.error.errorMessage)) {
       this.authService.resetUser();
+      return;
     }
     return Observable.throw(errorResponse);
   }

@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home/page/home-page/home-page.component';
+import { HomeModule } from './home/home.module';
 
 describe('AppComponent', () => {
 
@@ -12,10 +12,10 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         MatProgressSpinnerModule,
+        HomeModule,
       ],
       declarations: [
         AppComponent,
-        HomePageComponent
       ],
     }).compileComponents();
   }));

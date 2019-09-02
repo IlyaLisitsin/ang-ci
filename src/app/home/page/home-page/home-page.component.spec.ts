@@ -7,6 +7,7 @@ import { HomePageComponent } from './home-page.component';
 import { HomeService } from '../../services/home/home.service';
 import { MaterialModule } from '../../../material.module';
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import { UploadImageComponent } from '../../components/upload-image/upload-image.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -19,7 +20,10 @@ describe('HomePageComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
       ],
-      declarations: [ HomePageComponent ],
+      declarations: [
+        HomePageComponent,
+        UploadImageComponent,
+      ],
       providers: [
         HomeService,
         AuthService,

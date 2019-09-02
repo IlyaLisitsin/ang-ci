@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const modules = [
   BrowserAnimationsModule,
@@ -16,6 +18,8 @@ const modules = [
   MatCardModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatTabsModule,
+  MatDialogModule,
 ];
 
 @NgModule({

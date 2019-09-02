@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 import { cookieSessionName } from '../../constants/key-names';
-import { UserResponse } from '../../models/UserResponse';
 import { AUTH_APIS } from '../../constants/apis';
 
 interface UserSignInFields {
@@ -19,6 +18,18 @@ interface UserSignUpFields {
   login: string;
   email: string;
   password: string;
+}
+
+interface UserAuthResponse {
+  user: {
+    _id: string;
+    email: string;
+    token: string;
+    userAvatar: string;
+    subscriptions: any;
+    subscribers: any;
+  };
+  token: string;
 }
 
 @Injectable()
@@ -36,7 +47,7 @@ export class AuthService {
     const body = { user: userSignInFields };
     return this.http.post(AUTH_APIS.login, body)
       .pipe(
-        map((response: UserResponse) => this.authMapper(response)),
+        map((response: UserAuthResponse) => this.authMapper(response)),
         catchError(() => this.authCatcher()),
       );
   }
@@ -45,12 +56,12 @@ export class AuthService {
     const body = { user: userSignUpFields };
     return this.http.post(AUTH_APIS.register, body)
       .pipe(
-        map((response: UserResponse) => this.authMapper(response)),
+        map((response: UserAuthResponse) => this.authMapper(response)),
         catchError(() => this.authCatcher()),
       );
   }
 
-  private authMapper(response: UserResponse): boolean {
+  private authMapper(response: UserAuthResponse): boolean {
     this.isAuth$ = of(true);
     this.isAuth = true;
     this.cookieService.set(cookieSessionName, response.token);
