@@ -8,6 +8,8 @@ import { MaterialModule } from '../material.module';
 import { HomeService } from './services/home/home.service';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { UploadImageDialogComponent } from './components/upload-image-dialog/upload-image-dialog.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { UploadImageDialogComponent } from './components/upload-image-dialog/upl
     HomePageComponent,
     SignInPageComponent,
     UploadImageComponent,
-    UploadImageDialogComponent
+    UploadImageDialogComponent,
+    AccountDetailsComponent,
+    FeedComponent
   ],
   entryComponents: [
     UploadImageDialogComponent,

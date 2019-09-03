@@ -1,0 +1,24 @@
+:host {
+  .user-avatar {
+    height: 150px;
+    width: 150px;
+  }
+
+  .spinner {
+    position: absolute;
+    top: 0;
+    left: 50%;
+  }
+
+  .preview-container {
+    width: 50%;
+  }
+
+  .preview-image {
+    height: 100%;
+  }
+
+  .mat-grid-tile {
+    cursor: pointer;
+  }
+}
