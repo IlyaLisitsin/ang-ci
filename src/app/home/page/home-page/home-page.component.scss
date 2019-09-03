@@ -2,6 +2,7 @@
   img {
     height: 150px;
     width: 150px;
+    border-radius: 50%;
   }
 
   .spinner {
@@ -9,4 +10,9 @@
     top: 0;
     left: 50%;
   }
+}
+.username {
+  font-size: 20px;
+  font-family: Courier New;
+  margin: 1em;
 }
