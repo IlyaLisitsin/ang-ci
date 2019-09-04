@@ -1,0 +1,25 @@
+:host {
+  .user-avatar {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
+
+  .preview-container {
+    width: 50%;
+    height: 50%;
+  }
+
+  .preview-image {
+    height: 100%;
+  }
+
+  .mat-grid-tile {
+    cursor: pointer;
+  }
+
+  .login {
+    font-size: 20px;
+    margin: 1em;
+  }
+}

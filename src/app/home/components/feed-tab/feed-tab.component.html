@@ -1,0 +1,6 @@
+<div *ngIf="userDetails; else feed">
+  <app-account-details [isLoggedUser]="false"></app-account-details>
+</div>
+<ng-template #feed>
+    <app-feed [posts]="feedPosts" (goBackToFeed)="goBackToFeed()"></app-feed>
+</ng-template>

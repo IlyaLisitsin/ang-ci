@@ -1,0 +1,19 @@
+<div *ngIf="!isFeedView; else feed">
+  <h4 class="login mat-typography mat-body-2">{{login}}</h4>
+  <img class="user-avatar" [src]="userAvatar" />
+  <div *ngIf="isLoggedUser">
+    <app-upload-image (updateAvatar)="updateAvatar()"></app-upload-image>
+    <button mat-button color="primary" (click)="logout()">logout</button>
+  </div>
+  <mat-grid-list class="preview-container" cols="3" rowHeight="1:1">
+    <div *ngFor="let post of posts; let i = index">
+      <mat-grid-tile (click)="tileClick(post['postId'])">
+        <img class="preview-image" [src]="post.image" />
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>
+
+<ng-template #feed>
+  <app-feed [posts]="posts" [postToScroll]="postToScroll" (goBackToFeed)="goBackToFeed()"></app-feed>
+</ng-template>

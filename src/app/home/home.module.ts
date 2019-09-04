@@ -8,6 +8,10 @@ import { MaterialModule } from '../material.module';
 import { HomeService } from './services/home/home.service';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { UploadImageDialogComponent } from './components/upload-image-dialog/upload-image-dialog.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { FeedTabComponent } from './components/feed-tab/feed-tab.component';
+import { SpinnerService } from '../shared/services/spinner/spinner.service';
 
 
 @NgModule({
@@ -20,13 +24,17 @@ import { UploadImageDialogComponent } from './components/upload-image-dialog/upl
     HomePageComponent,
     SignInPageComponent,
     UploadImageComponent,
-    UploadImageDialogComponent
+    UploadImageDialogComponent,
+    AccountDetailsComponent,
+    FeedComponent,
+    FeedTabComponent
   ],
   entryComponents: [
     UploadImageDialogComponent,
   ],
   providers: [
-    HomeService
+    HomeService,
+    SpinnerService,
   ]
 
 })

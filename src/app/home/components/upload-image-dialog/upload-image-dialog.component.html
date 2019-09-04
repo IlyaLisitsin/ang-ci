@@ -1,14 +1,12 @@
-<h1 mat-dialog-title>Crop your image</h1>
+<h1 mat-dialog-title class="text-center">Crop your image</h1>
 <div mat-dialog-content>
   <div class="main-image-container">
     <img class="main-image" #image [src]="data.base64String" crossorigin>
   </div>
-  <h3 mat-dialog-title>Result:</h3>
   <img [src]="croppedImageSrc" #croppedImageRef class="cropped-image">
-  <button  mat-button color="primary" (click)="zoomToFull()">Zoom to 100%</button>
-  <button  mat-button color="primary" (click)="reset()">Reset</button>
+  <div class="button-container">
+    <button  mat-button color="primary" (click)="zoomToFull()">Zoom to 100%</button>
+    <button  mat-button color="primary" (click)="reset()">Reset</button>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="cancel()">Cancel</button>
-  <button mat-button (click)="save()">Save</button>
-</div>
+

@@ -1,21 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AccountDetailsComponent } from './account-details.component';
+import { UploadImageComponent } from '../upload-image/upload-image.component';
+import { MaterialModule } from '../../../material.module';
+import { FeedComponent } from '../feed/feed.component';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CookieService } from 'ngx-cookie-service';
-
-import { HomePageComponent } from './home-page.component';
 import { HomeService } from '../../services/home/home.service';
-import { MaterialModule } from '../../../material.module';
-import { AuthService } from '../../../shared/services/auth/auth.service';
-import { UploadImageComponent } from '../../components/upload-image/upload-image.component';
-import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
-import { AccountDetailsComponent } from '../../components/account-details/account-details.component';
-import { FeedComponent } from '../../components/feed/feed.component';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 
-describe('HomePageComponent', () => {
-  let component: HomePageComponent;
-  let fixture: ComponentFixture<HomePageComponent>;
+describe('AccountDetailsComponent', () => {
+  let component: AccountDetailsComponent;
+  let fixture: ComponentFixture<AccountDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,16 +23,14 @@ describe('HomePageComponent', () => {
         RouterTestingModule,
       ],
       declarations: [
-        HomePageComponent,
-        UploadImageComponent,
-        FeedTabComponent,
         AccountDetailsComponent,
+        UploadImageComponent,
         FeedComponent,
       ],
       providers: [
-        HomeService,
         AuthService,
         CookieService,
+        HomeService,
         SpinnerService,
       ],
     })
@@ -42,7 +38,7 @@ describe('HomePageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomePageComponent);
+    fixture = TestBed.createComponent(AccountDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,4 +3,4 @@
   accept="image/*"
   type="file" (change)="onFileChanged($event)"
   #fileInput>
-<button (click)="fileInput.click()">Select File</button>
+<button mat-button class="upload-image-button" color="primary" (click)="fileInput.click()">Upload image</button>

@@ -1,20 +1,15 @@
-<h4 class="mat-typography mat-body-2">{{login}}</h4>
-<img [src]="userAvatar" />
-<app-upload-image (updateAvatar)="updateAvatar()"></app-upload-image>
-<button mat-button color="primary" (click)="logout()">logout</button>
-<mat-tab-group>
-  <mat-tab label="feed">
+<mat-tab-group headerPosition="below" (selectedTabChange)="onLinkClick($event)">
+  <mat-tab label="Feed">
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">home</mat-icon>
     </ng-template>
-    Feed will be there
+    <app-feed-tab></app-feed-tab>
   </mat-tab>
-  <mat-tab label="Second">
+  <mat-tab label="Personal">
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">person</mat-icon>
     </ng-template>
-    User pisc will be there
+    <app-account-details [isLoggedUser]="true"></app-account-details>
   </mat-tab>
 </mat-tab-group>
-<mat-spinner class="spinner" *ngIf="showSpinner"></mat-spinner>
 

@@ -1,3 +1,5 @@
+import { Post } from './Post';
+
 export interface UserResponse {
   user: {
     _id: string;
@@ -7,6 +9,7 @@ export interface UserResponse {
     userAvatar: string;
     subscriptions: any;
     subscribers: any;
+    posts: Array<Post>;
   };
   token: string;
 }
