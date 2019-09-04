@@ -6,6 +6,7 @@ export const AUTH_APIS: any = {
   register: `${BASE_BE_URL}/users`,
   current: `${BASE_BE_URL}/users/current`,
   updateUserAvatar: `${BASE_BE_URL}/users/update-avatar`,
+  getFeed: `${BASE_BE_URL}/users/feed`
 };
 
 export const resetUserErrorMessages = [

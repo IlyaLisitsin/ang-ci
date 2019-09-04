@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountDetailsComponent } from './account-details.component';
+import { FeedTabComponent } from './feed-tab.component';
+import { AccountDetailsComponent } from '../account-details/account-details.component';
+import { FeedComponent } from '../feed/feed.component';
 import { UploadImageComponent } from '../upload-image/upload-image.component';
 import { MaterialModule } from '../../../material.module';
-import { FeedComponent } from '../feed/feed.component';
-import { AuthService } from '../../../shared/services/auth/auth.service';
+import { HomeService } from '../../services/home/home.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { HomeService } from '../../services/home/home.service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 
-describe('AccountDetailsComponent', () => {
-  let component: AccountDetailsComponent;
-  let fixture: ComponentFixture<AccountDetailsComponent>;
+describe('FeedTabComponent', () => {
+  let component: FeedTabComponent;
+  let fixture: ComponentFixture<FeedTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,9 +24,10 @@ describe('AccountDetailsComponent', () => {
         RouterTestingModule,
       ],
       declarations: [
+        FeedTabComponent,
         AccountDetailsComponent,
-        UploadImageComponent,
         FeedComponent,
+        UploadImageComponent,
       ],
       providers: [
         AuthService,
@@ -38,7 +40,7 @@ describe('AccountDetailsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountDetailsComponent);
+    fixture = TestBed.createComponent(FeedTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

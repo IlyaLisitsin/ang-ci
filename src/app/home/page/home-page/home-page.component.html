@@ -1,11 +1,11 @@
-<mat-tab-group headerPosition="below">
-  <mat-tab label="feed">
+<mat-tab-group headerPosition="below" (selectedTabChange)="onLinkClick($event)">
+  <mat-tab label="Feed">
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">home</mat-icon>
     </ng-template>
-    Feed will be there
+    <app-feed-tab></app-feed-tab>
   </mat-tab>
-  <mat-tab label="Second">
+  <mat-tab label="Personal">
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">person</mat-icon>
     </ng-template>

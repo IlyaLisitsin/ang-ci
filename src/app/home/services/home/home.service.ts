@@ -17,4 +17,8 @@ export class HomeService {
     const body = { newAvatarStr: base64Str };
     return this.http.post(AUTH_APIS.updateUserAvatar, body);
   }
+
+  getFeedPosts() {
+    return this.http.get(AUTH_APIS.getFeed);
+  }
 }

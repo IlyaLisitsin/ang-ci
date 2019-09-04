@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import {UserResponse} from "../../../shared/models/UserResponse";
-import {AuthService} from "../../../shared/services/auth/auth.service";
-import {HomeService} from "../../services/home/home.service";
-import {Post} from "../../../shared/models/Post";
+import { UserResponse } from '../../../shared/models/UserResponse';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { HomeService } from '../../services/home/home.service';
+import { Post } from '../../../shared/models/Post';
+import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-account-details',
@@ -14,7 +15,6 @@ export class AccountDetailsComponent implements OnInit {
   @Input() isLoggedUser: boolean;
 
   isFeedView = false;
-  showSpinner: boolean;
   userAvatar: string;
   login: string;
   posts: Array<Post>;
@@ -23,6 +23,7 @@ export class AccountDetailsComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private homeService: HomeService,
+    private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit() {
@@ -30,13 +31,13 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   getUserOnHomePage() {
-    this.showSpinner = true;
+    this.spinnerService.showSpinner();
     this.homeService.getUser()
       .subscribe(
         ({ user: { userAvatar, login, posts } }: UserResponse) => {
           this.userAvatar = userAvatar;
           this.login = `@${login}`;
-          this.showSpinner = false;
+          this.spinnerService.hideSpinner();
           this.posts = posts;
         },
       );
@@ -56,7 +57,6 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   goBackToFeed() {
-    console.log(32434)
     this.isFeedView = false;
   }
 

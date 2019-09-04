@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Post} from "../../../shared/models/Post";
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Post } from '../../../shared/models/Post';
 
 @Component({
   selector: 'app-feed',
@@ -8,11 +8,9 @@ import {Post} from "../../../shared/models/Post";
 })
 export class FeedComponent implements OnInit, AfterViewInit {
   @Input() posts: Array<Post>;
-  @Input() postToScroll: number;
+  @Input() postToScroll: string;
 
   @Output() goBackToFeed = new EventEmitter();
-  @ViewChild('kek')
-  public kek: ElementRef;
 
   constructor(
     private elRef: ElementRef,
@@ -22,8 +20,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('postToScroll', this.postToScroll)
-    this.elRef.nativeElement.querySelector(`#_${this.postToScroll}`).scrollIntoView({ behavior: 'smooth' });
+    this.elRef.nativeElement.querySelector(`#_${this.postToScroll}`)
+    && this.elRef.nativeElement.querySelector(`#_${this.postToScroll}`).scrollIntoView({ behavior: 'smooth' });
   }
 
   backClick() {

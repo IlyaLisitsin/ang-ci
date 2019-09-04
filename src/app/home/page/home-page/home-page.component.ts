@@ -11,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  isUserDetails: false;
   // showSpinner: boolean;
   // userAvatar: string;
   // login: string;
   // id: string;
+
 
   constructor(
     // private authService: AuthService,
@@ -23,6 +25,9 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     // this.getUserOnHomePage();
+  }
+
+  onLinkClick(event) {
   }
 
   // getUserOnHomePage() {

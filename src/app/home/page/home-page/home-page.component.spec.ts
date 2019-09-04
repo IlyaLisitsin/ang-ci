@@ -8,6 +8,10 @@ import { HomeService } from '../../services/home/home.service';
 import { MaterialModule } from '../../../material.module';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { UploadImageComponent } from '../../components/upload-image/upload-image.component';
+import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
+import { AccountDetailsComponent } from '../../components/account-details/account-details.component';
+import { FeedComponent } from '../../components/feed/feed.component';
+import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -23,11 +27,15 @@ describe('HomePageComponent', () => {
       declarations: [
         HomePageComponent,
         UploadImageComponent,
+        FeedTabComponent,
+        AccountDetailsComponent,
+        FeedComponent,
       ],
       providers: [
         HomeService,
         AuthService,
         CookieService,
+        SpinnerService,
       ],
     })
     .compileComponents();

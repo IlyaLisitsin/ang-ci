@@ -4,8 +4,10 @@
     <mat-grid-tile>
       <mat-card class="post" [id]="'_' + post['postId']">
         <mat-card-header>
-          <div mat-card-avatar class="post-avatar"></div>
-          <mat-card-title>logn</mat-card-title>
+          <div mat-card-avatar class="post-avatar">
+            <img class="post-avatar-image" [src]="post.postAuthorAvatar">
+          </div>
+          <mat-card-title>@{{post.postAuthorLogin}}</mat-card-title>
   <!--        location-->
   <!--        <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
         </mat-card-header>

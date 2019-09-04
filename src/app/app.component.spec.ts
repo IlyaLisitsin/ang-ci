@@ -4,6 +4,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
+import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
 
@@ -13,6 +14,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         MatProgressSpinnerModule,
         HomeModule,
+        SharedModule,
       ],
       declarations: [
         AppComponent,

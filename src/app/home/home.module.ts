@@ -10,6 +10,8 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
 import { UploadImageDialogComponent } from './components/upload-image-dialog/upload-image-dialog.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { FeedTabComponent } from './components/feed-tab/feed-tab.component';
+import { SpinnerService } from '../shared/services/spinner/spinner.service';
 
 
 @NgModule({
@@ -24,13 +26,15 @@ import { FeedComponent } from './components/feed/feed.component';
     UploadImageComponent,
     UploadImageDialogComponent,
     AccountDetailsComponent,
-    FeedComponent
+    FeedComponent,
+    FeedTabComponent
   ],
   entryComponents: [
     UploadImageDialogComponent,
   ],
   providers: [
-    HomeService
+    HomeService,
+    SpinnerService,
   ]
 
 })
