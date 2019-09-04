@@ -5,8 +5,10 @@
   </div>
   <!-- <h3 mat-dialog-title>Result:</h3> -->
   <img [src]="croppedImageSrc" #croppedImageRef class="cropped-image">
-  <!-- <button  mat-button color="primary" (click)="zoomToFull()">Zoom to 100%</button>
-  <button  mat-button color="primary" (click)="reset()">Reset</button> -->
+  <div class="button-container">
+    <button  mat-button color="primary" (click)="zoomToFull()">Zoom to 100%</button>
+    <button  mat-button color="primary" (click)="reset()">Reset</button>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancel</button>

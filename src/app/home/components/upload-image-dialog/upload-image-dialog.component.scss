@@ -15,7 +15,8 @@
 .text-center {
   text-align: center;
 }
-.mat-dialog-actions {
+.mat-dialog-actions, .button-container {
+  display: flex;
   justify-content: center;
 }
 .cropped-image {
