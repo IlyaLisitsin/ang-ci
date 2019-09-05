@@ -1,6 +1,6 @@
 :host {
   .main-image {
-    height: 150px;
+    height: 300px;
   }
 
   .main-image-container {
@@ -16,7 +16,8 @@
     text-align: center;
   }
 
-  .mat-dialog-actions {
+  .mat-dialog-actions, .button-container {
+    display: flex;
     justify-content: center;
   }
 }
