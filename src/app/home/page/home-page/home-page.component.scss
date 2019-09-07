@@ -1,12 +1,5 @@
-//:host {
-//  img {
-//    height: 150px;
-//    width: 150px;
-//  }
-//
-//  .spinner {
-//    position: absolute;
-//    top: 0;
-//    left: 50%;
-//  }
-//}
+:host {
+  ::ng-deep .mat-tab-body-wrapper {
+    height: calc(100vh - 49px);
+  }
+}
