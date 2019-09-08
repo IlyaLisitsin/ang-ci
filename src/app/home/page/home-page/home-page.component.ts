@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-// import { HomeService } from '../../services/home/home.service';
-// import { AuthService } from '../../../shared/services/auth/auth.service';
-//
-// import { UserResponse } from '../../../shared/models/UserResponse';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
 
 @Component({
   selector: 'app-home-page',
@@ -11,44 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  isUserDetails: false;
-  // showSpinner: boolean;
-  // userAvatar: string;
-  // login: string;
-  // id: string;
-
+  @ViewChild('feedTab') feedTab: FeedTabComponent;
 
   constructor(
-    // private authService: AuthService,
-    // private homeService: HomeService,
   ) { }
 
   ngOnInit() {
-    // this.getUserOnHomePage();
   }
 
   onLinkClick(event) {
+    if (event.tab.textLabel === 'Feed') {
+      this.feedTab.resetFeedTab();
+    }
   }
-
-  // getUserOnHomePage() {
-  //   this.showSpinner = true;
-  //   this.homeService.getUser()
-  //     .subscribe(
-  //       ({ user: { userAvatar, email, login, _id } }: UserResponse) => {
-  //         this.userAvatar = userAvatar;
-  //         this.login = `@${login}`;
-  //         this.id = _id;
-  //         this.showSpinner = false;
-  //       },
-  //     );
-  // }
-  //
-  // updateAvatar() {
-  //   this.getUserOnHomePage();
-  // }
-  //
-  // logout() {
-  //   this.authService.resetUser();
-  // }
 
 }

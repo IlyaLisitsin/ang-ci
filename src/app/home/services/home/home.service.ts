@@ -4,12 +4,13 @@ import { AUTH_APIS } from '../../../shared/constants/apis';
 
 @Injectable()
 export class HomeService {
+  logedUserId: string;
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  getUser() {
+  getLoggedUser() {
     return this.http.get(AUTH_APIS.current);
   }
 
@@ -20,5 +21,9 @@ export class HomeService {
 
   getFeedPosts() {
     return this.http.get(AUTH_APIS.getFeed);
+  }
+
+  getUserById(id: string) {
+    return this.http.get(`${AUTH_APIS.current}?unlogedUserId=${id}`);
   }
 }

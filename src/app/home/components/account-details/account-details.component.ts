@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { UserResponse } from '../../../shared/models/UserResponse';
 import { AuthService } from '../../../shared/services/auth/auth.service';
@@ -11,8 +11,12 @@ import { SpinnerService } from '../../../shared/services/spinner/spinner.service
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
+
 export class AccountDetailsComponent implements OnInit {
   @Input() isLoggedUser: boolean;
+  @Input() accountId: string;
+
+  @Output() goBackToFeedView = new EventEmitter();
 
   isFeedView = false;
   userAvatar: string;
@@ -27,24 +31,43 @@ export class AccountDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUserOnHomePage();
+    if (this.isLoggedUser) {
+      this.getLoggedUser();
+    } else {
+      this.getUserById();
+    }
   }
 
-  getUserOnHomePage() {
+  getUserById() {
     this.spinnerService.showSpinner();
-    this.homeService.getUser()
+    this.homeService.getUserById(this.accountId)
       .subscribe(
-        ({ user: { userAvatar, login, posts } }: UserResponse) => {
-          this.userAvatar = userAvatar;
-          this.login = `@${login}`;
-          this.spinnerService.hideSpinner();
-          this.posts = posts;
-        },
+        ({ user: { userAvatar, login, posts } }: UserResponse) => this.userResponseHandler({ userAvatar, login, posts }),
+        () => this.spinnerService.hideSpinner(),
       );
   }
 
+  getLoggedUser() {
+    this.spinnerService.showSpinner();
+    this.homeService.getLoggedUser()
+      .subscribe(
+        ({ user: { userAvatar, login, posts, _id } }: UserResponse) => {
+          this.userResponseHandler({ userAvatar, login, posts });
+          this.homeService.logedUserId = _id;
+        },
+        () => this.spinnerService.hideSpinner(),
+      );
+  }
+
+  userResponseHandler({ userAvatar, login, posts }) {
+    this.userAvatar = userAvatar;
+    this.login = `@${login}`;
+    this.spinnerService.hideSpinner();
+    this.posts = posts;
+  }
+
   updateAvatar() {
-    this.getUserOnHomePage();
+    this.getLoggedUser();
   }
 
   logout() {
@@ -56,8 +79,11 @@ export class AccountDetailsComponent implements OnInit {
     this.postToScroll = postId;
   }
 
-  goBackToFeed() {
+  goBackToAccountDetailsView() {
     this.isFeedView = false;
   }
 
+  accountDetailsBackButtonClick() {
+    this.goBackToFeedView.emit();
+  }
 }

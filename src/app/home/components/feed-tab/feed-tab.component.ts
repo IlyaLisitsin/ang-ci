@@ -16,7 +16,9 @@ interface FeedResponse {
 })
 export class FeedTabComponent implements OnInit {
   feedPosts: Array<Post>;
-  userDetails: false;
+  isAccountDetailsView: boolean;
+  accountId: string;
+  isLoggedUser = false;
 
   constructor(
     private homeService: HomeService,
@@ -35,8 +37,20 @@ export class FeedTabComponent implements OnInit {
     });
   }
 
-  goBackToFeed() {
-    console.log('go back to feed!');
+  goBackToFeedView() {
+    this.isAccountDetailsView = false;
+  }
+
+  resetFeedTab() {
+    this.feedPosts = [];
+    this.isAccountDetailsView = false;
+    this.getFeedPosts();
+  }
+
+  switchAccountDetails(id: string) {
+    this.accountId = id;
+    this.isLoggedUser = id === this.homeService.logedUserId;
+    this.isAccountDetailsView = true;
   }
 
 }

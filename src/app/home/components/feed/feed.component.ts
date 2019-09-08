@@ -8,9 +8,11 @@ import { Post } from '../../../shared/models/Post';
 })
 export class FeedComponent implements OnInit, AfterViewInit {
   @Input() posts: Array<Post>;
+  @Input() isFromAccountDetails: boolean;
   @Input() postToScroll: string;
 
-  @Output() goBackToFeed = new EventEmitter();
+  @Output() switchAccountDetails = new EventEmitter<string>();
+  @Output() goBackToAccountDetailsView = new EventEmitter();
 
   constructor(
     private elRef: ElementRef,
@@ -25,7 +27,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   backClick() {
-    this.goBackToFeed.emit();
+    this.goBackToAccountDetailsView.emit();
+  }
+
+  loginClick(userId: string) {
+    this.switchAccountDetails.emit(userId);
   }
 
 }

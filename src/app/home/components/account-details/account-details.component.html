@@ -1,4 +1,5 @@
 <div *ngIf="!isFeedView; else feed">
+  <button mat-button color="primary" (click)="accountDetailsBackButtonClick()">back to feed</button>
   <h4 class="login mat-typography mat-body-2">{{login}}</h4>
   <img class="user-avatar" [src]="userAvatar" />
   <div *ngIf="isLoggedUser">
@@ -6,7 +7,7 @@
     <button mat-button color="primary" (click)="logout()">logout</button>
   </div>
   <mat-grid-list class="preview-container" cols="3" rowHeight="1:1">
-    <div *ngFor="let post of posts; let i = index">
+    <div *ngFor="let post of posts">
       <mat-grid-tile (click)="tileClick(post['postId'])">
         <img class="preview-image" [src]="post.image" />
       </mat-grid-tile>
@@ -15,5 +16,5 @@
 </div>
 
 <ng-template #feed>
-  <app-feed [posts]="posts" [postToScroll]="postToScroll" (goBackToFeed)="goBackToFeed()"></app-feed>
+  <app-feed [posts]="posts" [postToScroll]="postToScroll" [isFromAccountDetails]="true" (goBackToAccountDetailsView)="goBackToAccountDetailsView()"></app-feed>
 </ng-template>
