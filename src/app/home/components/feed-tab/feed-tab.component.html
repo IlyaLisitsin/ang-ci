@@ -1,5 +1,5 @@
 <div *ngIf="isAccountDetailsView; else feed">
-  <app-account-details [accountId]="accountId" [isLoggedUser]="isLoggedUser" (goBackToFeedView)="goBackToFeedView()"></app-account-details>
+  <app-account-details [accountId]="accountId" [isLoggedUser]="isLoggedUser" [isFromMainFeed]="true" (goBackToFeedView)="goBackToFeedView()"></app-account-details>
 </div>
 <ng-template #feed>
     <app-feed [posts]="feedPosts" [isFromAccountDetails]="false" (switchAccountDetails)="switchAccountDetails($event)"></app-feed>

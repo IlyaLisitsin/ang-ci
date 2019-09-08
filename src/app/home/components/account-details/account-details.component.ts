@@ -15,6 +15,7 @@ import { SpinnerService } from '../../../shared/services/spinner/spinner.service
 export class AccountDetailsComponent implements OnInit {
   @Input() isLoggedUser: boolean;
   @Input() accountId: string;
+  @Input() isFromMainFeed: boolean;
 
   @Output() goBackToFeedView = new EventEmitter();
 

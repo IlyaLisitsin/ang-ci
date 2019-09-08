@@ -1,5 +1,5 @@
 <div *ngIf="!isFeedView; else feed">
-  <button mat-button color="primary" (click)="accountDetailsBackButtonClick()">back to feed</button>
+  <button *ngIf="isFromMainFeed" mat-button color="primary" (click)="accountDetailsBackButtonClick()">back to feed</button>
   <h4 class="login mat-typography mat-body-2">{{login}}</h4>
   <img class="user-avatar" [src]="userAvatar" />
   <div *ngIf="isLoggedUser">
