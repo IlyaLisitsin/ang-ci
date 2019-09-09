@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { SignInPageComponent } from './page/sign-in-page/sign-in-page.component';
@@ -12,6 +13,7 @@ import { AccountDetailsComponent } from './components/account-details/account-de
 import { FeedComponent } from './components/feed/feed.component';
 import { FeedTabComponent } from './components/feed-tab/feed-tab.component';
 import { SpinnerService } from '../shared/services/spinner/spinner.service';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { SpinnerService } from '../shared/services/spinner/spinner.service';
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxMatSelectSearchModule,
   ],
   declarations: [
     HomePageComponent,
@@ -27,7 +30,8 @@ import { SpinnerService } from '../shared/services/spinner/spinner.service';
     UploadImageDialogComponent,
     AccountDetailsComponent,
     FeedComponent,
-    FeedTabComponent
+    FeedTabComponent,
+    SearchComponent,
   ],
   entryComponents: [
     UploadImageDialogComponent,

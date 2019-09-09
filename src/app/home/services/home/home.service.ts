@@ -5,6 +5,7 @@ import { AUTH_APIS } from '../../../shared/constants/apis';
 @Injectable()
 export class HomeService {
   logedUserId: string;
+  loggedUserSubscriptions: Array<string> = [];
 
   constructor(
     private http: HttpClient,
@@ -25,5 +26,9 @@ export class HomeService {
 
   getUserById(id: string) {
     return this.http.get(`${AUTH_APIS.current}?unlogedUserId=${id}`);
+  }
+
+  searchUsers(searchString: string) {
+    return this.http.get(`${AUTH_APIS.searchUsers}?searchQuery=${searchString}`);
   }
 }

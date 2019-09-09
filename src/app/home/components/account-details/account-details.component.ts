@@ -24,6 +24,7 @@ export class AccountDetailsComponent implements OnInit {
   login: string;
   posts: Array<Post>;
   postToScroll: string;
+  subscriptionButtonText: string;
 
   constructor(
     private authService: AuthService,
@@ -32,6 +33,7 @@ export class AccountDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.generateSubscriptionButtonText();
     if (this.isLoggedUser) {
       this.getLoggedUser();
     } else {
@@ -52,9 +54,10 @@ export class AccountDetailsComponent implements OnInit {
     this.spinnerService.showSpinner();
     this.homeService.getLoggedUser()
       .subscribe(
-        ({ user: { userAvatar, login, posts, _id } }: UserResponse) => {
+        ({ user: { userAvatar, login, posts, _id, subscriptions } }: UserResponse) => {
           this.userResponseHandler({ userAvatar, login, posts });
           this.homeService.logedUserId = _id;
+          this.homeService.loggedUserSubscriptions = subscriptions;
         },
         () => this.spinnerService.hideSpinner(),
       );
@@ -86,5 +89,17 @@ export class AccountDetailsComponent implements OnInit {
 
   accountDetailsBackButtonClick() {
     this.goBackToFeedView.emit();
+  }
+
+  generateSubscriptionButtonText() {
+    this.homeService.loggedUserSubscriptions.includes(this.accountId) ?
+      this.subscriptionButtonText = 'Unfollow'
+      : this.subscriptionButtonText = 'Follow';
+  }
+
+  subscriptionButtonClick() {
+    this.homeService.loggedUserSubscriptions.includes(this.accountId) ?
+      console.log('unfollow action')
+      : console.log('follow action');
   }
 }

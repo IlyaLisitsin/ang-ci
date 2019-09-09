@@ -1,0 +1,15 @@
+:host {
+
+}
+
+
+::ng-deep {
+
+  .mat-select-panel .mat-option:not(:first-child) {
+    height: 5em !important;
+  }
+
+  .user-avatar {
+    height: 80px;
+  }
+}

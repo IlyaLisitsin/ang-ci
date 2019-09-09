@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 const modules = [
   BrowserAnimationsModule,
@@ -22,6 +23,7 @@ const modules = [
   MatTabsModule,
   MatDialogModule,
   MatGridListModule,
+  MatSelectModule,
 ];
 
 @NgModule({
