@@ -2,4 +2,8 @@
   ::ng-deep .mat-tab-body-wrapper {
     height: calc(100vh - 49px);
   }
+
+  ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #ec577d;
+  }
 }

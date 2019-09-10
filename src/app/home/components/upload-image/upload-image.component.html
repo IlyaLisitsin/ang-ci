@@ -3,4 +3,6 @@
   accept="image/*"
   type="file" (change)="onFileChanged($event)"
   #fileInput>
-<button mat-button class="upload-image-button" color="primary" (click)="fileInput.click()">Upload image</button>
+<button mat-icon-button (click)="fileInput.click()">
+  <mat-icon>edit</mat-icon>
+</button>
