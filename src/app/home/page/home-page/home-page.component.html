@@ -1,4 +1,4 @@
-<mat-tab-group headerPosition="below" (selectedTabChange)="onLinkClick($event)">
+<mat-tab-group mat-stretch-tabs headerPosition="below" (selectedTabChange)="onLinkClick($event)">
   <mat-tab label="Feed">
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">home</mat-icon>
@@ -18,4 +18,3 @@
     <app-account-details [isLoggedUser]="true" [isFromMainFeed]="false"></app-account-details>
   </mat-tab>
 </mat-tab-group>
-
