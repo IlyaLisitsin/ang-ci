@@ -4,16 +4,16 @@
     justify-content: center;
   }
 
-  // .upload-image {
-  //   color: rgba(255, 255, 255, 0.5);
-  //   position: absolute;
-  //   left: 3em;
-  //   top: 7.5em;
-  //   transition: .15s ease-in-out;
-  //   cursor: pointer;
-  //   &:hover {
-  //     color: rgba(255, 255, 255, 1);
-  //   }
-  // }
+  button {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: -1em;
+    top: -8em;
+    transition: .15s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
 
 }
