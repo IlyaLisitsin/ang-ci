@@ -6,6 +6,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SearchComponent } from './search.component';
 import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
+import { AccountDetailsComponent } from '../account-details/account-details.component';
+import { UploadImageComponent } from '../upload-image/upload-image.component';
+import { FeedComponent } from '../feed/feed.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -19,7 +22,12 @@ describe('SearchComponent', () => {
         NgxMatSelectSearchModule,
         HttpClientTestingModule,
       ],
-      declarations: [ SearchComponent ],
+      declarations: [
+        SearchComponent,
+        AccountDetailsComponent,
+        UploadImageComponent,
+        FeedComponent,
+      ],
       providers: [
         HomeService,
       ],

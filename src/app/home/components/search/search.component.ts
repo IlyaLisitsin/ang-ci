@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
 import { debounceTime, takeUntil, tap, map, filter, delay, switchMap } from 'rxjs/operators';
+import { MatSelectChange } from '@angular/material';
 
 import { HomeService } from '../../services/home/home.service';
 
@@ -23,6 +24,10 @@ interface UsersSearchResponse {
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  checkedUserId: string;
+
+  isAccountDetailsView = false;
+  isLoggedUser = false;
 
   constructor(
     private homeService: HomeService,
@@ -54,6 +59,17 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.searching = false;
         });
 
+  }
+
+  selectionChange(event: MatSelectChange) {
+    this.checkedUserId = event.value._id;
+    this.isLoggedUser = event.value._id === this.homeService.logedUserId;
+    this.isAccountDetailsView = true;
+  }
+
+  goBackToSearchView() {
+    this.isAccountDetailsView = false;
+    this.checkedUserId = '';
   }
 
   ngOnDestroy() {

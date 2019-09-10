@@ -16,8 +16,10 @@ export class AccountDetailsComponent implements OnInit {
   @Input() isLoggedUser: boolean;
   @Input() accountId: string;
   @Input() isFromMainFeed: boolean;
+  @Input() isFromSearch: boolean;
 
   @Output() goBackToFeedView = new EventEmitter();
+  @Output() goBackToSearchView = new EventEmitter();
 
   isFeedView = false;
   userAvatar: string;
@@ -88,7 +90,8 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   accountDetailsBackButtonClick() {
-    this.goBackToFeedView.emit();
+    this.isFromMainFeed && this.goBackToFeedView.emit();
+    this.isFromSearch && this.goBackToSearchView.emit();
   }
 
   generateSubscriptionButtonText() {

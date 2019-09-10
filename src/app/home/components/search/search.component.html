@@ -1,11 +1,25 @@
-<mat-form-field>
-  <mat-select [formControl]="userSearchSelect" placeholder="Search user">
-    <mat-option>
-      <ngx-mat-select-search [formControl]="userSearchInput" [searching]="searching"></ngx-mat-select-search>
-    </mat-option>
-    <mat-option *ngFor="let user of userSearchResults | async" [value]="user">
-      <img class="user-avatar" [src]="user['userAvatar']"/>
-      <span>{{user['login']}}</span>
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div *ngIf="!isAccountDetailsView; else accountDetails">
+  <mat-form-field>
+    <mat-select [formControl]="userSearchSelect" (selectionChange)="selectionChange($event)" placeholder="Search user">
+      <mat-option>
+        <ngx-mat-select-search [formControl]="userSearchInput" [searching]="searching"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let user of userSearchResults | async" [value]="user">
+        <img class="user-avatar" [src]="user['userAvatar']"/>
+        <span>{{user['login']}}</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<ng-template #accountDetails>
+  <app-account-details
+    *ngIf="userSearchSelect.value"
+    [isLoggedUser]="isLoggedUser"
+    [isFromMainFeed]="false"
+    [isFromSearch]="true"
+    [accountId]="checkedUserId"
+    (goBackToSearchView)="goBackToSearchView()"
+  >
+  </app-account-details>
+</ng-template>

@@ -1,5 +1,5 @@
 <div *ngIf="!isFeedView; else feed">
-  <button *ngIf="isFromMainFeed" mat-button color="primary" (click)="accountDetailsBackButtonClick()">back to feed</button>
+  <button *ngIf="isFromMainFeed || isFromSearch" mat-button color="primary" (click)="accountDetailsBackButtonClick()">back</button>
   <div *ngIf="isFromMainFeed && !isLoggedUser">
     <button mat-button color="primary" (click)="subscriptionButtonClick()">{{subscriptionButtonText}}</button>
   </div>
