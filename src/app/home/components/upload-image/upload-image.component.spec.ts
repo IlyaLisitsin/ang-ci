@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { UploadImageComponent } from './upload-image.component';
 import { HomeService } from '../../services/home/home.service';
+import { MaterialModule } from '../../../material.module';
 
 describe('UploadImageComponent', () => {
   let component: UploadImageComponent;
@@ -14,6 +15,7 @@ describe('UploadImageComponent', () => {
       imports: [
         HttpClientTestingModule,
         MatDialogModule,
+        MaterialModule,
       ],
       providers: [
         HomeService,
