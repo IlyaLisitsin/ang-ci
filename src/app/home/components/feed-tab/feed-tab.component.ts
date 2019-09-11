@@ -39,6 +39,7 @@ export class FeedTabComponent implements OnInit {
 
   goBackToFeedView() {
     this.isAccountDetailsView = false;
+    this.getFeedPosts();
   }
 
   resetFeedTab() {

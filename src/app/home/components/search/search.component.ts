@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
-import { debounceTime, takeUntil, tap, map, filter, delay, switchMap } from 'rxjs/operators';
+import { debounceTime, takeUntil, tap, map, filter, delay, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 import { MatSelectChange } from '@angular/material';
 
 import { HomeService } from '../../services/home/home.service';
@@ -36,7 +37,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public userSearchSelect = new FormControl();
   public userSearchInput = new FormControl();
   public searching = false;
-  public  userSearchResults: ReplaySubject<Array<any>> = new ReplaySubject(1);
+  public userSearchResults: ReplaySubject<Array<any>> = new ReplaySubject(1);
   protected onDestroy = new Subject<void>();
 
   ngOnInit() {
@@ -48,8 +49,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         debounceTime(200),
         switchMap(searchInput => this.homeService.searchUsers(searchInput).pipe(
           map((response: UsersSearchResponse) => response.usersSearchResult),
+          catchError(() => of(null)),
         )),
-        delay(500)
+        delay(500),
       )
       .subscribe(usersSearchResult => {
           this.searching = false;
@@ -69,6 +71,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   goBackToSearchView() {
     this.isAccountDetailsView = false;
+    this.userSearchInput.setValue('');
+    this.userSearchSelect.setValue('');
+    this.userSearchResults.next(null);
     this.checkedUserId = '';
   }
 

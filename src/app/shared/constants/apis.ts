@@ -1,3 +1,4 @@
+// const BASE_BE_URL = 'http://localhost:5000/api';
 const BASE_BE_URL = 'https://anc-ci-be.herokuapp.com/api';
 
 export const AUTH_APIS: any = {
@@ -7,6 +8,8 @@ export const AUTH_APIS: any = {
   updateUserAvatar: `${BASE_BE_URL}/users/update-avatar`,
   getFeed: `${BASE_BE_URL}/users/feed`,
   searchUsers: `${BASE_BE_URL}/users/search`,
+  followUser: `${BASE_BE_URL}/users/follow`,
+  unfollowUser: `${BASE_BE_URL}/users/unfollow`,
 };
 
 export const resetUserErrorMessages = [

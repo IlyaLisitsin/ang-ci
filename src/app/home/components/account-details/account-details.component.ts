@@ -22,6 +22,8 @@ export class AccountDetailsComponent implements OnInit {
   @Output() goBackToSearchView = new EventEmitter();
 
   isFeedView = false;
+  isSubscriptionActionInProgress = false;
+
   userAvatar: string;
   login: string;
   posts: Array<Post>;
@@ -101,8 +103,25 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   subscriptionButtonClick() {
-    this.homeService.loggedUserSubscriptions.includes(this.accountId) ?
-      console.log('unfollow action')
-      : console.log('follow action');
+    if (this.homeService.loggedUserSubscriptions.includes(this.accountId)) {
+      this.isSubscriptionActionInProgress = true;
+      this.homeService.unfollowUser(this.accountId).subscribe(
+      (userResponse: UserResponse) => this.subscribeActionHandler(userResponse),
+      () => this.isSubscriptionActionInProgress = false,
+      );
+    } else {
+      this.isSubscriptionActionInProgress = true;
+      this.homeService.followUser(this.accountId).subscribe(
+        (userResponse: UserResponse) => this.subscribeActionHandler(userResponse),
+        () => this.isSubscriptionActionInProgress = false,
+      );
+    }
+  }
+
+  subscribeActionHandler(userResponse: UserResponse) {
+    const { user: { subscriptions } } = userResponse;
+    this.homeService.loggedUserSubscriptions = subscriptions;
+    this.generateSubscriptionButtonText();
+    this.isSubscriptionActionInProgress = false;
   }
 }

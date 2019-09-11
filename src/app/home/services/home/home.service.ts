@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { AUTH_APIS } from '../../../shared/constants/apis';
 
 @Injectable()
@@ -30,5 +31,15 @@ export class HomeService {
 
   searchUsers(searchString: string) {
     return this.http.get(`${AUTH_APIS.searchUsers}?searchQuery=${searchString}`);
+  }
+
+  followUser(subscriptionId: string) {
+    const body = { subscriptionId };
+    return this.http.put(`${AUTH_APIS.followUser}`, body);
+  }
+
+  unfollowUser(subscriptionId: string) {
+    const body = { subscriptionId };
+    return this.http.put(`${AUTH_APIS.unfollowUser}`, body);
   }
 }
