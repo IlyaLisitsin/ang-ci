@@ -2,7 +2,7 @@
     <div class="wrapper"></div>
     <div class="search-form-wrapper">
       <mat-icon class="search-icon">search</mat-icon>
-      <mat-form-field>
+      <mat-form-field class="search-form">
         <mat-select [formControl]="userSearchSelect" (selectionChange)="selectionChange($event)" placeholder="Search user">
           <mat-option>
             <ngx-mat-select-search [formControl]="userSearchInput" [placeholderLabel]="'Search...'" [noEntriesFoundLabel]="'No results'" [searching]="searching"></ngx-mat-select-search>
