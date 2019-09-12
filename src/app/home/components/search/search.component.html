@@ -1,27 +1,23 @@
-<div class="wrapper">
   <div *ngIf="!isAccountDetailsView; else accountDetails">
-    <mat-form-field>
-      <mat-select [formControl]="userSearchSelect" (selectionChange)="selectionChange($event)" placeholder="Search user">
-        <mat-option>
-          <ngx-mat-select-search [formControl]="userSearchInput" [placeholderLabel]="'Search...'" [noEntriesFoundLabel]="'No results'" [searching]="searching"></ngx-mat-select-search>
-        </mat-option>
-        <mat-option *ngFor="let user of userSearchResults | async" [value]="user">
-          <img class="user-avatar" [src]="user['userAvatar']"/>
-          <span>{{user['login']}}</span>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="wrapper"></div>
+    <div class="search-form-wrapper">
+      <mat-icon class="search-icon">search</mat-icon>
+      <mat-form-field>
+        <mat-select [formControl]="userSearchSelect" (selectionChange)="selectionChange($event)" placeholder="Search user">
+          <mat-option>
+            <ngx-mat-select-search [formControl]="userSearchInput" [placeholderLabel]="'Search...'" [noEntriesFoundLabel]="'No results'" [searching]="searching"></ngx-mat-select-search>
+          </mat-option>
+          <mat-option *ngFor="let user of userSearchResults | async" [value]="user">
+            <img class="user-avatar" [src]="user['userAvatar']" />
+            <span>{{user['login']}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-</div>
 
-<ng-template #accountDetails>
-  <app-account-details
-    *ngIf="userSearchSelect.value"
-    [isLoggedUser]="isLoggedUser"
-    [isFromMainFeed]="false"
-    [isFromSearch]="true"
-    [accountId]="checkedUserId"
-    (goBackToSearchView)="goBackToSearchView()"
-  >
-  </app-account-details>
-</ng-template>
+
+  <ng-template #accountDetails>
+    <app-account-details *ngIf="userSearchSelect.value" [isLoggedUser]="isLoggedUser" [isFromMainFeed]="false" [isFromSearch]="true" [accountId]="checkedUserId" (goBackToSearchView)="goBackToSearchView()">
+    </app-account-details>
+  </ng-template>
