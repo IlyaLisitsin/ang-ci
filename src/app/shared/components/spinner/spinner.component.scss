@@ -1,7 +1,10 @@
 :host {
   .spinner {
     position: absolute;
-    top: 0;
+    top: 30%;
     left: 50%;
+  }
+  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+      stroke: #eb517d;
   }
 }

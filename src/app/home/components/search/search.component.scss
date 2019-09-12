@@ -8,8 +8,23 @@
   .mat-select-panel .mat-option:not(:first-child) {
     height: 5em !important;
   }
-
-  .user-avatar {
-    height: 80px;
+  .mat-option-text {
+    display: flex!important;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
+  .user-avatar {
+    border-radius: 50%;
+    height: 60px;
+    margin-right: 1em;
+  }
+}
+
+.wrapper {
+  width: 200px;
+  margin: 13em auto;
+}
+mat-icon {
+  position: absolute;
 }
