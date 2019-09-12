@@ -9,12 +9,30 @@
 
   .post-avatar-image {
     height: 100%;
+    border-radius: 50%;
   }
 
   .back-button {
     position: fixed;
-    top: 30px;
-    left: 20px;
+    top: 2em;
+    left: 3em;
     z-index: 100;
+  }
+
+  mat-card-header {
+    margin-bottom: 14px;
+
+    ::ng-deep .mat-card-header-text {
+      display: flex;
+      align-items: center;
+    }
+
+    ::ng-deep .mat-card-title {
+      margin-bottom: 0;
+    }
+  }
+
+  mat-card-content {
+    margin-bottom: 0;
   }
 }

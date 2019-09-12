@@ -1,3 +1,6 @@
 @import "normalizer";
 @import "material";
 @import url('https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap');
+*:not(mat-icon) {
+  font-family: 'Saira Semi Condensed', sans-serif!important;
+}

@@ -6,4 +6,7 @@
   ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
     background-color: #ec577d;
   }
+  ::ng-deep .mat-tab-label, .mat-tab-link {
+    color: rgb(236, 87, 125);
+}
 }
