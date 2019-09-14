@@ -13,6 +13,12 @@
   </mat-tab>
   <mat-tab label="Personal">
     <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">add</mat-icon>
+    </ng-template>
+    <app-add-post></app-add-post>
+  </mat-tab>
+  <mat-tab label="Personal">
+    <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">person</mat-icon>
     </ng-template>
     <app-account-details [isLoggedUser]="true" [isFromMainFeed]="false"></app-account-details>

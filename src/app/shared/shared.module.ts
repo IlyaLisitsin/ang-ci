@@ -8,15 +8,22 @@ import { AuthService } from './services/auth/auth.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MaterialModule } from '../material.module';
+import { StepperComponent } from './components/stepper/stepper.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ViewDirective } from './directives/view.directive';
+import { TestComponent } from './components/test/test.component';
+import {UploadImageComponent} from "../home/components/upload-image/upload-image.component";
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
   exports: [
     SpinnerComponent,
+    StepperComponent,
   ],
   providers: [
     AuthGuard,
@@ -26,7 +33,14 @@ import { MaterialModule } from '../material.module';
   ],
   declarations: [
     SpinnerComponent,
-  ]
+    StepperComponent,
+    ViewDirective,
+    TestComponent,
+  ],
+  entryComponents: [
+    UploadImageComponent,
+    TestComponent,
+  ],
 })
 export class SharedModule {
 }

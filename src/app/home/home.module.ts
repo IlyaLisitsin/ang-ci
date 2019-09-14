@@ -14,6 +14,9 @@ import { FeedComponent } from './components/feed/feed.component';
 import { FeedTabComponent } from './components/feed-tab/feed-tab.component';
 import { SpinnerService } from '../shared/services/spinner/spinner.service';
 import { SearchComponent } from './components/search/search.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
+import {StepperComponent} from "../shared/components/stepper/stepper.component";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -22,6 +25,7 @@ import { SearchComponent } from './components/search/search.component';
     ReactiveFormsModule,
     MaterialModule,
     NgxMatSelectSearchModule,
+    SharedModule,
   ],
   declarations: [
     HomePageComponent,
@@ -32,6 +36,7 @@ import { SearchComponent } from './components/search/search.component';
     FeedComponent,
     FeedTabComponent,
     SearchComponent,
+    AddPostComponent,
   ],
   entryComponents: [
     UploadImageDialogComponent,

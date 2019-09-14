@@ -1,0 +1,14 @@
+<form [formGroup]="stepperFormGroup">
+  <mat-horizontal-stepper [linear]="true">
+    <ng-container *ngFor="let step of steps">
+      <mat-step>
+        <ng-template matStepLabel>{{step.label}}</ng-template>
+        <div *view="cb(step.content)"></div>
+      </mat-step>
+    </ng-container>
+    <mat-step>
+      <input [formControl]="inputFormControl"/>
+      <button (click)="submitStepperForm()">submit</button>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>
