@@ -17,6 +17,10 @@ import { SearchComponent } from './components/search/search.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
 import {StepperComponent} from "../shared/components/stepper/stepper.component";
 import {SharedModule} from "../shared/shared.module";
+import { AddPostCaptionComponent } from './components/steps/add-post-caption/add-post-caption.component';
+import { UploadPictureComponent } from './components/steps/upload-picture/upload-picture.component';
+import {WebcamModule} from "ngx-webcam";
+import { CropPictureComponent } from './components/steps/crop-picture/crop-picture.component';
 
 
 @NgModule({
@@ -26,6 +30,7 @@ import {SharedModule} from "../shared/shared.module";
     MaterialModule,
     NgxMatSelectSearchModule,
     SharedModule,
+    WebcamModule,
   ],
   declarations: [
     HomePageComponent,
@@ -37,6 +42,9 @@ import {SharedModule} from "../shared/shared.module";
     FeedTabComponent,
     SearchComponent,
     AddPostComponent,
+    AddPostCaptionComponent,
+    UploadPictureComponent,
+    CropPictureComponent,
   ],
   entryComponents: [
     UploadImageDialogComponent,

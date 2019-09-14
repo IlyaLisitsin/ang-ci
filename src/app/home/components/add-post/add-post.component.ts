@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {UploadImageComponent} from "../upload-image/upload-image.component";
-import {SignInPageComponent} from "../../page/sign-in-page/sign-in-page.component";
-import {TestComponent} from "../../../shared/components/test/test.component";
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+import { AddPostCaptionComponent } from '../steps/add-post-caption/add-post-caption.component';
+import { UploadPictureComponent } from '../steps/upload-picture/upload-picture.component';
+import { CropPictureComponent } from '../steps/crop-picture/crop-picture.component';
 
 @Component({
   selector: 'app-add-post',
@@ -34,15 +35,24 @@ export class AddPostComponent implements OnInit {
           formControlMap: {
             imageFormControl: this.imageFormControl,
           },
-          content: UploadImageComponent,
-          formGroup: this.addPostForm,
+          content: UploadPictureComponent,
         },
         {
-          label: 'jkjnkjk',
+          label: 'crop image',
+          formControlMap: {
+            imageFormControl: this.imageFormControl,
+          },
+          // inputsMap: {
+          //   uploadedImage: this.imageFormControl.value
+          // },
+          content: CropPictureComponent,
+        },
+        {
+          label: 'add post caption',
           formControlMap: {
             postTextFormControl: this.postTextFormControl,
           },
-          content: TestComponent,
+          content: AddPostCaptionComponent,
         }
       ],
     }

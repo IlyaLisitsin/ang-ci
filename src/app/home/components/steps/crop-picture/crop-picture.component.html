@@ -1,0 +1,7 @@
+<div class="main-image-container">
+  <img class="main-image" #image [src]="stepperFormControl.value.imageFormControl" crossorigin>
+</div>
+<img [src]="croppedImageSrc" #croppedImageRef class="cropped-image">
+<button mat-button color="primary" (click)="zoomToFull()">Zoom to 100%</button>
+<button mat-button color="primary" (click)="reset()">Reset</button>
+

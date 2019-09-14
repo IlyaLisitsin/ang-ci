@@ -1,5 +1,6 @@
-import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import { Component, Input, OnInit, ViewChild} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { MatStepper } from "@angular/material";
 
 @Component({
   selector: 'app-stepper',
@@ -7,6 +8,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
   @Input() config: any;
   steps: Array<any>;
 
@@ -34,7 +36,12 @@ export class StepperComponent implements OnInit {
   }
 
   cb(component) {
-    return { component, formControlMap: this.formControlMap };
+    return {
+      component,
+      stepper: this.stepper,
+      formControlMap: this.formControlMap,
+      stepperFormGroup: this.stepperFormGroup,
+    };
   }
 
 }

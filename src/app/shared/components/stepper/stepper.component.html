@@ -1,5 +1,5 @@
 <form [formGroup]="stepperFormGroup">
-  <mat-horizontal-stepper [linear]="true">
+  <mat-horizontal-stepper [linear]="true" #stepper>
     <ng-container *ngFor="let step of steps">
       <mat-step>
         <ng-template matStepLabel>{{step.label}}</ng-template>

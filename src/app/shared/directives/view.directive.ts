@@ -20,17 +20,22 @@ export class ViewDirective {
   }
 
   @Input()
-  set view({ component, formControlMap }) {
+  set view({ component, formControlMap, stepper, stepperFormGroup }) {
     const factory = this.compFactoryResolver.resolveComponentFactory(component);
 
     if (this.currentViewContainer.element.nativeElement.parentNode
       && this.currentViewContainer.element.nativeElement.parentNode.childElementCount < 1) {
 
       const instance: any = this.currentViewContainer.createComponent(factory).instance;
+      instance.stepperFormControl = stepperFormGroup
 
       Object.keys(formControlMap).forEach(controlName => {
         if (instance[`${controlName}Change`]) {
-          instance[`${controlName}Change`].subscribe(val => formControlMap[controlName].setValue(val));
+          instance[`${controlName}Change`].subscribe(
+            val => {
+              formControlMap[controlName].setValue(val);
+              stepper.next();
+            });
         }
       });
     }
