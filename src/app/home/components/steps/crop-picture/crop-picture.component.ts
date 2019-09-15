@@ -3,13 +3,11 @@ import {
   AfterViewInit,
   Component,
   ElementRef, EventEmitter,
-  Inject,
   Input,
-  OnChanges,
   OnInit, Output, SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import Cropper from 'cropperjs/dist/cropper.esm.js';
 
 @Component({
@@ -17,22 +15,19 @@ import Cropper from 'cropperjs/dist/cropper.esm.js';
   templateUrl: './crop-picture.component.html',
   styleUrls: ['./crop-picture.component.scss']
 })
-export class CropPictureComponent implements OnInit, AfterViewChecked {
-  @Input() stepperFormControl: FormControl;
-  @Output() imageFormControlChange = new EventEmitter;
+export class CropPictureComponent implements OnInit {
+  @Input() stepperFormGroup: FormGroup;
+  @Output() croppedImageFormControlChange = new EventEmitter;
 
-  @ViewChild('image')
-  public mainImage: ElementRef;
+  @ViewChild('image') mainImage: ElementRef;
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('src')
-  public imageSource: string;
+  @Input('src') imageSource: string;
 
-  @ViewChild('croppedImageRef') croppedImageRef: ElementRef;
-  public croppedImageSrc: string;
-  private cropper: Cropper;
+  croppedImageSrc: string;
+  cropper: Cropper;
+  isZoomToFull = false;
 
-  public constructor() {
+  constructor() {
     this.croppedImageSrc = '';
   }
 
@@ -40,7 +35,7 @@ export class CropPictureComponent implements OnInit, AfterViewChecked {
     this.cropper = new Cropper(this.mainImage.nativeElement, {
       zoomable: true,
       scalable: false,
-      aspectRatio: 1,
+      aspectRatio: 4 / 2,
       crop: () => {
         const canvas = this.cropper.getCroppedCanvas();
         this.croppedImageSrc = canvas.toDataURL('image/png');
@@ -48,23 +43,22 @@ export class CropPictureComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  ngAfterViewChecked(): void {
-    console.log('content checked')
-    if (this.stepperFormControl.value.imageFormControl && !this.cropper) {
-      this.initCropper();
-    }
-  }
-
   zoomToFull() {
-    this.cropper.zoomTo(1);
+    this.isZoomToFull ? this.cropper.reset() : this.cropper.zoomTo(1);
+    this.isZoomToFull = !this.isZoomToFull;
   }
 
-  reset()  {
+  crop() {
     this.cropper.reset();
+    this.croppedImageFormControlChange.emit(this.croppedImageSrc);
   }
 
   ngOnInit() {
-    this.stepperFormControl && console.log(this.stepperFormControl.value)
+    this.stepperFormGroup.get('originalImageFormControl').valueChanges.subscribe(val => {
+      this.mainImage.nativeElement.setAttribute('src', val)
+        this.cropper && this.cropper.destroy();
+        this.initCropper();
+    })
   }
 
 }

@@ -1,6 +1,7 @@
 <form [formGroup]="stepperFormGroup">
   <mat-horizontal-stepper [linear]="true" #stepper>
-    <ng-container *ngFor="let step of steps">
+    <ng-container *ngFor="let step of steps; let i = index">
+<!--      <mat-step [stepControl]="generateControlCollection[i]">-->
       <mat-step>
         <ng-template matStepLabel>{{step.label}}</ng-template>
         <div *view="cb(step.content)"></div>

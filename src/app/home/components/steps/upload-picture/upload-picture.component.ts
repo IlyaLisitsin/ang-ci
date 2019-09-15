@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WebcamImage, WebcamInitError, WebcamUtil} from "ngx-webcam";
 import {Observable, Subject} from "rxjs";
 import {UploadImageDialogComponent} from "../../upload-image-dialog/upload-image-dialog.component";
-
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-upload-picture',
@@ -10,26 +10,27 @@ import {UploadImageDialogComponent} from "../../upload-image-dialog/upload-image
   styleUrls: ['./upload-picture.component.scss']
 })
 export class UploadPictureComponent implements OnInit {
-  @Output() imageFormControlChange = new EventEmitter;
+  @Input() stepperFormGroup: FormGroup;
+  @Output() originalImageFormControlChange = new EventEmitter;
   isWebcamView = false;
 
-  public allowCameraSwitch = false;
-  public multipleWebcamsAvailable = false;
-  public deviceId: string;
-  public videoOptions: MediaTrackConstraints = {
-    width: {ideal: 300},
-    height: {ideal: 300}
+  allowCameraSwitch = false;
+  // public multipleWebcamsAvailable = false;
+  deviceId: string;
+  videoOptions: MediaTrackConstraints = {
+    // width: {ideal: 300},
+    // height: {ideal: 300}
   };
-  public errors: WebcamInitError[] = [];
+  errors: WebcamInitError[] = [];
 
-  private trigger: Subject<void> = new Subject<void>();
-  private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
+  trigger: Subject<void> = new Subject<void>();
+  nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
-  public triggerSnapshot(): void {
+  triggerSnapshot(): void {
     this.trigger.next();
   }
 
-  public handleInitError(error: WebcamInitError): void {
+  handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
   }
 
@@ -40,33 +41,26 @@ export class UploadPictureComponent implements OnInit {
   //   this.nextWebcam.next(directionOrDeviceId);
   // }
 
-  public handleImage(webcamImage: WebcamImage): void {
-    this.imageFormControlChange.emit(webcamImage.imageAsDataUrl)
+  handleImage(webcamImage: WebcamImage): void {
+    this.stepperFormGroup.controls.originalImageFormControl.setValue(webcamImage.imageAsDataUrl);
+    this.originalImageFormControlChange.emit(webcamImage.imageAsDataUrl);
+    this.isWebcamView = false;
   }
 
-  public cameraWasSwitched(deviceId: string): void {
+  cameraWasSwitched(deviceId: string): void {
     this.deviceId = deviceId;
   }
 
-  public get triggerObservable(): Observable<void> {
+  get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
 
-  public get nextWebcamObservable(): Observable<boolean|string> {
+  get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
   }
 
   showWebcamView() {
     this.isWebcamView = true;
-  }
-
-  constructor() { }
-
-  ngOnInit() {
-    WebcamUtil.getAvailableVideoInputs()
-      .then((mediaDevices: MediaDeviceInfo[]) => {
-        this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-      });
   }
 
   uploadFileHandle(event) {
@@ -77,13 +71,21 @@ export class UploadPictureComponent implements OnInit {
 
       event.target.value = '';
     }).then(base64String => {
-      this.imageFormControlChange.emit(base64String)
+      this.stepperFormGroup.controls.originalImageFormControl.setValue(base64String);
+      this.originalImageFormControlChange.emit(base64String);
     });
-
   }
 
   goBackButtonClick() {
     this.isWebcamView = false;
   }
 
+  constructor() { }
+
+  ngOnInit() {
+    // WebcamUtil.getAvailableVideoInputs()
+    //   .then((mediaDevices: MediaDeviceInfo[]) => {
+    //     this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+    //   });
+  }
 }

@@ -27,7 +27,9 @@ export class ViewDirective {
       && this.currentViewContainer.element.nativeElement.parentNode.childElementCount < 1) {
 
       const instance: any = this.currentViewContainer.createComponent(factory).instance;
-      instance.stepperFormControl = stepperFormGroup
+      instance.stepperFormGroup = stepperFormGroup;
+
+      // console.log(34, stepperFormGroup)
 
       Object.keys(formControlMap).forEach(controlName => {
         if (instance[`${controlName}Change`]) {
