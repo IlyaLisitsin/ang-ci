@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 
