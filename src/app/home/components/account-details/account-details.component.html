@@ -1,5 +1,7 @@
 <div *ngIf="!isFeedView; else feed">
-  <button *ngIf="isFromMainFeed || isFromSearch" mat-icon-button class="back" (click)="accountDetailsBackButtonClick()"><mat-icon>arrow_back_ios</mat-icon></button>
+  <button *ngIf="isFromMainFeed || isFromSearch" mat-icon-button class="back" (click)="accountDetailsBackButtonClick()">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
   <mat-card class="user-info">
     <button class="settings" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>settings</mat-icon>
@@ -13,8 +15,10 @@
     <img class="user-avatar" [src]="userAvatar" />
     <h4 class="login mat-typography mat-body-2">{{login}}</h4>
     <div *ngIf="!isLoggedUser">
-      <button class="follow-unfollow" (click)="subscriptionButtonClick()">
-        <mat-icon *ngIf="isSubscriptionActionInProgress"><mat-spinner diameter="20"></mat-spinner></mat-icon>
+      <button class="btn-follow-unfollow" (click)="subscriptionButtonClick()">
+        <mat-icon *ngIf="isSubscriptionActionInProgress">
+          <mat-spinner diameter="20"></mat-spinner>
+        </mat-icon>
         {{subscriptionButtonText}}
       </button>
     </div>
