@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ComponentRef, Input, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MatStepper } from "@angular/material";
 
@@ -13,39 +13,34 @@ export class StepperComponent implements OnInit {
   steps: Array<any>;
 
   stepperFormGroup: FormGroup;
-  inputFormControl = new FormControl('');
+  stepControlFormGroup: FormGroup;
 
   formControlMap: Object;
-  submitHandler: any;
+  handleMainSubmit: any;
 
   constructor(
     private fb: FormBuilder,
   ) {}
 
-  submitStepperForm() {
-    this.submitHandler(this.stepperFormGroup.value)
-  }
-
   ngOnInit() {
     const { steps, mainFormSubmitHandler } = this.config;
     this.steps = steps;
-    this.submitHandler = mainFormSubmitHandler;
+    this.handleMainSubmit = mainFormSubmitHandler;
 
     this.formControlMap = steps.reduce((acc, curStep) => ({ ...acc, ...curStep.formControlMap }), {});
     this.stepperFormGroup = this.fb.group(this.formControlMap);
+
+    this.stepControlFormGroup = steps.reduce((acc, currStep) =>
+      ({ ...acc, [currStep.stepControlName]: this.fb.group(currStep.formControlMap) }), {});
   }
 
-  cb(component) {
+  cb(component: ComponentRef<any>) {
     return {
       component,
       stepper: this.stepper,
+      handleMainSubmit: this.handleMainSubmit,
       formControlMap: this.formControlMap,
       stepperFormGroup: this.stepperFormGroup,
     };
   }
-
-  // back() {
-  //   this.stepper.back()
-  // }
-
 }

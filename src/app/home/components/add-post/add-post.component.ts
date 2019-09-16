@@ -33,6 +33,7 @@ export class AddPostComponent implements OnInit {
       steps: [
         {
           label: 'upload image',
+          stepControlName: 'uploadImage',
           formControlMap: {
             originalImageFormControl: this.originalImageFormControl,
           },
@@ -40,6 +41,7 @@ export class AddPostComponent implements OnInit {
         },
         {
           label: 'crop image',
+          stepControlName: 'cropImage',
           formControlMap: {
             croppedImageFormControl: this.croppedImageFormControl,
           },
@@ -50,6 +52,7 @@ export class AddPostComponent implements OnInit {
         },
         {
           label: 'add post caption',
+          stepControlName: 'addPostCaption',
           formControlMap: {
             postTextFormControl: this.postTextFormControl,
           },

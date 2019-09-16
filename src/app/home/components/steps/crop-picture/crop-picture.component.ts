@@ -50,12 +50,16 @@ export class CropPictureComponent implements OnInit {
 
   crop() {
     this.cropper.reset();
+    this.stepperFormGroup.setValue({
+      ...this.stepperFormGroup.value,
+      croppedImageFormControl: this.croppedImageSrc,
+    });
     this.croppedImageFormControlChange.emit(this.croppedImageSrc);
   }
 
   ngOnInit() {
     this.stepperFormGroup.get('originalImageFormControl').valueChanges.subscribe(val => {
-      this.mainImage.nativeElement.setAttribute('src', val)
+      this.mainImage.nativeElement.setAttribute('src', val);
         this.cropper && this.cropper.destroy();
         this.initCropper();
     })

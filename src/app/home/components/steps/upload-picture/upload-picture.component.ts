@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {WebcamImage, WebcamInitError, WebcamUtil} from "ngx-webcam";
 import {Observable, Subject} from "rxjs";
-import {UploadImageDialogComponent} from "../../upload-image-dialog/upload-image-dialog.component";
-import {FormControl, FormGroup} from "@angular/forms";
+import { FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-upload-picture',
@@ -42,7 +41,10 @@ export class UploadPictureComponent implements OnInit {
   // }
 
   handleImage(webcamImage: WebcamImage): void {
-    this.stepperFormGroup.controls.originalImageFormControl.setValue(webcamImage.imageAsDataUrl);
+    this.stepperFormGroup.setValue({
+      ...this.stepperFormGroup.value,
+      originalImageFormControl: webcamImage.imageAsDataUrl,
+    });
     this.originalImageFormControlChange.emit(webcamImage.imageAsDataUrl);
     this.isWebcamView = false;
   }
@@ -71,7 +73,11 @@ export class UploadPictureComponent implements OnInit {
 
       event.target.value = '';
     }).then(base64String => {
-      this.stepperFormGroup.controls.originalImageFormControl.setValue(base64String);
+      this.stepperFormGroup.setValue({
+        ...this.stepperFormGroup.value,
+        originalImageFormControl: base64String,
+      });
+
       this.originalImageFormControlChange.emit(base64String);
     });
   }
