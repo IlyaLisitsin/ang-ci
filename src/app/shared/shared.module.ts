@@ -11,11 +11,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MaterialModule } from '../material.module';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { ViewDirective } from './directives/view.directive';
-import { TestComponent } from './components/test/test.component';
-import { UploadImageComponent} from '../home/components/upload-image/upload-image.component';
 import { AddPostCaptionComponent } from '../home/components/steps/add-post-caption/add-post-caption.component';
 import { UploadPictureComponent } from '../home/components/steps/upload-picture/upload-picture.component';
-import {CropPictureComponent} from "../home/components/steps/crop-picture/crop-picture.component";
+import { CropPictureComponent } from '../home/components/steps/crop-picture/crop-picture.component';
 
 @NgModule({
   imports: [
@@ -38,14 +36,11 @@ import {CropPictureComponent} from "../home/components/steps/crop-picture/crop-p
     SpinnerComponent,
     StepperComponent,
     ViewDirective,
-    TestComponent,
   ],
   entryComponents: [
-    UploadImageComponent,
     AddPostCaptionComponent,
     UploadPictureComponent,
     CropPictureComponent,
-    TestComponent,
   ],
 })
 export class SharedModule {

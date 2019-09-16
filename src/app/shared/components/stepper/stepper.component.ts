@@ -34,6 +34,10 @@ export class StepperComponent implements OnInit {
       ({ ...acc, [currStep.stepControlName]: this.fb.group(currStep.formControlMap) }), {});
   }
 
+  clearForm() {
+    console.log('clearform method callsed!');
+  }
+
   cb(component: ComponentRef<any>) {
     return {
       component,

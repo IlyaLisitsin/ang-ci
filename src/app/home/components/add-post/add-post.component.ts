@@ -11,7 +11,6 @@ import { CropPictureComponent } from '../steps/crop-picture/crop-picture.compone
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent implements OnInit {
-  addPostForm: FormGroup;
   addPostStepperConfig: any;
 
   originalImageFormControl = new FormControl('', [
@@ -28,7 +27,7 @@ export class AddPostComponent implements OnInit {
   }
 
   ngOnInit() {
-    const arr = {
+    this.addPostStepperConfig = {
       mainFormSubmitHandler: this.submit,
       steps: [
         {
@@ -45,9 +44,6 @@ export class AddPostComponent implements OnInit {
           formControlMap: {
             croppedImageFormControl: this.croppedImageFormControl,
           },
-          // inputsMap: {
-          //   uploadedImage: this.imageFormControl.value
-          // },
           content: CropPictureComponent,
         },
         {
@@ -59,9 +55,7 @@ export class AddPostComponent implements OnInit {
           content: AddPostCaptionComponent,
         }
       ],
-    }
-
-    this.addPostStepperConfig = arr;
+    };
   }
 
   submit(values) {

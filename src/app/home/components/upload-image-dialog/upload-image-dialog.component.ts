@@ -1,6 +1,10 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import Cropper from 'cropperjs/dist/cropper.esm.js';
+
+import { UploadPictureComponent } from '../steps/upload-picture/upload-picture.component';
+import { CropPictureComponent } from '../steps/crop-picture/crop-picture.component';
+import { StepperComponent } from '../../../shared/components/stepper/stepper.component';
 
 interface DialogData {
   base64String: string;
@@ -12,51 +16,59 @@ interface DialogData {
   styleUrls: ['./upload-image-dialog.component.scss']
 })
 export class UploadImageDialogComponent implements OnInit, AfterViewInit {
-  @ViewChild('image')
-  public mainImage: ElementRef;
+  updateAvatarStepperConfig: Object;
+  @ViewChild('updateAvatarStepper') updateAvatarStepper: StepperComponent;
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('src')
-  public imageSource: string;
-
-  @ViewChild('croppedImageRef') croppedImageRef: ElementRef;
-  public croppedImageSrc: string;
-  private cropper: Cropper;
+  originalImageFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  croppedImageFormControl = new FormControl('', [
+    Validators.required,
+  ]);
 
   public constructor(
     public dialogRef: MatDialogRef<UploadImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
-    this.croppedImageSrc = '';
-  }
-
-  public ngAfterViewInit() {
-    this.cropper = new Cropper(this.mainImage.nativeElement, {
-      zoomable: true,
-      scalable: false,
-      aspectRatio: 1,
-      crop: () => {
-        const canvas = this.cropper.getCroppedCanvas();
-        this.croppedImageSrc = canvas.toDataURL('image/png');
-      },
-    });
-  }
-
-  zoomToFull() {
-    this.cropper.zoomTo(1);
-  }
-
-  reset()  {
-    this.cropper.reset();
-  }
+  ) {}
 
   cancel() {
+    // this.updateAvatarStepper.clearForm();
     this.dialogRef.close(null);
   }
 
-  save() {
-    this.dialogRef.close(this.croppedImageRef.nativeElement.src);
+  submit() {
+    console.log('submit ava')
   }
 
-  public ngOnInit() { }
+  public ngOnInit() {
+    this.updateAvatarStepperConfig = {
+      mainFormSubmitHandler: this.submit,
+      steps: [
+        {
+          label: 'upload image',
+          stepControlName: 'uploadImage',
+          formControlMap: {
+            originalImageFormControl: this.originalImageFormControl,
+          },
+          content: UploadPictureComponent,
+        },
+        {
+          label: 'crop image',
+          stepControlName: 'cropImage',
+          formControlMap: {
+            croppedImageFormControl: this.croppedImageFormControl,
+          },
+          content: CropPictureComponent,
+        },
+      ],
+    };
+  }
+
+  ngAfterViewInit(): void {
+    this.updateAvatarStepper.stepperFormGroup.statusChanges.subscribe(status => {
+      if (status === 'VALID') {
+        this.dialogRef.close(this.updateAvatarStepper.stepperFormGroup.value);
+      }
+    })
+  }
 }
