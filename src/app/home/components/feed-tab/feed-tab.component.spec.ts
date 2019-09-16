@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FeedTabComponent } from './feed-tab.component';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
 import { FeedComponent } from '../feed/feed.component';
-import { UploadImageComponent } from '../upload-image/upload-image.component';
 import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -27,7 +26,6 @@ describe('FeedTabComponent', () => {
         FeedTabComponent,
         AccountDetailsComponent,
         FeedComponent,
-        UploadImageComponent,
       ],
       providers: [
         AuthService,

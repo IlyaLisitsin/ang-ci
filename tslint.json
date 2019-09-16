@@ -118,12 +118,7 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [
-      true,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
+    "directive-selector": false,
     "component-selector": [
       true,
       "element",

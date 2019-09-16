@@ -1,0 +1,5 @@
+<div class="main-image-container">
+  <img class="main-image" #image [src]="this.stepperFormGroup?.value.originalImageFormControl" crossorigin>
+</div>
+<button mat-button [ngClass]="{'zoom-full': isZoomToFull}" color="primary" (click)="zoomToFull()">Zoom to 100%</button>
+<button mat-button (click)="crop()">Crop</button>

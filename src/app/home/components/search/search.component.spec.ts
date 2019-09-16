@@ -7,7 +7,6 @@ import { SearchComponent } from './search.component';
 import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
-import { UploadImageComponent } from '../upload-image/upload-image.component';
 import { FeedComponent } from '../feed/feed.component';
 
 describe('SearchComponent', () => {
@@ -25,7 +24,6 @@ describe('SearchComponent', () => {
       declarations: [
         SearchComponent,
         AccountDetailsComponent,
-        UploadImageComponent,
         FeedComponent,
       ],
       providers: [

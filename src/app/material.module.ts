@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const modules = [
   BrowserAnimationsModule,
@@ -26,6 +27,7 @@ const modules = [
   MatGridListModule,
   MatSelectModule,
   MatMenuModule,
+  MatStepperModule,
 ];
 
 @NgModule({

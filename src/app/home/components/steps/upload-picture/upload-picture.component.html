@@ -1,0 +1,24 @@
+<div *ngIf="!isWebcamView; else webcam">
+  <input
+    style="display: none"
+    accept="image/*"
+    type="file" (change)="uploadFileHandle($event)"
+    #fileInput
+  >
+
+  <button (click)="fileInput.click()">Upload image</button>
+  <div>or</div>
+  <button (click)="showWebcamView()">Make a photo</button>
+</div>
+
+<ng-template #webcam>
+  <webcam [height]="300" [width]="300" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="isWebcamView"
+          [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+          [videoOptions]="videoOptions"
+          [imageQuality]="1"
+          (cameraSwitched)="cameraWasSwitched($event)"
+          (initError)="handleInitError($event)"
+  ></webcam>
+  <button (click)="triggerSnapshot()">I'm ready</button>
+  <button (click)="goBackButtonClick()">go back</button>
+</ng-template>

@@ -6,8 +6,8 @@
     "ng": "ng",
     "start": "ng serve --port 4500",
     "build": "ng build --prod",
-    "test": "ng test",
-    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
+    "test": "ng test --sourcemaps=false",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless --sourcemaps=false",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -34,6 +34,7 @@
     "material-icons": "^0.3.1",
     "ngx-cookie-service": "^2.2.0",
     "ngx-mat-select-search": "^1.8.0",
+    "ngx-webcam": "^0.2.6",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

@@ -23,7 +23,9 @@
       </button>
     </div>
     <div *ngIf="isLoggedUser">
-      <app-upload-image (updateAvatar)="updateAvatar()"></app-upload-image>
+      <button mat-icon-button (click)="uploadImageClick()">
+        <mat-icon>edit</mat-icon>
+      </button>
     </div>
   </mat-card>
   <mat-card>
