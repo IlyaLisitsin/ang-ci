@@ -37,7 +37,7 @@ export class UploadImageDialogComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
-    console.log('submit ava')
+    console.log('submit ava');
   }
 
   public ngOnInit() {
@@ -58,6 +58,9 @@ export class UploadImageDialogComponent implements OnInit, AfterViewInit {
           formControlMap: {
             croppedImageFormControl: this.croppedImageFormControl,
           },
+          inputMap: {
+            aspectRatio: 1 / 1,
+          },
           content: CropPictureComponent,
         },
       ],
@@ -69,6 +72,6 @@ export class UploadImageDialogComponent implements OnInit, AfterViewInit {
       if (status === 'VALID') {
         this.dialogRef.close(this.updateAvatarStepper.stepperFormGroup.value);
       }
-    })
+    });
   }
 }

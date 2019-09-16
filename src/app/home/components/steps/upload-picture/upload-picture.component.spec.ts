@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { WebcamModule } from 'ngx-webcam';
 
 import { UploadPictureComponent } from './upload-picture.component';
 
@@ -8,6 +9,9 @@ describe('UploadPictureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        WebcamModule,
+      ],
       declarations: [ UploadPictureComponent ]
     })
     .compileComponents();

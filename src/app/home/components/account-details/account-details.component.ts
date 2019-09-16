@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { mergeMap } from 'rxjs/operators';
 
 import { UserResponse } from '../../../shared/models/UserResponse';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { HomeService } from '../../services/home/home.service';
 import { Post } from '../../../shared/models/Post';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
-import {MatDialog} from "@angular/material";
-import {UploadImageDialogComponent} from "../upload-image-dialog/upload-image-dialog.component";
-import {map, mergeMap} from "rxjs/operators";
+import { UploadImageDialogComponent } from '../upload-image-dialog/upload-image-dialog.component';
 
 @Component({
   selector: 'app-account-details',
@@ -84,7 +84,7 @@ export class AccountDetailsComponent implements OnInit {
       mergeMap(({ croppedImageFormControl }) => this.homeService.updateUserAvatar({ base64Str: croppedImageFormControl }))
     ).subscribe(
       () => this.getLoggedUser(),
-    )
+    );
   }
 
   logout() {

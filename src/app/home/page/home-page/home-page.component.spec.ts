@@ -4,17 +4,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { WebcamModule } from 'ngx-webcam';
 
 import { HomePageComponent } from './home-page.component';
 import { HomeService } from '../../services/home/home.service';
 import { MaterialModule } from '../../../material.module';
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import { UploadImageComponent } from '../../components/upload-image/upload-image.component';
 import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
 import { AccountDetailsComponent } from '../../components/account-details/account-details.component';
 import { FeedComponent } from '../../components/feed/feed.component';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 import { SearchComponent } from '../../components/search/search.component';
+import { AddPostComponent } from '../../components/add-post/add-post.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { AddPostCaptionComponent } from '../../components/steps/add-post-caption/add-post-caption.component';
+import { UploadPictureComponent } from '../../components/steps/upload-picture/upload-picture.component';
+import { CropPictureComponent } from '../../components/steps/crop-picture/crop-picture.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -28,14 +33,19 @@ describe('HomePageComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         NgxMatSelectSearchModule,
+        SharedModule,
+        WebcamModule,
       ],
       declarations: [
         HomePageComponent,
-        UploadImageComponent,
         FeedTabComponent,
         AccountDetailsComponent,
         FeedComponent,
         SearchComponent,
+        AddPostComponent,
+        AddPostCaptionComponent,
+        UploadPictureComponent,
+        CropPictureComponent,
       ],
       providers: [
         HomeService,

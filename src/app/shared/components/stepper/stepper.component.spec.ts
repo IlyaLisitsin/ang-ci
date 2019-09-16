@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StepperComponent } from './stepper.component';
+import { MaterialModule } from '../../../material.module';
+import { ViewDirective } from '../../directives/view.directive';
 
 describe('StepperComponent', () => {
   let component: StepperComponent;
@@ -8,7 +11,14 @@ describe('StepperComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StepperComponent ]
+      imports: [
+        ReactiveFormsModule,
+        MaterialModule,
+      ],
+      declarations: [
+        StepperComponent,
+        ViewDirective,
+      ]
     })
     .compileComponents();
   }));

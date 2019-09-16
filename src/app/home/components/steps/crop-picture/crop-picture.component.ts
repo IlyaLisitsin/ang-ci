@@ -1,13 +1,13 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
   Component,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   Input,
-  OnInit, Output, SimpleChanges,
+  OnInit,
+  Output,
   ViewChild
 } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 import Cropper from 'cropperjs/dist/cropper.esm.js';
 
 @Component({
@@ -17,11 +17,10 @@ import Cropper from 'cropperjs/dist/cropper.esm.js';
 })
 export class CropPictureComponent implements OnInit {
   @Input() stepperFormGroup: FormGroup;
+  @Input() inputMap: any;
   @Output() croppedImageFormControlChange = new EventEmitter;
 
   @ViewChild('image') mainImage: ElementRef;
-
-  @Input('src') imageSource: string;
 
   croppedImageSrc: string;
   cropper: Cropper;
@@ -35,7 +34,7 @@ export class CropPictureComponent implements OnInit {
     this.cropper = new Cropper(this.mainImage.nativeElement, {
       zoomable: true,
       scalable: false,
-      aspectRatio: 4 / 2,
+      aspectRatio: this.inputMap.aspectRatio,
       crop: () => {
         const canvas = this.cropper.getCroppedCanvas();
         this.croppedImageSrc = canvas.toDataURL('image/png');
@@ -58,11 +57,11 @@ export class CropPictureComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.stepperFormGroup.get('originalImageFormControl').valueChanges.subscribe(val => {
+    this.stepperFormGroup && this.stepperFormGroup.get('originalImageFormControl').valueChanges.subscribe(val => {
       this.mainImage.nativeElement.setAttribute('src', val);
         this.cropper && this.cropper.destroy();
         this.initCropper();
-    })
+    });
   }
 
 }

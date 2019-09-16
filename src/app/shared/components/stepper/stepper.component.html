@@ -1,9 +1,9 @@
-<form [formGroup]="stepperFormGroup">
+<form [formGroup]="stepperFormGroup" *ngIf="config">
   <mat-horizontal-stepper [linear]="true" #stepper>
-    <ng-container *ngFor="let step of steps; let i = index">
+    <ng-container *ngFor="let step of steps">
       <mat-step [stepControl]="stepControlFormGroup[step.stepControlName]">
         <ng-template matStepLabel>{{step.label}}</ng-template>
-        <div *view="cb(step.content)"></div>
+        <div *view="cb(step?.content, step?.inputMap)"></div>
       </mat-step>
     </ng-container>
   </mat-horizontal-stepper>

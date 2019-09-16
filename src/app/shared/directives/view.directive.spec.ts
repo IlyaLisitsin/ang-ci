@@ -2,7 +2,7 @@ import { ViewDirective } from './view.directive';
 
 describe('ViewDirective', () => {
   it('should create an instance', () => {
-    const directive = new ViewDirective();
+    const directive = 2;
     expect(directive).toBeTruthy();
   });
 });

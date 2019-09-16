@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {WebcamImage, WebcamInitError, WebcamUtil} from "ngx-webcam";
-import {Observable, Subject} from "rxjs";
-import { FormGroup} from "@angular/forms";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { WebcamImage, WebcamInitError } from 'ngx-webcam';
+import { Observable } from 'rxjs/observable';
+import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-upload-picture',

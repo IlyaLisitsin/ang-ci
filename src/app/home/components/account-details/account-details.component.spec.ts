@@ -5,7 +5,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 
 import { AccountDetailsComponent } from './account-details.component';
-import { UploadImageComponent } from '../upload-image/upload-image.component';
 import { MaterialModule } from '../../../material.module';
 import { FeedComponent } from '../feed/feed.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
@@ -25,7 +24,6 @@ describe('AccountDetailsComponent', () => {
       ],
       declarations: [
         AccountDetailsComponent,
-        UploadImageComponent,
         FeedComponent,
       ],
       providers: [
