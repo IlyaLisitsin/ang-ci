@@ -1,5 +1,5 @@
 import { Component, ComponentRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 
 @Component({
@@ -37,14 +37,19 @@ export class StepperComponent implements OnInit {
 
   }
 
-  clearForm() {
-    console.log('clearform method callsed!');
+  clearForm = () => {
+    Object.values(this.stepControlFormGroup).forEach(formGroup =>
+      Object.values(formGroup.controls).forEach((control: FormControl) => control.setValue(''))
+    );
+
+    this.stepper.selectedIndex = 0;
   }
 
   cb(component: ComponentRef<any>, inputMap?: Object) {
     return {
       component,
       inputMap,
+      clearForm: this.clearForm,
       stepper: this.stepper,
       handleMainSubmit: this.handleMainSubmit,
       formControlMap: this.formControlMap,

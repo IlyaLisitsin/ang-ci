@@ -42,4 +42,8 @@ export class HomeService {
     const body = { subscriptionId };
     return this.http.put(`${AUTH_APIS.unfollowUser}`, body);
   }
+
+  addPost(body) {
+    return this.http.put(`${AUTH_APIS.addPost}`, body);
+  }
 }

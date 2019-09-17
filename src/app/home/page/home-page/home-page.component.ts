@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTabGroup } from '@angular/material';
+
 import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
 
 @Component({
@@ -8,6 +10,7 @@ import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
 })
 export class HomePageComponent implements OnInit {
   @ViewChild('feedTab') feedTab: FeedTabComponent;
+  @ViewChild('tabs') tabs: MatTabGroup;
 
   constructor(
   ) { }
@@ -19,6 +22,10 @@ export class HomePageComponent implements OnInit {
     if (event.tab.textLabel === 'Feed') {
       this.feedTab.resetFeedTab();
     }
+  }
+
+  navigateToFeed = () => {
+    this.tabs.selectedIndex = 0;
   }
 
 }

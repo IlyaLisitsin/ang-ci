@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 export class AddPostCaptionComponent implements OnInit {
   @Input() handleMainSubmit: any;
   @Input() stepperFormGroup: FormGroup;
+  @Input() clearForm: any;
   @Output() postTextFormControlChange = new EventEmitter;
 
   @ViewChild('input') input: ElementRef;
@@ -25,7 +26,7 @@ export class AddPostCaptionComponent implements OnInit {
     });
     this.postTextFormControlChange.emit(this.input.nativeElement.value);
 
-    this.handleMainSubmit(this.stepperFormGroup.value);
+    this.handleMainSubmit(this.stepperFormGroup.value, this.clearForm);
   }
 
 }

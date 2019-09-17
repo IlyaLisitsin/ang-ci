@@ -8,7 +8,12 @@ describe('AddPostCaptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddPostCaptionComponent ]
+      imports: [
+      ],
+      declarations: [
+        AddPostCaptionComponent
+      ],
+      providers: [],
     })
     .compileComponents();
   }));

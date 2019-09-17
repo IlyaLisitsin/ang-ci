@@ -14,7 +14,7 @@ export class UploadPictureComponent implements OnInit {
   @Output() originalImageFormControlChange = new EventEmitter;
   isWebcamView = false;
 
-  allowCameraSwitch = false;
+  allowCameraSwitch = true;
   // public multipleWebcamsAvailable = false;
   deviceId: string;
   videoOptions: MediaTrackConstraints = {

@@ -20,7 +20,7 @@ export class ViewDirective {
   }
 
   @Input()
-  set view({ component, formControlMap, stepper, stepperFormGroup, handleMainSubmit, inputMap }) {
+  set view({ component, formControlMap, stepper, stepperFormGroup, handleMainSubmit, inputMap, clearForm }) {
     const factory = this.compFactoryResolver.resolveComponentFactory(component);
 
     if (this.currentViewContainer.element.nativeElement.parentNode
@@ -30,6 +30,7 @@ export class ViewDirective {
       instance.stepperFormGroup = stepperFormGroup;
       instance.handleMainSubmit = handleMainSubmit;
       instance.inputMap = inputMap;
+      instance.clearForm = clearForm;
 
       Object.keys(formControlMap).forEach(controlName => {
         if (instance[`${controlName}Change`]) {
