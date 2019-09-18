@@ -46,4 +46,12 @@ export class HomeService {
   addPost(body) {
     return this.http.put(`${AUTH_APIS.addPost}`, body);
   }
+
+  likePost(postId: string) {
+    return this.http.put(`${AUTH_APIS.likePost}`, { postId });
+  }
+
+  unlikePost(postId: string) {
+    return this.http.put(`${AUTH_APIS.unlikePost}`, { postId });
+  }
 }

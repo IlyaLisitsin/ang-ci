@@ -11,6 +11,8 @@ export const AUTH_APIS: any = {
   followUser: `${BASE_BE_URL}/users/follow`,
   unfollowUser: `${BASE_BE_URL}/users/unfollow`,
   addPost: `${BASE_BE_URL}/users/add-post`,
+  likePost: `${BASE_BE_URL}/users/like-post`,
+  unlikePost: `${BASE_BE_URL}/users/unlike-post`,
 };
 
 export const resetUserErrorMessages = [

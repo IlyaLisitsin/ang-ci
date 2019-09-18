@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { FeedComponent } from './feed.component';
 import { MaterialModule } from '../../../material.module';
+import { HomeService } from '../../services/home/home.service';
 
 describe('FeedComponent', () => {
   let component: FeedComponent;
@@ -11,10 +13,14 @@ describe('FeedComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
+        HttpClientTestingModule,
       ],
       declarations: [
         FeedComponent,
-      ]
+      ],
+      providers: [
+        HomeService,
+      ],
     })
     .compileComponents();
   }));
