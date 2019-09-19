@@ -26,6 +26,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
   @Output() goBackToAccountDetailsView = new EventEmitter();
 
   loggedUserId: string;
+  // postsPrepared: Array<any>
 
   constructor(
     private elRef: ElementRef,
@@ -54,16 +55,28 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.switchAccountDetails.emit(userId);
   }
 
-  likeButtonClickHandle(postId: string) {
+  likeButtonClickHandle(postId: string, postAuthorId: string) {
     this.posts.find(post => post._id === postId).isLikedByLoggedUser = true;
     this.ref.detectChanges();
-    this.homeService.likePost(postId).subscribe();
+    this.homeService.likePost({ postId, postAuthorId }).subscribe(
+      null,
+      () => {
+        this.posts.find(post => post._id === postId).isLikedByLoggedUser = false;
+        this.ref.detectChanges();
+      }
+    );
   }
 
-  unlikeButtonClickHandle(postId: string) {
+  unlikeButtonClickHandle(postId: string, postAuthorId: string) {
     this.posts.find(post => post._id === postId).isLikedByLoggedUser = false;
     this.ref.detectChanges();
-    this.homeService.unlikePost(postId).subscribe();
+    this.homeService.unlikePost({ postId, postAuthorId }).subscribe(
+      null,
+      () => {
+        this.posts.find(post => post._id === postId).isLikedByLoggedUser = true;
+        this.ref.detectChanges();
+      }
+    );
   }
 
 }

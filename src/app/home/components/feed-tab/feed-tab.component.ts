@@ -26,11 +26,12 @@ export class FeedTabComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getFeedPosts();
+    this.resetFeedTab();
   }
 
   getFeedPosts() {
     this.spinnerService.showSpinner();
+    this.feedPosts = [];
     this.homeService.getFeedPosts().subscribe((response: FeedResponse) => {
       this.feedPosts = response.posts;
       this.spinnerService.hideSpinner();
@@ -43,7 +44,6 @@ export class FeedTabComponent implements OnInit {
   }
 
   resetFeedTab() {
-    this.feedPosts = [];
     this.isAccountDetailsView = false;
     this.getFeedPosts();
   }

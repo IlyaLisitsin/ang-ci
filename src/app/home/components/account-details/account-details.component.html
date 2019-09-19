@@ -41,5 +41,5 @@
 </div>
 
 <ng-template #feed>
-  <app-feed [posts]="posts" [postToScroll]="postToScroll" [isFromAccountDetails]="true" (goBackToAccountDetailsView)="goBackToAccountDetailsView()"></app-feed>
+  <app-feed *ngIf="posts && posts.length" [posts]="posts" [postToScroll]="postToScroll" [isFromAccountDetails]="true" (goBackToAccountDetailsView)="goBackToAccountDetailsView()"></app-feed>
 </ng-template>

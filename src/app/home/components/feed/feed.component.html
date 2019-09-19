@@ -1,8 +1,8 @@
 <button *ngIf="isFromAccountDetails" mat-icon-button class="back-button" (click)="backClick()"><mat-icon>arrow_back_ios</mat-icon></button>
-<mat-grid-list class="preview-container" cols="1" rowHeight="400px">
+<mat-grid-list class="preview-container" cols="1" rowHeight="400px" *ngIf="posts">
   <div *ngFor="let post of posts">
     <mat-grid-tile>
-      <mat-card class="post" [id]="'_' + post['_id']">
+      <mat-card class="post" [id]="'_' + post._id">
         <mat-card-header>
           <div mat-card-avatar class="post-avatar">
             <img class="post-avatar-image" [src]="post.postAuthorAvatar">
@@ -18,11 +18,11 @@
         <mat-card-actions>
           <span *ngIf="post.likedBy.length">Liked by {{post.likedBy.length}}</span>
 <!--          <ng-template #noLikes><span>No one likes this post :(</span></ng-template>-->
-          <button mat-icon-button *ngIf="!post.isLikedByLoggedUser" (click)="likeButtonClickHandle(post['_id'])">
+          <button mat-icon-button *ngIf="!post.isLikedByLoggedUser" (click)="likeButtonClickHandle(post._id, post.postAuthorId)">
             <mat-icon>favorite_border</mat-icon>
           </button>
 
-          <button mat-icon-button color="warn" *ngIf="post.isLikedByLoggedUser" (click)="unlikeButtonClickHandle(post['_id'])">
+          <button mat-icon-button color="warn" *ngIf="post.isLikedByLoggedUser" (click)="unlikeButtonClickHandle(post._id, post.postAuthorId)">
             <mat-icon>favorite</mat-icon>
           </button>
 

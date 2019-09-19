@@ -47,11 +47,13 @@ export class HomeService {
     return this.http.put(`${AUTH_APIS.addPost}`, body);
   }
 
-  likePost(postId: string) {
-    return this.http.put(`${AUTH_APIS.likePost}`, { postId });
+  likePost({ postId, postAuthorId }) {
+    const body = { postId, postAuthorId };
+    return this.http.put(`${AUTH_APIS.likePost}`, body);
   }
 
-  unlikePost(postId: string) {
-    return this.http.put(`${AUTH_APIS.unlikePost}`, { postId });
+  unlikePost({ postId, postAuthorId }) {
+    const body = { postId, postAuthorId };
+    return this.http.put(`${AUTH_APIS.unlikePost}`, body);
   }
 }
