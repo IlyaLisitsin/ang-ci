@@ -10,6 +10,7 @@ interface FeedResponse {
   subscriptions: Array<string>;
   posts: Array<Post>;
   token: string;
+  login: string;
 }
 
 @Component({
@@ -39,6 +40,7 @@ export class FeedTabComponent implements OnInit {
       this.feedPosts = response.posts;
       this.homeService.userAvatar = response.userAvatar;
       this.homeService.logedUserId = response.userId;
+      this.homeService.loggedUserLogin = response.login;
       this.homeService.loggedUserSubscriptions = response.subscriptions;
       this.spinnerService.hideSpinner();
     });

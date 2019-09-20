@@ -11,6 +11,7 @@ import {
 import { Post } from '../../../shared/models/Post';
 import { HomeService } from '../../services/home/home.service';
 import { LikesListComponent } from '../likes-list/likes-list.component';
+import { PostComment } from '../../../shared/models/PostComment';
 
 @Component({
   selector: 'app-feed',
@@ -29,12 +30,14 @@ export class FeedComponent implements OnInit, AfterViewInit {
   @Output() switchAccountDetails = new EventEmitter<string>();
 
   isFeedView = true;
-  loggedUserId: string;
-  isLikesView: boolean;
-  isCommentsView: boolean;
+  isCommentsView = false;
+  isLikesView = false;
 
+  loggedUserId: string;
   likesViewState: Array<string>;
   likesGoBackHandle: any;
+
+  commentsViewState: Array<PostComment>;
 
   constructor(
     private elRef: ElementRef,
@@ -92,8 +95,9 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.isCommentsView = true;
   }
 
-  addCommentButtonClick() {
-    console.log('adding da comm');
+  addCommentButtonClick(postId: string, text: string, postAuthorId: string, commentAuthorLogin: string) {
+    this.homeService.addPostComment({ postId, text, postAuthorId, replyTo: null, commentAuthorLogin })
+      .subscribe();
   }
 
   likesCounterClick(likedBy: Array<string>) {
@@ -102,6 +106,13 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
     this.likesViewState = likedBy;
     this.likesGoBackHandle = () => this.backToFeedView;
+  }
+
+  commentsCounterClick(comments: Array<PostComment>) {
+    this.isFeedView = false;
+    this.isCommentsView = true;
+
+    this.commentsViewState = comments;
   }
 
   backToFeedView = () => {

@@ -1,4 +1,10 @@
-<button *ngIf="isFromAccountDetails" mat-icon-button class="back-button" (click)="backButtonClick()"><mat-icon>arrow_back_ios</mat-icon></button>
+<button
+  *ngIf="isFromAccountDetails"
+  mat-icon-button
+  class="back-button"
+  (click)="backButtonClick()"
+>
+<mat-icon>arrow_back_ios</mat-icon></button>
 <div *ngIf="posts">
   <mat-grid-list *ngIf="isFeedView" class="preview-container" cols="1" rowHeight="450px">
     <div *ngFor="let post of posts">
@@ -19,23 +25,42 @@
           <mat-card-actions>
             <!--          <ng-template #noLikes><span>No one likes this post :(</span></ng-template>-->
             <div class="post-buttons">
-              <button mat-icon-button *ngIf="!post.isLikedByLoggedUser" (click)="likeButtonClickHandle(post._id, post.postAuthorId)">
+              <button
+                mat-icon-button
+                *ngIf="!post.isLikedByLoggedUser"
+                (click)="likeButtonClickHandle(post._id, post.postAuthorId)"
+              >
                 <mat-icon>favorite_border</mat-icon>
               </button>
-              <button mat-icon-button color="warn" *ngIf="post.isLikedByLoggedUser" (click)="unlikeButtonClickHandle(post._id, post.postAuthorId)">
+              <button
+                mat-icon-button
+                color="warn"
+                *ngIf="post.isLikedByLoggedUser"
+                (click)="unlikeButtonClickHandle(post._id, post.postAuthorId)"
+              >
                 <mat-icon>favorite</mat-icon>
               </button>
               <button class="show-all-comments-button" mat-icon-button (click)="showCommentsClick()">
                 <mat-icon>chat_bubble_outline</mat-icon>
               </button>
             </div>
-
-            <span class="post-likes-counter" *ngIf="post.likedBy.length" (click)="likesCounterClick(post.likedBy)">{{post.likedBy.length}} likes</span>
-
+            <span
+              class="post-likes-counter"
+              *ngIf="post.likedBy.length"
+              (click)="likesCounterClick(post.likedBy)">{{post.likedBy.length}} likes</span>
+            <span
+              class="post-comments-counter"
+              *ngIf="post.comments.length"
+              (click)="commentsCounterClick(post.comments)"
+            >{{post.comments.length}} comments
+            </span>
             <div class="add-comment-section">
               <img class="add-comment-user-avatar" [src]="homeService.userAvatar" />
-              <textarea class="add-cooment-input" matInput rows="1" placeholder="Add comment"></textarea>
-              <button mat-icon-button (click)="addCommentButtonClick()">
+              <textarea #commentText class="add-comment-input" matInput rows="1" placeholder="Add comment"></textarea>
+              <button
+                mat-icon-button
+                (click)="addCommentButtonClick(post._id, commentText.value, post.postAuthorId, homeService.loggedUserLogin)"
+              >
                 <mat-icon>add</mat-icon>
               </button>
             </div>
@@ -50,6 +75,8 @@
 <!--  <button (click)="goBackToFeedView()">back</button>-->
 <!--  comments tree here-->
 <!--</div>-->
+
+<app-comments-list *ngIf="isCommentsView" [commentsList]="commentsViewState"></app-comments-list>
 
 <div *ngIf="isLikesView">
   <app-likes-list #likesList [likedBy]="likesViewState" [goBackHandle]="likesGoBackHandle()"></app-likes-list>

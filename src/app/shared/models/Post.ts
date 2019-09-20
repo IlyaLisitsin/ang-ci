@@ -1,3 +1,5 @@
+import { PostComment } from "./PostComment";
+
 export interface Post {
   _id: string;
   image: string;
@@ -9,4 +11,5 @@ export interface Post {
   likedBy: Array<string>;
   isLikedByLoggedUser: boolean;
   likesAmount: number;
+  comments: Array<PostComment>;
 }
