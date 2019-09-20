@@ -8,4 +8,5 @@ export interface Post {
   postAuthorAvatar: string;
   likedBy: Array<string>;
   isLikedByLoggedUser: boolean;
+  likesAmount: number;
 }

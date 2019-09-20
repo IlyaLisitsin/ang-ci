@@ -1,0 +1,23 @@
+<button (click)="goBack()">go back</button>
+<div *ngIf="likesList">
+  <div *ngFor="let likeItem of likesList" class="like-item-container">
+    <img class="like-item-avatar" [src]="likeItem.userAvatar">
+    <span>@{{likeItem.login}}</span>
+    <div *ngIf="likeItem.userId !== homeService.logedUserId">
+      <button *ngIf="checkSubscription(likeItem.userId); else subscribeButton" (click)="unfollow(likeItem.userId)">
+        <mat-icon *ngIf="likeItem.isLoadInProcess">
+          <mat-spinner diameter="20"></mat-spinner>
+        </mat-icon>
+        Unfollow
+      </button>
+      <ng-template #subscribeButton>
+        <button (click)="follow(likeItem.userId)">
+          <mat-icon *ngIf="likeItem.isLoadInProcess">
+            <mat-spinner diameter="20"></mat-spinner>
+          </mat-icon>
+          Follow
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
+import { LikesListComponent } from '../likes-list/likes-list.component';
 
 describe('FeedTabComponent', () => {
   let component: FeedTabComponent;
@@ -26,6 +27,7 @@ describe('FeedTabComponent', () => {
         FeedTabComponent,
         AccountDetailsComponent,
         FeedComponent,
+        LikesListComponent,
       ],
       providers: [
         AuthService,

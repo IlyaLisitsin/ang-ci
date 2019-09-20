@@ -26,6 +26,8 @@
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">person</mat-icon>
     </ng-template>
-    <app-account-details [isLoggedUser]="true" [isFromMainFeed]="false"></app-account-details>
+    <div *ngIf="isShowPersonalAccountDetails">
+      <app-account-details [isLoggedUser]="true" [isFromMainFeed]="false"></app-account-details>
+    </div>
   </mat-tab>
 </mat-tab-group>

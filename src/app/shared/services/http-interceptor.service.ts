@@ -56,6 +56,7 @@ export class HttpInterceptorService implements HttpInterceptor {
             && !event.url.includes('unfollow')
             && !event.url.includes('like-post')
             && !event.url.includes('unlike-post')
+            && !event.url.includes('get-likes')
           ) {
             this.cookieService.set(cookieSessionName, event.body.token);
           }

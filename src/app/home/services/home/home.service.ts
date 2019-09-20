@@ -6,6 +6,7 @@ import { AUTH_APIS } from '../../../shared/constants/apis';
 @Injectable()
 export class HomeService {
   logedUserId: string;
+  userAvatar: string;
   loggedUserSubscriptions: Array<string> = [];
 
   constructor(
@@ -55,5 +56,9 @@ export class HomeService {
   unlikePost({ postId, postAuthorId }) {
     const body = { postId, postAuthorId };
     return this.http.put(`${AUTH_APIS.unlikePost}`, body);
+  }
+
+  getLikes(likedBy: Array<string>) {
+    return this.http.get(`${AUTH_APIS.getLikes}?userIds=${likedBy.join(',')}` );
   }
 }

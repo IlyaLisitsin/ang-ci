@@ -22,17 +22,59 @@
   mat-card-header {
     margin-bottom: 14px;
 
+    mat-card-title {
+      cursor: pointer;
+    }
+
     ::ng-deep .mat-card-header-text {
       display: flex;
       align-items: center;
     }
 
     ::ng-deep .mat-card-title {
-      margin-bottom: 0;
+      //margin-bottom: 0;
     }
   }
 
-  mat-card-content {
+  .post-image, mat-card-content {
     margin-bottom: 0;
   }
+
+  .add-comment-user-avatar {
+    height: 25px;
+    width: auto;
+    border-radius: 50%;
+  }
+
+  .show-all-comments-button {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .post-buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  .post-likes-counter {
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+  }
+
+  .add-comment-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .add-cooment-input {
+    resize: none;
+  }
+
 }

@@ -10,6 +10,7 @@ import { FeedComponent } from '../feed/feed.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { HomeService } from '../../services/home/home.service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
+import { LikesListComponent } from '../likes-list/likes-list.component';
 
 describe('AccountDetailsComponent', () => {
   let component: AccountDetailsComponent;
@@ -25,6 +26,7 @@ describe('AccountDetailsComponent', () => {
       declarations: [
         AccountDetailsComponent,
         FeedComponent,
+        LikesListComponent,
       ],
       providers: [
         AuthService,

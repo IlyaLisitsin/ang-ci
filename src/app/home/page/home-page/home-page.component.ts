@@ -12,6 +12,8 @@ export class HomePageComponent implements OnInit {
   @ViewChild('feedTab') feedTab: FeedTabComponent;
   @ViewChild('tabs') tabs: MatTabGroup;
 
+  isShowPersonalAccountDetails = false;
+
   constructor(
   ) { }
 
@@ -21,6 +23,8 @@ export class HomePageComponent implements OnInit {
   onLinkClick(event) {
     if (event.tab.textLabel === 'Feed') {
       this.feedTab.resetFeedTab();
+    } else if (event.tab.textLabel === 'Personal') {
+      this.isShowPersonalAccountDetails = true;
     }
   }
 

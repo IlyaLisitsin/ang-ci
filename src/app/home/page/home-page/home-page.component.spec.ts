@@ -20,6 +20,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { AddPostCaptionComponent } from '../../components/steps/add-post-caption/add-post-caption.component';
 import { UploadPictureComponent } from '../../components/steps/upload-picture/upload-picture.component';
 import { CropPictureComponent } from '../../components/steps/crop-picture/crop-picture.component';
+import { LikesListComponent } from '../../components/likes-list/likes-list.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -46,6 +47,7 @@ describe('HomePageComponent', () => {
         AddPostCaptionComponent,
         UploadPictureComponent,
         CropPictureComponent,
+        LikesListComponent,
       ],
       providers: [
         HomeService,

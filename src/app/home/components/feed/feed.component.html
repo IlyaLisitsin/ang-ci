@@ -1,36 +1,56 @@
 <button *ngIf="isFromAccountDetails" mat-icon-button class="back-button" (click)="backClick()"><mat-icon>arrow_back_ios</mat-icon></button>
-<mat-grid-list class="preview-container" cols="1" rowHeight="400px" *ngIf="posts">
-  <div *ngFor="let post of posts">
-    <mat-grid-tile>
-      <mat-card class="post" [id]="'_' + post._id">
-        <mat-card-header>
-          <div mat-card-avatar class="post-avatar">
-            <img class="post-avatar-image" [src]="post.postAuthorAvatar">
-          </div>
-          <mat-card-title (click)="loginClick(post['postAuthorId'])">@{{post.postAuthorLogin}}</mat-card-title>
-          <!--        location-->
-          <!--        <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
-        </mat-card-header>
-        <img mat-card-image class="post-image" [src]="post.image" alt="">
-        <mat-card-content>
-          <p>{{post.postText}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <span *ngIf="post.likedBy.length">Liked by {{post.likedBy.length}}</span>
-<!--          <ng-template #noLikes><span>No one likes this post :(</span></ng-template>-->
-          <button mat-icon-button *ngIf="!post.isLikedByLoggedUser" (click)="likeButtonClickHandle(post._id, post.postAuthorId)">
-            <mat-icon>favorite_border</mat-icon>
-          </button>
+<div *ngIf="posts">
+  <mat-grid-list *ngIf="isFeedView" class="preview-container" cols="1" rowHeight="450px">
+    <div *ngFor="let post of posts">
+      <mat-grid-tile>
+        <mat-card class="post" [id]="'_' + post._id">
+          <mat-card-header>
+            <div mat-card-avatar class="post-avatar">
+              <img class="post-avatar-image" [src]="post.postAuthorAvatar">
+            </div>
+            <mat-card-title (click)="loginClick(post.postAuthorId)">@{{post.postAuthorLogin}}</mat-card-title>
+            <!--        location-->
+            <!--        <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+          </mat-card-header>
+          <img mat-card-image class="post-image" [src]="post.image" alt="">
+          <mat-card-content>
+            <p>{{post.postText}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <!--          <ng-template #noLikes><span>No one likes this post :(</span></ng-template>-->
+            <div class="post-buttons">
+              <button mat-icon-button *ngIf="!post.isLikedByLoggedUser" (click)="likeButtonClickHandle(post._id, post.postAuthorId)">
+                <mat-icon>favorite_border</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" *ngIf="post.isLikedByLoggedUser" (click)="unlikeButtonClickHandle(post._id, post.postAuthorId)">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <button class="show-all-comments-button" mat-icon-button (click)="showCommentsClick()">
+                <mat-icon>chat_bubble_outline</mat-icon>
+              </button>
+            </div>
 
-          <button mat-icon-button color="warn" *ngIf="post.isLikedByLoggedUser" (click)="unlikeButtonClickHandle(post._id, post.postAuthorId)">
-            <mat-icon>favorite</mat-icon>
-          </button>
+            <span class="post-likes-counter" *ngIf="post.likedBy.length" (click)="likesCounterClick(post.likedBy)">{{post.likedBy.length}} likes</span>
 
-          <button mat-icon-button>
-            <mat-icon>share</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-  </div>
-</mat-grid-list>
+            <div class="add-comment-section">
+              <img class="add-comment-user-avatar" [src]="homeService.userAvatar" />
+              <textarea class="add-cooment-input" matInput rows="1" placeholder="Add comment"></textarea>
+              <button mat-icon-button (click)="addCommentButtonClick()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>
+
+<!--<div *ngIf="isCommentsView">-->
+<!--  <button (click)="goBackToFeedView()">back</button>-->
+<!--  comments tree here-->
+<!--</div>-->
+
+<div *ngIf="isLikesView">
+  <app-likes-list #likesList [likedBy]="likesViewState" [goBackHandle]="likesGoBackHandle()"></app-likes-list>
+</div>

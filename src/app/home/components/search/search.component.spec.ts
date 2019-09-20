@@ -8,6 +8,7 @@ import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
 import { FeedComponent } from '../feed/feed.component';
+import { LikesListComponent } from '../likes-list/likes-list.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -25,6 +26,7 @@ describe('SearchComponent', () => {
         SearchComponent,
         AccountDetailsComponent,
         FeedComponent,
+        LikesListComponent,
       ],
       providers: [
         HomeService,

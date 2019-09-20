@@ -65,6 +65,7 @@ export class AccountDetailsComponent implements OnInit {
         ({ user: { userAvatar, login, posts, _id, subscriptions } }: UserResponse) => {
           this.userResponseHandler({ userAvatar, login, posts });
           this.homeService.logedUserId = _id;
+          this.homeService.userAvatar = userAvatar;
           this.homeService.loggedUserSubscriptions = subscriptions;
         },
         () => this.spinnerService.hideSpinner(),
