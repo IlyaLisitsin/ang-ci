@@ -5,6 +5,7 @@ import { FeedComponent } from './feed.component';
 import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
 import { LikesListComponent } from '../likes-list/likes-list.component';
+import { AccountDetailsComponent } from '../account-details/account-details.component';
 
 describe('FeedComponent', () => {
   let component: FeedComponent;
@@ -19,6 +20,7 @@ describe('FeedComponent', () => {
       declarations: [
         FeedComponent,
         LikesListComponent,
+        AccountDetailsComponent,
       ],
       providers: [
         HomeService,

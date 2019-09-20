@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material';
 
 import { FeedTabComponent } from '../../components/feed-tab/feed-tab.component';
+import { HomeService } from '../../services/home/home.service';
 
 @Component({
   selector: 'app-home-page',
@@ -15,6 +16,7 @@ export class HomePageComponent implements OnInit {
   isShowPersonalAccountDetails = false;
 
   constructor(
+    private homeService: HomeService,
   ) { }
 
   ngOnInit() {

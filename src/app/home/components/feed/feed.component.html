@@ -1,4 +1,4 @@
-<button *ngIf="isFromAccountDetails" mat-icon-button class="back-button" (click)="backClick()"><mat-icon>arrow_back_ios</mat-icon></button>
+<button *ngIf="isFromAccountDetails" mat-icon-button class="back-button" (click)="backButtonClick()"><mat-icon>arrow_back_ios</mat-icon></button>
 <div *ngIf="posts">
   <mat-grid-list *ngIf="isFeedView" class="preview-container" cols="1" rowHeight="450px">
     <div *ngFor="let post of posts">

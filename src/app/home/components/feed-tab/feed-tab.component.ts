@@ -44,7 +44,7 @@ export class FeedTabComponent implements OnInit {
     });
   }
 
-  goBackToFeedView() {
+  goBackToFeedView = () => {
     this.isAccountDetailsView = false;
     this.getFeedPosts();
   }
@@ -54,7 +54,7 @@ export class FeedTabComponent implements OnInit {
     this.getFeedPosts();
   }
 
-  switchAccountDetails(id: string) {
+  switchAccountDetails = (id: string) => {
     this.accountId = id;
     this.isLoggedUser = id === this.homeService.logedUserId;
     this.isAccountDetailsView = true;

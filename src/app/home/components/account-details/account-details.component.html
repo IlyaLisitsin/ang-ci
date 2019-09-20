@@ -1,5 +1,5 @@
 <div *ngIf="!isFeedView; else feed">
-  <button *ngIf="isFromMainFeed || isFromSearch" mat-icon-button class="back" (click)="accountDetailsBackButtonClick()">
+  <button *ngIf="isBackButtonDisplay" mat-icon-button class="back" (click)="accountDetailsBackButtonClick()">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>
   <mat-card class="user-info">
@@ -41,5 +41,5 @@
 </div>
 
 <ng-template #feed>
-  <app-feed *ngIf="posts && posts.length" [posts]="posts" [postToScroll]="postToScroll" [isFromAccountDetails]="true" (goBackToAccountDetailsView)="goBackToAccountDetailsView()"></app-feed>
+  <app-feed *ngIf="posts && posts.length" [posts]="posts" [postToScroll]="postToScroll" [goBackHandle]="goBackToAccountDetailsView" [isFromAccountDetails]="true"></app-feed>
 </ng-template>

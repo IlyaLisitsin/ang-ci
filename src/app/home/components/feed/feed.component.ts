@@ -22,11 +22,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
   @Input() getFeedPosts: any;
   @Input() isFromAccountDetails: boolean;
   @Input() postToScroll: string;
+  @Input() goBackHandle: any;
 
   @ViewChild('likesList') likesList: ComponentRef<LikesListComponent>;
 
   @Output() switchAccountDetails = new EventEmitter<string>();
-  @Output() goBackToAccountDetailsView = new EventEmitter();
 
   isFeedView = true;
   loggedUserId: string;
@@ -54,8 +54,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
     && this.elRef.nativeElement.querySelector(`#_${this.postToScroll}`).scrollIntoView({ behavior: 'smooth' });
   }
 
-  backClick() {
-    this.goBackToAccountDetailsView.emit();
+  backButtonClick() {
+    this.goBackHandle();
   }
 
   loginClick(userId: string) {

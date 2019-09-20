@@ -16,17 +16,20 @@ import { UploadImageDialogComponent } from '../upload-image-dialog/upload-image-
 })
 
 export class AccountDetailsComponent implements OnInit {
-  @Input() isLoggedUser: boolean;
-  @Input() accountId: string;
-  @Input() isFromMainFeed: boolean;
-  @Input() isFromSearch: boolean;
+  @Input()
+  set accountId(id: string) {
+    this.isLoggedUser = this.homeService.logedUserId === id;
+    this.currentAccountId = id;
+  }
 
-  @Output() goBackToFeedView = new EventEmitter();
-  @Output() goBackToSearchView = new EventEmitter();
+  @Input() isBackButtonDisplay: boolean;
+  @Input() goBackHandle: any;
 
   isFeedView = false;
   isSubscriptionActionInProgress = false;
 
+  isLoggedUser: boolean;
+  currentAccountId: string;
   userAvatar: string;
   login: string;
   posts: Array<Post>;
@@ -51,7 +54,7 @@ export class AccountDetailsComponent implements OnInit {
 
   getUserById() {
     this.spinnerService.showSpinner();
-    this.homeService.getUserById(this.accountId)
+    this.homeService.getUserById(this.currentAccountId)
       .subscribe(
         ({ user: { userAvatar, login, posts } }: UserResponse) => this.userResponseHandler({ userAvatar, login, posts }),
         () => this.spinnerService.hideSpinner(),
@@ -97,31 +100,30 @@ export class AccountDetailsComponent implements OnInit {
     this.postToScroll = postId;
   }
 
-  goBackToAccountDetailsView() {
+  goBackToAccountDetailsView = () => {
     this.isFeedView = false;
   }
 
   accountDetailsBackButtonClick() {
-    this.isFromMainFeed && this.goBackToFeedView.emit();
-    this.isFromSearch && this.goBackToSearchView.emit();
+    this.goBackHandle();
   }
 
   generateSubscriptionButtonText() {
-    this.homeService.loggedUserSubscriptions.includes(this.accountId) ?
+    this.homeService.loggedUserSubscriptions.includes(this.currentAccountId) ?
       this.subscriptionButtonText = 'Unfollow'
       : this.subscriptionButtonText = 'Follow';
   }
 
   subscriptionButtonClick() {
-    if (this.homeService.loggedUserSubscriptions.includes(this.accountId)) {
+    if (this.homeService.loggedUserSubscriptions.includes(this.currentAccountId)) {
       this.isSubscriptionActionInProgress = true;
-      this.homeService.unfollowUser(this.accountId).subscribe(
+      this.homeService.unfollowUser(this.currentAccountId).subscribe(
       (userResponse: UserResponse) => this.subscribeActionHandler(userResponse),
       () => this.isSubscriptionActionInProgress = false,
       );
     } else {
       this.isSubscriptionActionInProgress = true;
-      this.homeService.followUser(this.accountId).subscribe(
+      this.homeService.followUser(this.currentAccountId).subscribe(
         (userResponse: UserResponse) => this.subscribeActionHandler(userResponse),
         () => this.isSubscriptionActionInProgress = false,
       );

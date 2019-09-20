@@ -21,18 +21,13 @@ export class LikesListComponent implements OnInit {
   @Input()
   set likedBy(likedBy: Array<string>) {
     if (likedBy) {
-      this.spinnerService.showSpinner();
-      this.homeService.getLikes(likedBy).subscribe(
-        (likesList: Array<Like>) => {
-          this.likesList = likesList;
-          this.spinnerService.hideSpinner();
-        },
-        () => this.spinnerService.hideSpinner(),
-      );
+      this.getLikesList(likedBy);
     }
   }
 
+  isLikesListView = true;
   likesList: Array<Like>;
+  activeAccountId: string;
 
   constructor(
     private spinnerService: SpinnerService,
@@ -40,6 +35,17 @@ export class LikesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  getLikesList(likedBy: Array<string>) {
+    this.spinnerService.showSpinner();
+    this.homeService.getLikes(likedBy).subscribe(
+      (likesList: Array<Like>) => {
+        this.likesList = likesList;
+        this.spinnerService.hideSpinner();
+      },
+      () => this.spinnerService.hideSpinner(),
+    );
   }
 
   goBack() {
@@ -75,4 +81,13 @@ export class LikesListComponent implements OnInit {
     );
   }
 
+  setActiveAccountId(userId: string) {
+    this.activeAccountId = userId;
+    this.isLikesListView = false;
+  }
+
+  goBackToLikesListView = () => {
+    this.activeAccountId = '';
+    this.isLikesListView = true;
+  }
 }

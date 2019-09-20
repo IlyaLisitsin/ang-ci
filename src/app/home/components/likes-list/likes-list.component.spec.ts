@@ -5,6 +5,8 @@ import { LikesListComponent } from './likes-list.component';
 import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
+import { AccountDetailsComponent } from '../account-details/account-details.component';
+import { FeedComponent } from '../feed/feed.component';
 
 describe('LikesListComponent', () => {
   let component: LikesListComponent;
@@ -16,7 +18,11 @@ describe('LikesListComponent', () => {
         MaterialModule,
         HttpClientTestingModule,
       ],
-      declarations: [ LikesListComponent ],
+      declarations: [
+        LikesListComponent,
+        AccountDetailsComponent,
+        FeedComponent,
+      ],
       providers: [
         HomeService,
         SpinnerService,

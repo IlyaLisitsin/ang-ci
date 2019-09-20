@@ -18,6 +18,6 @@
 
 
   <ng-template #accountDetails>
-    <app-account-details *ngIf="userSearchSelect.value" [isLoggedUser]="isLoggedUser" [isFromMainFeed]="false" [isFromSearch]="true" [accountId]="checkedUserId" (goBackToSearchView)="goBackToSearchView()">
+    <app-account-details *ngIf="userSearchSelect.value" [isBackButtonDisplay]="true" [accountId]="checkedUserId" [goBackHandle]="goBackToSearchView">
     </app-account-details>
   </ng-template>

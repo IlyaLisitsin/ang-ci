@@ -69,7 +69,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.isAccountDetailsView = true;
   }
 
-  goBackToSearchView() {
+  goBackToSearchView = () => {
     this.isAccountDetailsView = false;
     this.userSearchInput.setValue('');
     this.userSearchSelect.setValue('');
