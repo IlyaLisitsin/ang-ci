@@ -6,6 +6,8 @@ import { MaterialModule } from '../../../material.module';
 import { HomeService } from '../../services/home/home.service';
 import { LikesListComponent } from '../likes-list/likes-list.component';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
+import { CommentsListComponent } from '../comments-list/comments-list.component';
+import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
 
 describe('FeedComponent', () => {
   let component: FeedComponent;
@@ -21,6 +23,8 @@ describe('FeedComponent', () => {
         FeedComponent,
         LikesListComponent,
         AccountDetailsComponent,
+        CommentsListComponent,
+        TimeAgoPipe,
       ],
       providers: [
         HomeService,

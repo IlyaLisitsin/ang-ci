@@ -6,6 +6,7 @@ import { AUTH_APIS } from '../../../shared/constants/apis';
 @Injectable()
 export class HomeService {
   logedUserId: string;
+  loggedUserLogin: string;
   userAvatar: string;
   loggedUserSubscriptions: Array<string> = [];
 
@@ -60,5 +61,19 @@ export class HomeService {
 
   getLikes(likedBy: Array<string>) {
     return this.http.get(`${AUTH_APIS.getLikes}?userIds=${likedBy.join(',')}` );
+  }
+
+  addPostComment({ postId, text, postAuthorId, commentAuthorLogin, replyTo, commentAuthorAvatar }) {
+    const body = {
+      text,
+      postId,
+      replyTo,
+      postAuthorId,
+      commentAuthorLogin,
+      commentAuthorAvatar,
+      commentDate: new Date().toISOString(),
+    };
+
+    return this.http.put(`${AUTH_APIS.addPostComment}`, body);
   }
 }

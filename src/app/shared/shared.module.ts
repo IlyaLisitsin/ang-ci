@@ -14,6 +14,7 @@ import { ViewDirective } from './directives/view.directive';
 import { AddPostCaptionComponent } from '../home/components/steps/add-post-caption/add-post-caption.component';
 import { UploadPictureComponent } from '../home/components/steps/upload-picture/upload-picture.component';
 import { CropPictureComponent } from '../home/components/steps/crop-picture/crop-picture.component';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { CropPictureComponent } from '../home/components/steps/crop-picture/crop
   exports: [
     SpinnerComponent,
     StepperComponent,
+    TimeAgoPipe,
   ],
   providers: [
     AuthGuard,
@@ -36,6 +38,7 @@ import { CropPictureComponent } from '../home/components/steps/crop-picture/crop
     SpinnerComponent,
     StepperComponent,
     ViewDirective,
+    TimeAgoPipe,
   ],
   entryComponents: [
     AddPostCaptionComponent,

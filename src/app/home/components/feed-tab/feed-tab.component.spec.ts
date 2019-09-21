@@ -11,6 +11,8 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 import { LikesListComponent } from '../likes-list/likes-list.component';
+import { CommentsListComponent } from '../comments-list/comments-list.component';
+import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
 
 describe('FeedTabComponent', () => {
   let component: FeedTabComponent;
@@ -28,6 +30,8 @@ describe('FeedTabComponent', () => {
         AccountDetailsComponent,
         FeedComponent,
         LikesListComponent,
+        CommentsListComponent,
+        TimeAgoPipe,
       ],
       providers: [
         AuthService,

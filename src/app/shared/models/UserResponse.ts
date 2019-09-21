@@ -1,4 +1,5 @@
 import { Post } from './Post';
+import { PostComment } from './PostComment';
 
 export interface UserResponse {
   user: {
@@ -10,6 +11,7 @@ export interface UserResponse {
     subscriptions: any;
     subscribers: any;
     posts: Array<Post>;
+    comments: Array<PostComment>
   };
   token: string;
 }

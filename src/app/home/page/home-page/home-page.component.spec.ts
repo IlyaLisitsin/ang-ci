@@ -21,6 +21,7 @@ import { AddPostCaptionComponent } from '../../components/steps/add-post-caption
 import { UploadPictureComponent } from '../../components/steps/upload-picture/upload-picture.component';
 import { CropPictureComponent } from '../../components/steps/crop-picture/crop-picture.component';
 import { LikesListComponent } from '../../components/likes-list/likes-list.component';
+import { CommentsListComponent } from '../../components/comments-list/comments-list.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -48,6 +49,7 @@ describe('HomePageComponent', () => {
         UploadPictureComponent,
         CropPictureComponent,
         LikesListComponent,
+        CommentsListComponent,
       ],
       providers: [
         HomeService,

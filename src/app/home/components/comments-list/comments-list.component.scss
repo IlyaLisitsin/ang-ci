@@ -1,0 +1,15 @@
+:host {
+  .comment-author-login {
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .comment-author-avatar {
+    height: 50px;
+    border-radius: 50%;
+  }
+}

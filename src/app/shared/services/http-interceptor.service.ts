@@ -51,12 +51,9 @@ export class HttpInterceptorService implements HttpInterceptor {
           if (
             event instanceof HttpResponse
             && !event.url.includes('unlogedUserId')
-            && !event.url.includes('search')
-            && !event.url.includes('follow')
-            && !event.url.includes('unfollow')
-            && !event.url.includes('like-post')
-            && !event.url.includes('unlike-post')
-            && !event.url.includes('get-likes')
+            && event.url.includes('current')
+            && event.url.includes('login')
+            && event.url.includes('feed')
           ) {
             this.cookieService.set(cookieSessionName, event.body.token);
           }

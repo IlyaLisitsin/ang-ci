@@ -1,0 +1,21 @@
+<div *ngIf="isCommentsListView">
+  <button (click)="goBack()">go back</button>
+  <div *ngFor="let comment of commentsList">
+    <img class="comment-author-avatar" [src]="comment.commentAuthorAvatar">
+    <span
+      class="comment-author-login"
+      (click)="showAccountDetails(comment.commentAuthorId)"
+    >
+      @{{comment.commentAuthorLogin}}
+    </span>
+    <span>{{comment.text}}</span>
+    <span>{{comment.commentDate | timeAgo}}</span>
+  </div>
+</div>
+
+<app-account-details
+  *ngIf="!isCommentsListView"
+  [accountId]="accountDetailsState"
+  [isBackButtonDisplay]="true"
+  [goBackHandle]="goBackToCommentsList"
+></app-account-details>

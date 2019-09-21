@@ -9,6 +9,8 @@ import { HomeService } from '../../services/home/home.service';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
 import { FeedComponent } from '../feed/feed.component';
 import { LikesListComponent } from '../likes-list/likes-list.component';
+import { CommentsListComponent } from '../comments-list/comments-list.component';
+import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -27,6 +29,8 @@ describe('SearchComponent', () => {
         AccountDetailsComponent,
         FeedComponent,
         LikesListComponent,
+        CommentsListComponent,
+        TimeAgoPipe,
       ],
       providers: [
         HomeService,

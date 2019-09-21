@@ -57,7 +57,8 @@
     align-items: center;
   }
 
-  .post-likes-counter {
+  .post-likes-counter,
+  .post-comments-counter {
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;
@@ -73,7 +74,7 @@
     align-items: center;
   }
 
-  .add-cooment-input {
+  .add-comment-input {
     resize: none;
   }
 
