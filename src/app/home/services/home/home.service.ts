@@ -63,12 +63,14 @@ export class HomeService {
     return this.http.get(`${AUTH_APIS.getLikes}?userIds=${likedBy.join(',')}` );
   }
 
-  addPostComment({ postId, text, postAuthorId, commentAuthorLogin, replyTo }) {
+  addPostComment({ postId, text, postAuthorId, commentAuthorLogin, replyTo, commentAuthorAvatar }) {
     const body = {
       text,
       postId,
       replyTo,
       postAuthorId,
+      commentAuthorLogin,
+      commentAuthorAvatar,
       commentDate: new Date().toISOString(),
     };
 

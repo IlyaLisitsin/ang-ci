@@ -1,4 +1,4 @@
-import { PostComment } from "./PostComment";
+import { PostComment } from './PostComment';
 
 export interface Post {
   _id: string;
@@ -12,4 +12,5 @@ export interface Post {
   isLikedByLoggedUser: boolean;
   likesAmount: number;
   comments: Array<PostComment>;
+  isAddCommentInProgress: boolean;
 }

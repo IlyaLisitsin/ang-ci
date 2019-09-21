@@ -7,6 +7,8 @@ import { HomeService } from '../../services/home/home.service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
 import { FeedComponent } from '../feed/feed.component';
+import { CommentsListComponent } from '../comments-list/comments-list.component';
+import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
 
 describe('LikesListComponent', () => {
   let component: LikesListComponent;
@@ -22,6 +24,8 @@ describe('LikesListComponent', () => {
         LikesListComponent,
         AccountDetailsComponent,
         FeedComponent,
+        CommentsListComponent,
+        TimeAgoPipe,
       ],
       providers: [
         HomeService,

@@ -8,11 +8,28 @@ import { PostComment } from '../../../shared/models/PostComment';
 })
 export class CommentsListComponent implements OnInit {
   @Input() commentsList: Array<PostComment>;
+  @Input() goBackHandle: any;
+
+  isCommentsListView = true;
+  accountDetailsState: string;
 
   constructor() { }
 
   ngOnInit() {
-    console.log('FROM COMMENTS LIST', this.commentsList)
+  }
+
+  goBack() {
+    this.goBackHandle();
+  }
+
+  showAccountDetails(accountId: string) {
+    this.accountDetailsState = accountId;
+    this.isCommentsListView = false;
+  }
+
+  goBackToCommentsList = () => {
+    this.accountDetailsState = '';
+    this.isCommentsListView = true;
   }
 
 }
