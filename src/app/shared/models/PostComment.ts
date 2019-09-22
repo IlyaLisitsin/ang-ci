@@ -7,4 +7,5 @@ export interface PostComment {
   replyTo: string;
   likedBy: Array<string>;
   commentDate: string;
+  isLikedByLoggedUser: boolean;
 }

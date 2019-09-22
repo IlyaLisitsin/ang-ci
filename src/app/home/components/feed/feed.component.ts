@@ -25,8 +25,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   @Input() postToScroll: string;
   @Input() goBackHandle: any;
 
-  @ViewChild('likesList') likesList: ComponentRef<LikesListComponent>;
-
   @Output() switchAccountDetails = new EventEmitter<string>();
 
   isFeedView = true;
@@ -35,7 +33,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   loggedUserId: string;
   likesViewState: Array<string>;
-  commentsViewState: Array<PostComment>;
+  commentsViewState: {
+    likedBy: Array<PostComment>;
+    postId: string;
+    postAuthorId: string;
+  };
 
   constructor(
     private elRef: ElementRef,
@@ -63,19 +65,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   loginClick(userId: string) {
     this.switchAccountDetails.emit(userId);
   }
-
-  // likeButtonClickHandle(postId: string, postAuthorId: string) {
-  //   post.isLikedByLoggedUser = true;
-  //   post.likedBy.push(this.loggedUserId);
-  //   this.homeService.likePost({ postId, postAuthorId }).subscribe(
-  //     null,
-  //     () => {
-  //       post.isLikedByLoggedUser = false;
-  //       post.likedBy =
-  //         post.likedBy.filter(el => el !== this.loggedUserId);
-  //     }
-  //   );
-  // }
 
   likeButtonClickHandle(post: Post) {
     const { _id, postAuthorId } = post;
@@ -133,11 +122,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.likesViewState = likedBy;
   }
 
-  showCommentsClick(comments: Array<PostComment>) {
+  showCommentsClick(comments: Array<PostComment>, postId: string, postAuthorId: string) {
     this.isFeedView = false;
     this.isCommentsView = true;
 
-    this.commentsViewState = comments;
+    this.commentsViewState = { likedBy: comments, postId, postAuthorId };
   }
 
   backToFeedView = () => {
@@ -146,7 +135,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.isFeedView = true;
 
     this.likesViewState = [];
-    this.commentsViewState = [];
+    this.commentsViewState = { likedBy: [], postId: '', postAuthorId: '' };
     this.getFeedPosts();
   }
 

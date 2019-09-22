@@ -1,6 +1,6 @@
 <div *ngIf="isCommentsListView">
   <button (click)="goBack()">go back</button>
-  <div *ngFor="let comment of commentsList">
+  <div *ngFor="let comment of commentsViewState.likedBy">
     <img class="comment-author-avatar" [src]="comment.commentAuthorAvatar">
     <span
       class="comment-author-login"
@@ -10,12 +10,40 @@
     </span>
     <span>{{comment.text}}</span>
     <span>{{comment.commentDate | timeAgo}}</span>
+    <div class="comment-like-button">
+      <button
+        mat-icon-button
+        *ngIf="!comment.isLikedByLoggedUser"
+        (click)="likeButtonClickHandle(comment)"
+      >
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        *ngIf="comment.isLikedByLoggedUser"
+        (click)="unlikeButtonClickHandle(comment)"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <span
+        class="comment-likes-counter"
+        *ngIf="comment.likedBy.length"
+        (click)="likesCounterClick(comment.likedBy)">{{comment.likedBy.length}} likes
+              </span>
+    </div>
   </div>
 </div>
 
 <app-account-details
-  *ngIf="!isCommentsListView"
+  *ngIf="!isCommentsListView && accountDetailsState"
   [accountId]="accountDetailsState"
   [isBackButtonDisplay]="true"
   [goBackHandle]="goBackToCommentsList"
-></app-account-details>
+>
+</app-account-details>
+
+<div *ngIf="isLikesView">
+  <app-likes-list [likedBy]="likesViewState" [goBackHandle]="goBackToCommentsList"></app-likes-list>
+</div>
+

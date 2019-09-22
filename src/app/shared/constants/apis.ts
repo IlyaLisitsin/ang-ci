@@ -1,5 +1,5 @@
-// const BASE_BE_URL = 'http://localhost:5000/api';
-const BASE_BE_URL = 'https://anc-ci-be.herokuapp.com/api';
+const BASE_BE_URL = 'http://localhost:5000/api';
+// const BASE_BE_URL = 'https://anc-ci-be.herokuapp.com/api';
 
 export const AUTH_APIS: any = {
   login: `${BASE_BE_URL}/users/login`,
@@ -15,6 +15,9 @@ export const AUTH_APIS: any = {
   unlikePost: `${BASE_BE_URL}/users/unlike-post`,
   getLikes: `${BASE_BE_URL}/users/get-likes`,
   addPostComment: `${BASE_BE_URL}/users/add-post-comment`,
+  likePostComment: `${BASE_BE_URL}/users/like-post-comment`,
+  unlikePostComment: `${BASE_BE_URL}/users/unlike-post-comment`,
+  getCommentsList: `${BASE_BE_URL}/users/get-comments-list`,
 };
 
 export const resetUserErrorMessages = [
