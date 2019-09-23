@@ -1,12 +1,9 @@
 @import "../../../../styles/variables";
 
 :host {
-  .spinner {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-  }
-  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-      stroke: $color;
+  .mat-spinner circle,
+  ::ng-deep .mat-progress-spinner circle {
+    stroke: $color;
+    stroke-linecap: round;
   }
 }

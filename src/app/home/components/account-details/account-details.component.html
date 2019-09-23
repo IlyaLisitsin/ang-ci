@@ -22,8 +22,8 @@
         {{subscriptionButtonText}}
       </button>
     </div>
-    <div *ngIf="isLoggedUser">
-      <button mat-icon-button (click)="uploadImageClick()">
+    <div *ngIf="isLoggedUser" class="upload-avatar">
+      <button mat-icon-button (click)="uploadImageClick()" class="upload-avatar-btn">
         <mat-icon>edit</mat-icon>
       </button>
     </div>
