@@ -1,6 +1,21 @@
 @import "../../../../styles/variables";
 
 :host {
+  .upload-avatar {
+    position: relative;
+    .upload-avatar-btn {
+      color: rgba(255, 255, 255, 0.5);
+      position: absolute;
+      left: -1.3em;
+      top: -8em;
+      transition: .15s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+
   .user-avatar {
     height: 150px;
     width: 150px;
@@ -41,10 +56,6 @@
     color: $color;
   }
 
-  app-upload-image {
-    position: relative;
-  }
-
   mat-card {
     box-shadow: none;
     display: flex;
@@ -53,7 +64,7 @@
   }
 
   .user-info {
-    background: linear-gradient(15deg, $color 30%, rgba(252,204,69,0.7287289915966386) 100%);
+    background: linear-gradient(15deg, $color 30%, rgba(252,204,69,0.7) 100%);
   }
 
   .back {
@@ -98,6 +109,9 @@
   }
 }
 
-::ng-deep .mat-card-title {
-  cursor: pointer;
+::ng-deep {
+  .mat-card-title {
+    cursor: pointer;
+  }
+
 }
