@@ -1,6 +1,6 @@
 <div *ngIf="isCommentsListView">
   <button (click)="goBack()">go back</button>
-  <div *ngFor="let comment of commentsViewState.likedBy">
+  <div *ngFor="let comment of commentsList">
     <img class="comment-author-avatar" [src]="comment.commentAuthorAvatar">
     <span
       class="comment-author-login"

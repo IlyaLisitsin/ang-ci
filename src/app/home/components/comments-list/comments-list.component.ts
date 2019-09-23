@@ -1,7 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { PostComment } from '../../../shared/models/PostComment';
-import {HomeService} from "../../services/home/home.service";
+import { HomeService } from '../../services/home/home.service';
+import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
+
+interface CommentsResponse {
+  id: string;
+  comments: Array<PostComment>;
+}
 
 @Component({
   selector: 'app-comments-list',
@@ -10,7 +16,6 @@ import {HomeService} from "../../services/home/home.service";
 })
 export class CommentsListComponent implements OnInit {
   @Input() commentsViewState: {
-    likedBy: Array<PostComment>;
     postId: string;
     postAuthorId: string;
   };
@@ -27,23 +32,29 @@ export class CommentsListComponent implements OnInit {
 
   constructor(
     private homeService: HomeService,
+    private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit() {
     this.loggedUserId = this.homeService.logedUserId;
-    this.commentsList = this.commentsViewState.likedBy.map(comment => {
-      comment.isLikedByLoggedUser = comment.likedBy.includes(this.loggedUserId);
-      return comment;
-    })
+    this.commentsViewState && this.getComments();
   }
 
   getComments() {
-    this.homeService.getComments().subscribe(
-      (commentsList: Array<PostComment>) => this.commentsList = commentsList.map(comment => {
-        comment.isLikedByLoggedUser = comment.likedBy.includes(this.loggedUserId);
-        return comment;
-      })
-    )
+    this.spinnerService.showSpinner();
+    this.homeService.getComments({
+      postId: this.commentsViewState.postId,
+      postAuthorId: this.commentsViewState.postAuthorId
+    }).subscribe(
+      (commentsResponse: CommentsResponse) => {
+        this.commentsList = commentsResponse.comments.map(comment => {
+          comment.isLikedByLoggedUser = comment.likedBy.includes(this.loggedUserId);
+          return comment;
+        });
+        this.spinnerService.hideSpinner();
+      },
+      () => this.spinnerService.hideSpinner(),
+    );
   }
 
   goBack() {
@@ -61,7 +72,7 @@ export class CommentsListComponent implements OnInit {
     this.isLikesView = false;
 
     this.likesViewState = [];
-    // this.getComments();
+    this.getComments();
   }
 
   likesCounterClick(likesCollection: Array<string>) {

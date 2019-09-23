@@ -87,7 +87,7 @@ export class HomeService {
     return this.http.put(`${AUTH_APIS.unlikePostComment}`, body);
   }
 
-  getComments() {
-    return this.http.get(`${AUTH_APIS.getCommentsList}`);
+  getComments({ postId, postAuthorId }) {
+    return this.http.get(`${AUTH_APIS.getCommentsList}?postId=${postId}&postAuthorId=${postAuthorId}`);
   }
 }

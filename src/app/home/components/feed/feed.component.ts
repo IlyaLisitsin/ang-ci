@@ -1,16 +1,15 @@
 import {
   AfterViewInit,
-  Component, ComponentRef,
+  Component,
   ElementRef,
   EventEmitter,
   Input,
   OnInit,
-  Output, ViewChild,
+  Output,
 } from '@angular/core';
 
 import { Post } from '../../../shared/models/Post';
 import { HomeService } from '../../services/home/home.service';
-import { LikesListComponent } from '../likes-list/likes-list.component';
 import { PostComment } from '../../../shared/models/PostComment';
 
 @Component({
@@ -34,7 +33,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   loggedUserId: string;
   likesViewState: Array<string>;
   commentsViewState: {
-    likedBy: Array<PostComment>;
     postId: string;
     postAuthorId: string;
   };
@@ -126,7 +124,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.isFeedView = false;
     this.isCommentsView = true;
 
-    this.commentsViewState = { likedBy: comments, postId, postAuthorId };
+    this.commentsViewState = { postId, postAuthorId };
   }
 
   backToFeedView = () => {
@@ -135,7 +133,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.isFeedView = true;
 
     this.likesViewState = [];
-    this.commentsViewState = { likedBy: [], postId: '', postAuthorId: '' };
+    this.commentsViewState = { postId: '', postAuthorId: '' };
     this.getFeedPosts();
   }
 
