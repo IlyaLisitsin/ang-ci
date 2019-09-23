@@ -76,4 +76,18 @@ export class HomeService {
 
     return this.http.put(`${AUTH_APIS.addPostComment}`, body);
   }
+
+  likePostComment({ postCommentId: _id, postCommentAuthorId, postId, postAuthorId }) {
+    const body = { postCommentId: _id, postCommentAuthorId, postId, postAuthorId };
+    return this.http.put(`${AUTH_APIS.likePostComment}`, body);
+  }
+
+  unlikePostComment({ postCommentId: _id, postCommentAuthorId, postId, postAuthorId }) {
+    const body = { postCommentId: _id, postCommentAuthorId, postId, postAuthorId };
+    return this.http.put(`${AUTH_APIS.unlikePostComment}`, body);
+  }
+
+  getComments({ postId, postAuthorId }) {
+    return this.http.get(`${AUTH_APIS.getCommentsList}?postId=${postId}&postAuthorId=${postAuthorId}`);
+  }
 }

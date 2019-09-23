@@ -1,16 +1,15 @@
 import {
   AfterViewInit,
-  Component, ComponentRef,
+  Component,
   ElementRef,
   EventEmitter,
   Input,
   OnInit,
-  Output, ViewChild,
+  Output,
 } from '@angular/core';
 
 import { Post } from '../../../shared/models/Post';
 import { HomeService } from '../../services/home/home.service';
-import { LikesListComponent } from '../likes-list/likes-list.component';
 import { PostComment } from '../../../shared/models/PostComment';
 
 @Component({
@@ -25,8 +24,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   @Input() postToScroll: string;
   @Input() goBackHandle: any;
 
-  @ViewChild('likesList') likesList: ComponentRef<LikesListComponent>;
-
   @Output() switchAccountDetails = new EventEmitter<string>();
 
   isFeedView = true;
@@ -35,7 +32,10 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   loggedUserId: string;
   likesViewState: Array<string>;
-  commentsViewState: Array<PostComment>;
+  commentsViewState: {
+    postId: string;
+    postAuthorId: string;
+  };
 
   constructor(
     private elRef: ElementRef,
@@ -63,19 +63,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   loginClick(userId: string) {
     this.switchAccountDetails.emit(userId);
   }
-
-  // likeButtonClickHandle(postId: string, postAuthorId: string) {
-  //   post.isLikedByLoggedUser = true;
-  //   post.likedBy.push(this.loggedUserId);
-  //   this.homeService.likePost({ postId, postAuthorId }).subscribe(
-  //     null,
-  //     () => {
-  //       post.isLikedByLoggedUser = false;
-  //       post.likedBy =
-  //         post.likedBy.filter(el => el !== this.loggedUserId);
-  //     }
-  //   );
-  // }
 
   likeButtonClickHandle(post: Post) {
     const { _id, postAuthorId } = post;
@@ -133,11 +120,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.likesViewState = likedBy;
   }
 
-  showCommentsClick(comments: Array<PostComment>) {
+  showCommentsClick(comments: Array<PostComment>, postId: string, postAuthorId: string) {
     this.isFeedView = false;
     this.isCommentsView = true;
 
-    this.commentsViewState = comments;
+    this.commentsViewState = { postId, postAuthorId };
   }
 
   backToFeedView = () => {
@@ -146,7 +133,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.isFeedView = true;
 
     this.likesViewState = [];
-    this.commentsViewState = [];
+    this.commentsViewState = { postId: '', postAuthorId: '' };
     this.getFeedPosts();
   }
 

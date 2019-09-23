@@ -47,13 +47,13 @@
               </span>
               </div>
               <div class="show-comments-button">
-                <button class="show-all-comments-button" mat-icon-button (click)="showCommentsClick(post.comments)">
+                <button class="show-all-comments-button" mat-icon-button (click)="showCommentsClick(post.comments, post._id, post.postAuthorId)">
                   <mat-icon>chat_bubble_outline</mat-icon>
                 </button>
                 <span
                   class="post-comments-counter"
                   *ngIf="post.comments.length"
-                  (click)="showCommentsClick(post.comments)"
+                  (click)="showCommentsClick(post.comments, post._id, post.postAuthorId)"
                 >
                   {{post.comments.length}} comments
                 </span>
@@ -84,8 +84,8 @@
   </mat-grid-list>
 </div>
 
-<app-comments-list *ngIf="isCommentsView" [commentsList]="commentsViewState" [goBackHandle]="backToFeedView"></app-comments-list>
+<app-comments-list *ngIf="isCommentsView" [commentsViewState]="commentsViewState" [goBackHandle]="backToFeedView"></app-comments-list>
 
 <div *ngIf="isLikesView">
-  <app-likes-list #likesList [likedBy]="likesViewState" [goBackHandle]="backToFeedView"></app-likes-list>
+  <app-likes-list [likedBy]="likesViewState" [goBackHandle]="backToFeedView"></app-likes-list>
 </div>
