@@ -1,18 +1,20 @@
 <div *ngIf="isLikesListView">
-  <button (click)="goBack()">go back</button>
-  <div *ngIf="likesList">
+  <button mat-icon-button class="back-btn" (click)="goBack()">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <div *ngIf="likesList" class="wrapper">
     <div *ngFor="let likeItem of likesList" class="like-item-container">
       <img class="like-item-avatar" [src]="likeItem.userAvatar">
       <span class="like-item-user-login" (click)="setActiveAccountId(likeItem.userId)">@{{likeItem.login}}</span>
-      <div *ngIf="likeItem.userId !== homeService.logedUserId">
-        <button *ngIf="checkSubscription(likeItem.userId); else subscribeButton" (click)="unfollow(likeItem.userId)">
+      <div *ngIf="likeItem.userId !== homeService.logedUserId" class="btn-container">
+        <button class="btn-follow-unfollow" *ngIf="checkSubscription(likeItem.userId); else subscribeButton" (click)="unfollow(likeItem.userId)">
           <mat-icon *ngIf="likeItem.isLoadInProcess">
             <mat-spinner diameter="20"></mat-spinner>
           </mat-icon>
           Unfollow
         </button>
         <ng-template #subscribeButton>
-          <button (click)="follow(likeItem.userId)">
+          <button class="btn-follow-unfollow" (click)="follow(likeItem.userId)">
             <mat-icon *ngIf="likeItem.isLoadInProcess">
               <mat-spinner diameter="20"></mat-spinner>
             </mat-icon>

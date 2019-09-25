@@ -1,36 +1,41 @@
 <div *ngIf="isCommentsListView">
-  <button (click)="goBack()">go back</button>
-  <div *ngFor="let comment of commentsList">
+  <button mat-icon-button class="back-btn" (click)="goBack()">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <div *ngFor="let comment of commentsList" class="comment">
     <img class="comment-author-avatar" [src]="comment.commentAuthorAvatar">
-    <span
-      class="comment-author-login"
-      (click)="showAccountDetails(comment.commentAuthorId)"
-    >
-      @{{comment.commentAuthorLogin}}
-    </span>
-    <span>{{comment.text}}</span>
-    <span>{{comment.commentDate | timeAgo}}</span>
-    <div class="comment-like-button">
-      <button
-        mat-icon-button
-        *ngIf="!comment.isLikedByLoggedUser"
-        (click)="likeButtonClickHandle(comment)"
-      >
-        <mat-icon>favorite_border</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        color="warn"
-        *ngIf="comment.isLikedByLoggedUser"
-        (click)="unlikeButtonClickHandle(comment)"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
+    <div class="col">
       <span
-        class="comment-likes-counter"
-        *ngIf="comment.likedBy.length"
-        (click)="likesCounterClick(comment.likedBy)">{{comment.likedBy.length}} likes
-              </span>
+        class="comment-author-login"
+        (click)="showAccountDetails(comment.commentAuthorId)"
+      >
+        @{{comment.commentAuthorLogin}}
+      </span>
+      <span class="comment-text">{{comment.text}}</span>
+      <small>{{comment.commentDate | timeAgo}}</small>
+      <div class="comment-like-button">
+        <button
+          mat-icon-button
+          *ngIf="!comment.isLikedByLoggedUser"
+          (click)="likeButtonClickHandle(comment)"
+        >
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          *ngIf="comment.isLikedByLoggedUser"
+          (click)="unlikeButtonClickHandle(comment)"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <span
+          class="comment-likes-counter"
+          *ngIf="comment.likedBy.length"
+          (click)="likesCounterClick(comment.likedBy)">{{comment.likedBy.length}} likes
+                </span>
+    </div>
+
     </div>
   </div>
 </div>
@@ -46,4 +51,3 @@
 <div *ngIf="isLikesView">
   <app-likes-list [likedBy]="likesViewState" [goBackHandle]="goBackToCommentsList"></app-likes-list>
 </div>
-
