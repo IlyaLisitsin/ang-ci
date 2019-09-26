@@ -1,12 +1,15 @@
-<div *ngIf="!isFeedView; else feed">
+<div *ngIf="isAccountDetailsView">
   <button *ngIf="isBackButtonDisplay" mat-icon-button class="back" (click)="accountDetailsBackButtonClick()">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>
   <mat-card class="user-info">
-    <button class="settings" mat-icon-button [matMenuTriggerFor]="menu">
+    <button *ngIf="isLoggedUser" class="settings" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>settings</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <button *ngIf="isLoggedUser" class="message" mat-icon-button (click)="showMessagesView()">
+      <mat-icon>message</mat-icon>
+    </button>
+    <mat-menu #menu>
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>logout</span>
@@ -40,6 +43,8 @@
   </mat-card>
 </div>
 
-<ng-template #feed>
+<app-messages *ngIf="isMessagesView" [goBackHandle]="goBackToAccountDetailsView"></app-messages>
+
+<ng-template *ngIf="isFeedView">
   <app-feed *ngIf="posts && posts.length" [posts]="posts" [postToScroll]="postToScroll" [goBackHandle]="goBackToAccountDetailsView" [isFromAccountDetails]="true"></app-feed>
 </ng-template>

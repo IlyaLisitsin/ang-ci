@@ -21,6 +21,7 @@ import { UploadPictureComponent } from './components/steps/upload-picture/upload
 import { CropPictureComponent } from './components/steps/crop-picture/crop-picture.component';
 import { LikesListComponent } from './components/likes-list/likes-list.component';
 import { CommentsListComponent } from './components/comments-list/comments-list.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { CommentsListComponent } from './components/comments-list/comments-list.
     CropPictureComponent,
     LikesListComponent,
     CommentsListComponent,
+    MessagesComponent,
   ],
   entryComponents: [
     UploadImageDialogComponent,

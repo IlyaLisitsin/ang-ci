@@ -25,7 +25,9 @@ export class AccountDetailsComponent implements OnInit {
   @Input() isBackButtonDisplay: boolean;
   @Input() goBackHandle: any;
 
+  isAccountDetailsView = true;
   isFeedView = false;
+  isMessagesView = false;
   isSubscriptionActionInProgress = false;
 
   isLoggedUser: boolean;
@@ -98,11 +100,14 @@ export class AccountDetailsComponent implements OnInit {
 
   tileClick(postId: string) {
     this.isFeedView = true;
+    this.isAccountDetailsView = false;
     this.postToScroll = postId;
   }
 
   goBackToAccountDetailsView = () => {
     this.isFeedView = false;
+    this.isMessagesView = false;
+    this.isAccountDetailsView = true;
   }
 
   accountDetailsBackButtonClick() {
@@ -137,4 +142,12 @@ export class AccountDetailsComponent implements OnInit {
     this.generateSubscriptionButtonText();
     this.isSubscriptionActionInProgress = false;
   }
+
+  showMessagesView() {
+    this.isMessagesView = true;
+    this.isFeedView = false;
+    this.isAccountDetailsView = false;
+  }
+
+  // goBackToAcca
 }
