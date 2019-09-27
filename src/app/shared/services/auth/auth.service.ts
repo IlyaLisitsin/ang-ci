@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
+import { WebsocketService } from "../ws/websocket.service";
 import { cookieSessionName } from '../../constants/key-names';
 import { AUTH_APIS } from '../../constants/apis';
 
@@ -41,6 +42,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService,
+    private wsService: WebsocketService,
   ) { }
 
   public login(userSignInFields: UserSignInFields): Observable<boolean> {
@@ -66,6 +68,7 @@ export class AuthService {
     this.isAuth = true;
     this.cookieService.set(cookieSessionName, response.token);
     this.router.navigate(['']);
+    this.createWsConnection();
     return true;
   }
 
@@ -80,5 +83,9 @@ export class AuthService {
     this.isAuth$ = of(false);
     this.cookieService.delete(cookieSessionName);
     return this.isAuth$;
+  }
+
+  createWsConnection() {
+    this.wsService.connect();
   }
 }

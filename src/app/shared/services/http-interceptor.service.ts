@@ -52,6 +52,7 @@ export class HttpInterceptorService implements HttpInterceptor {
             event instanceof HttpResponse
             && !event.url.includes('unlogedUserId')
             && event.url.includes('current')
+            && event.url.includes('sign-up')
             && event.url.includes('login')
             && event.url.includes('feed')
           ) {

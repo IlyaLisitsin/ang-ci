@@ -25,6 +25,11 @@
         {{subscriptionButtonText}}
       </button>
     </div>
+    <div *ngIf="!isLoggedUser">
+      <button class="btn-message" (click)="showMessagesView()">
+        Message
+      </button>
+    </div>
     <div *ngIf="isLoggedUser" class="upload-avatar">
       <button mat-icon-button (click)="uploadImageClick()" class="upload-avatar-btn">
         <mat-icon>edit</mat-icon>
@@ -43,7 +48,7 @@
   </mat-card>
 </div>
 
-<app-messages *ngIf="isMessagesView" [goBackHandle]="goBackToAccountDetailsView"></app-messages>
+<app-messages *ngIf="isMessagesView" [recipientId]="currentAccountId" [goBackHandle]="goBackToAccountDetailsView"></app-messages>
 
 <ng-template *ngIf="isFeedView">
   <app-feed *ngIf="posts && posts.length" [posts]="posts" [postToScroll]="postToScroll" [goBackHandle]="goBackToAccountDetailsView" [isFromAccountDetails]="true"></app-feed>

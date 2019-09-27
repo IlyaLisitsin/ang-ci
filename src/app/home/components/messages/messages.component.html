@@ -1,4 +1,10 @@
 <button (click)="goBackHandle()">go bakc</button>
-<p>
-  messages works!
-</p>
+<!--<button (click)="kek">go bakc</button>-->
+<!--<ul *ngIf="messages$ | async as messages">-->
+<ul *ngIf="messagesCollection.length">
+  <li *ngFor="let message of messagesCollection">
+    {{ message }}
+  </li>
+</ul>
+<textarea #textArea placeholder="rtsf"></textarea>
+<button (click)="sendMessage(textArea.value)">Send</button>
