@@ -1,0 +1,51 @@
+@import "../../../../../styles/variables";
+
+:host {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+  }
+
+  input {
+    width: 250px;
+    border: none;
+    padding: 8px 0;
+    border-bottom: solid 2px $color;
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+    margin-bottom: 1em;
+  }
+
+  .btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    height: 30px;
+    width: 80px;
+    border-radius: 10px;
+    border: 2px solid $color;
+    color: $color;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    font: {
+      size: 11px;
+      weight: bold;
+    }
+
+    mat-icon {
+      position: absolute;
+      left: 7px;
+    }
+
+    &:focus,
+    &:hover {
+      background: $color;
+      outline: none;
+      color: #fff;
+    }
+  }
+}

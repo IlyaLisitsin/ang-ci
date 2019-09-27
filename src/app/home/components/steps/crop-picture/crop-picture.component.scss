@@ -1,4 +1,13 @@
 :host {
+  .main-image-container {
+    max-height: 500px;
+  }
+  .btn-container {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+  }
+
   .main-image {
     height: 300px;
   }
