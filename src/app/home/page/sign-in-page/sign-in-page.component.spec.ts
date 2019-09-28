@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SignInPageComponent } from './sign-in-page.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { MaterialModule } from '../../../material.module';
+import { WebsocketService } from '../../../shared/services/ws/websocket.service';
 
 
 describe('SignInPageComponent', () => {
@@ -24,6 +25,7 @@ describe('SignInPageComponent', () => {
       providers: [
         AuthService,
         CookieService,
+        WebsocketService,
       ],
       declarations: [ SignInPageComponent ]
     })

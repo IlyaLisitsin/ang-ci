@@ -90,4 +90,9 @@ export class HomeService {
   getComments({ postId, postAuthorId }) {
     return this.http.get(`${AUTH_APIS.getCommentsList}?postId=${postId}&postAuthorId=${postAuthorId}`);
   }
+
+  getMessagesHistory(lowerIdHigherId: string) {
+    return this.http.get(`${AUTH_APIS.getMessagesHistory}?lowerIdHigherId=${lowerIdHigherId}`);
+  }
+
 }

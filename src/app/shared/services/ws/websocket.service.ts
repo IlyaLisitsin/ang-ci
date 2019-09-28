@@ -1,30 +1,29 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { WebSocketSubject, WebSocketSubjectConfig } from "rxjs/observable/dom/WebSocketSubject";
-import {Observer} from "rxjs/Observer";
-import {Observable} from "rxjs/Observable";
+import { WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/observable/dom/WebSocketSubject';
+import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs/Observable';
+import { distinctUntilChanged, filter, map, share, takeWhile } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import { interval } from 'rxjs/observable/interval';
+import { CookieService } from 'ngx-cookie-service';
 
-import { WS_URL } from "../../constants/apis";
-import {distinctUntilChanged, filter, map, share, takeWhile} from "rxjs/operators";
-import {Subscription} from "rxjs/Subscription";
-import {Subject} from "rxjs/Subject";
-import {interval} from "rxjs/observable/interval";
-import {cookieSessionName} from "../../constants/key-names";
-import {CookieService} from "ngx-cookie-service";
+import { WS_URL } from '../../constants/apis';
+import { cookieSessionName } from '../../constants/key-names';
 
 interface WsMessage<T> {
   event: string;
   data: T;
+  recipient: string;
 }
 
 @Injectable()
 export class WebsocketService implements OnDestroy {
-  // private websocket$: WebSocketSubject<IWsMessage<any>>;
   private websocket$: WebSocketSubject<any>;
   private connection$: Observer<boolean>;
   public status: Observable<boolean>;
   private reconnection$: Observable<number>;
 
-  // private wsMessages$: Subject<IWsMessage<any>>;
   private wsMessages$: Subject<any>;
 
 
@@ -47,7 +46,6 @@ export class WebsocketService implements OnDestroy {
       this.connection$ = observer;
     }).pipe(share(), distinctUntilChanged());
 
-    // run reconnect if not connection
     this.statusSub = this.status
       .subscribe((isConnected) => {
         this.isConnected = isConnected;
@@ -65,10 +63,7 @@ export class WebsocketService implements OnDestroy {
   }
 
   connect() {
-
-    // console.log()
     const token = this.cookieService.get(cookieSessionName);
-    console.log('URL', `${WS_URL}?token=${token}`)
     if (!this.config) {
       this.config = {
         url: `${WS_URL}?token=${token}`,
@@ -85,7 +80,7 @@ export class WebsocketService implements OnDestroy {
             this.connection$.next(true);
           }
         }
-      }
+      };
     }
 
     this.websocket$ = new WebSocketSubject(this.config);
@@ -122,17 +117,22 @@ export class WebsocketService implements OnDestroy {
       });
   }
 
-  on<T>(event: string): Observable<T> {
+  on<T>(event: string, recipientId?: string): Observable<T> {
     if (event) {
       return this.wsMessages$.pipe(
-        filter((message: WsMessage<T>) => message.event === event),
-        map((message: WsMessage<T>) => message.data)
+        filter((message: WsMessage<T>) => {
+          if (recipientId) {
+            return recipientId === message.recipient && message.event === event;
+          } else {
+            return message.event === event;
+          }
+        }),
+        map((message: WsMessage<T>) => message.data),
       );
     }
   }
 
   send(event: string, data: any = {}): void {
-    console.log(event)
     if (event && this.isConnected) {
       this.websocket$.next(<any>JSON.stringify({ event, data }));
     } else {

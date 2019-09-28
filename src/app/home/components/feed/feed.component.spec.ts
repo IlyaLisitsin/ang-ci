@@ -8,6 +8,8 @@ import { LikesListComponent } from '../likes-list/likes-list.component';
 import { AccountDetailsComponent } from '../account-details/account-details.component';
 import { CommentsListComponent } from '../comments-list/comments-list.component';
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
+import { WebsocketService } from '../../../shared/services/ws/websocket.service';
+import { MessagesComponent } from '../messages/messages.component';
 
 describe('FeedComponent', () => {
   let component: FeedComponent;
@@ -25,9 +27,11 @@ describe('FeedComponent', () => {
         AccountDetailsComponent,
         CommentsListComponent,
         TimeAgoPipe,
+        MessagesComponent,
       ],
       providers: [
         HomeService,
+        WebsocketService,
       ],
     })
     .compileComponents();

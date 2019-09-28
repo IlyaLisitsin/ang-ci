@@ -11,6 +11,8 @@ import { FeedComponent } from '../feed/feed.component';
 import { LikesListComponent } from '../likes-list/likes-list.component';
 import { CommentsListComponent } from '../comments-list/comments-list.component';
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
+import { MessagesComponent } from '../messages/messages.component';
+import { WebsocketService } from '../../../shared/services/ws/websocket.service';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -31,9 +33,11 @@ describe('SearchComponent', () => {
         LikesListComponent,
         CommentsListComponent,
         TimeAgoPipe,
+        MessagesComponent,
       ],
       providers: [
         HomeService,
+        WebsocketService,
       ],
     })
     .compileComponents();

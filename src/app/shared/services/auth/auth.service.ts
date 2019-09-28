@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
-import { WebsocketService } from "../ws/websocket.service";
+import { WebsocketService } from '../ws/websocket.service';
 import { cookieSessionName } from '../../constants/key-names';
 import { AUTH_APIS } from '../../constants/apis';
 
