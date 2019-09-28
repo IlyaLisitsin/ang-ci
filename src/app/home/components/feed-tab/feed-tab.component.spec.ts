@@ -13,6 +13,8 @@ import { SpinnerService } from '../../../shared/services/spinner/spinner.service
 import { LikesListComponent } from '../likes-list/likes-list.component';
 import { CommentsListComponent } from '../comments-list/comments-list.component';
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
+import { WebsocketService } from '../../../shared/services/ws/websocket.service';
+import { MessagesComponent } from '../messages/messages.component';
 
 describe('FeedTabComponent', () => {
   let component: FeedTabComponent;
@@ -32,12 +34,14 @@ describe('FeedTabComponent', () => {
         LikesListComponent,
         CommentsListComponent,
         TimeAgoPipe,
+        MessagesComponent,
       ],
       providers: [
         AuthService,
         CookieService,
         HomeService,
         SpinnerService,
+        WebsocketService,
       ],
     })
     .compileComponents();

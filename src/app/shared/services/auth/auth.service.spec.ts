@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { WebsocketService } from '../ws/websocket.service';
 
 describe('AuthService', () => {
   beforeEach(() => {
@@ -15,6 +16,7 @@ describe('AuthService', () => {
       providers: [
         AuthService,
         CookieService,
+        WebsocketService,
       ]
     });
   });

@@ -22,6 +22,8 @@ import { UploadPictureComponent } from '../../components/steps/upload-picture/up
 import { CropPictureComponent } from '../../components/steps/crop-picture/crop-picture.component';
 import { LikesListComponent } from '../../components/likes-list/likes-list.component';
 import { CommentsListComponent } from '../../components/comments-list/comments-list.component';
+import { WebsocketService } from '../../../shared/services/ws/websocket.service';
+import { MessagesComponent } from '../../components/messages/messages.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -50,12 +52,14 @@ describe('HomePageComponent', () => {
         CropPictureComponent,
         LikesListComponent,
         CommentsListComponent,
+        MessagesComponent,
       ],
       providers: [
         HomeService,
         AuthService,
         CookieService,
         SpinnerService,
+        WebsocketService,
       ],
     })
     .compileComponents();

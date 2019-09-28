@@ -18,7 +18,12 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot) {
-    return this.cookieService.check(cookieSessionName) ? true : this.canNavigate(route);
+    if (this.cookieService.check(cookieSessionName)) {
+      this.loginService.createWsConnection();
+      return true;
+    } else {
+      return this.canNavigate(route);
+    }
   }
 
   private canNavigate(route: ActivatedRouteSnapshot): Observable<boolean> {

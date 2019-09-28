@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CookieService } from 'ngx-cookie-service';
 
 import { HttpInterceptorService } from './http-interceptor.service';
+import { WebsocketService } from './ws/websocket.service';
 
 
 describe('HttpInterceptorService', () => {
@@ -18,6 +19,7 @@ describe('HttpInterceptorService', () => {
         HttpInterceptorService,
         CookieService,
         AuthService,
+        WebsocketService,
       ]
     });
   });

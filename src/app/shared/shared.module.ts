@@ -15,6 +15,7 @@ import { AddPostCaptionComponent } from '../home/components/steps/add-post-capti
 import { UploadPictureComponent } from '../home/components/steps/upload-picture/upload-picture.component';
 import { CropPictureComponent } from '../home/components/steps/crop-picture/crop-picture.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { WebsocketService } from './services/ws/websocket.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     AuthGuard,
     AuthService,
     CookieService,
+    WebsocketService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
   ],
   declarations: [
