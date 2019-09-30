@@ -2,7 +2,7 @@
 const BASE_BE_URL = 'https://anc-ci-be.herokuapp.com/api';
 //
 // export const WS_URL = 'ws://localhost:5000';
-export const WS_URL = 'ws://anc-ci-be.herokuapp.com';
+export const WS_URL = 'wss://anc-ci-be.herokuapp.com';
 
 export const AUTH_APIS: any = {
   login: `${BASE_BE_URL}/users/login`,
