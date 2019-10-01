@@ -1,15 +1,21 @@
 <div *ngIf="isMessagesView">
-  <button (click)="goBackHandle()">go bakc</button>
+  <button mat-icon-button class="back-btn" (click)="goBackHandle()">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
   <div *ngIf="messagesCollection.length">
     <div *ngFor="let message of messagesCollection">
-      <div [class]="message.isFromLoggedUser ? 'message-from-logged-user' : 'message-from-unlogged-user'">
-        <img [src]="message.messageSenderAvatar" (click)="showAccountDetails(message.sender)">
+      <div [class]="message.isFromLoggedUser ? 'message message-from-logged-user' : 'message message-from-unlogged-user'">
+        <img class="user-avatar" [src]="message.messageSenderAvatar" (click)="showAccountDetails(message.sender)">
         <span>{{ message.text }}</span>
       </div>
     </div>
   </div>
-  <textarea #textArea placeholder="rtsf"></textarea>
-  <button (click)="sendMessage(textArea.value)">Send</button>
+  <div class="send-message-wrapper">
+    <div class="send-message">
+      <textarea rows="1" #textArea placeholder="Enter message..."></textarea>
+      <button class="btn" (click)="sendMessage(textArea.value)">Send</button>
+    </div>
+  </div>
 </div>
 
 <app-account-details

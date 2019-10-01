@@ -3,13 +3,15 @@
 :host {
   .upload-avatar {
     position: relative;
+
     .upload-avatar-btn {
       color: rgba(255, 255, 255, 0.5);
       position: absolute;
       left: -1.3em;
       top: -8em;
-      transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
       cursor: pointer;
+
       &:hover {
         color: rgba(255, 255, 255, 1);
       }
@@ -22,7 +24,7 @@
     border-radius: 50%;
     margin-right: 0;
     cursor: pointer;
-    box-shadow: 0px 10px 24px -10px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.55);
   }
 
   .preview-container {
@@ -40,15 +42,27 @@
   .settings {
     position: absolute;
     top: 2em;
-    right: 3em;
+    left: 3em;
+    opacity: 0.8;
     color: rgb(255, 255, 255);
+    transition: 0.25s ease;
+    &:focus,
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .message {
     position: absolute;
     top: 2em;
-    right: 6em;
+    right: 3em;
+    opacity: 0.8;
     color: rgb(255, 255, 255);
+    transition: 0.25s ease;
+    &:focus,
+    &:hover {
+      opacity: 1;
+    }
   }
 
   h4 {
@@ -71,6 +85,7 @@
   }
 
   .user-info {
+    padding-bottom: 2em;
     background: linear-gradient(15deg, $color 30%, rgba(252,204,69,0.7) 100%);
   }
 
@@ -82,7 +97,13 @@
     z-index: 2;
   }
 
-  .btn-follow-unfollow {
+  .buttons-wrapper {
+    width: 16em;
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .btn {
     position: relative;
     display: flex;
     align-items: center;
@@ -100,25 +121,31 @@
       size: 11px;
       weight: bold;
     }
-    mat-icon {
-      position: absolute;
-      left: 7px;
-    }
+
     &:focus,
     &:hover {
       background: #fff;
       outline: none;
       color: $color;
     }
-    ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-        stroke: $color;
+  }
+
+  .follow-unfollow {
+    mat-icon {
+      position: absolute;
+      left: 8px;
+    }
+
+    .mat-spinner circle,
+    ::ng-deep .mat-progress-spinner circle {
+      stroke: $color;
     }
   }
+
 }
 
 ::ng-deep {
   .mat-card-title {
     cursor: pointer;
   }
-
 }
