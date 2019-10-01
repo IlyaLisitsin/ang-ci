@@ -7,22 +7,13 @@
     position: relative;
   }
 
-  .wrapper {
-    height: 100%;
-    background: linear-gradient(15deg, #c85bde 30%, rgba(252, 204, 69, 0.7) 100%);
-    width: 100%;
-    position: absolute;
-    top: 0;
-    overflow: hidden;
-  }
-
   .search-icon {
     cursor: pointer;
     color: rgba(0,0,0,.4);
     z-index: 2;
     position: absolute;
     right: 1.2em;
-    top: 0.2em;
+    top: 0.3em;
   }
 }
 
@@ -58,21 +49,13 @@
 
     .mat-form-field-infix {
       padding: 0.5em;
-      border-top: none;
+      border: 2px solid $color;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0px 10px 24px -10px rgba(0, 0, 0, 0.55);
       transition: all 0.25s ease;
-      &:focus,
-      &:hover {
-        background: rgba(255, 255, 255, 0.8);
-      }
     }
 
     .mat-form-field-underline {
-      width: 94%!important;
-      left: 6px;
-      background-color: $color;
+      display: none;
     }
 
     .mat-select-arrow {
