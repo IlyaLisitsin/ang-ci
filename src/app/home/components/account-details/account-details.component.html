@@ -17,19 +17,23 @@
     </mat-menu>
     <img class="user-avatar" [src]="userAvatar" />
     <h4 class="login mat-typography mat-body-2">{{login}}</h4>
-    <div *ngIf="!isLoggedUser">
-      <button class="btn-follow-unfollow" (click)="subscriptionButtonClick()">
-        <mat-icon *ngIf="isSubscriptionActionInProgress">
-          <mat-spinner diameter="20"></mat-spinner>
-        </mat-icon>
-        {{subscriptionButtonText}}
-      </button>
+
+    <div class="buttons-wrapper">
+      <div *ngIf="!isLoggedUser">
+        <button class="btn follow-unfollow" (click)="subscriptionButtonClick()">
+          <mat-icon *ngIf="isSubscriptionActionInProgress">
+            <mat-spinner diameter="20"></mat-spinner>
+          </mat-icon>
+          {{subscriptionButtonText}}
+        </button>
+      </div>
+      <div *ngIf="!isLoggedUser">
+        <button class="btn btn-message" (click)="showMessagesView()">
+          Send Message
+        </button>
+      </div>
     </div>
-    <div *ngIf="!isLoggedUser">
-      <button class="btn-message" (click)="showMessagesView()">
-        Message
-      </button>
-    </div>
+
     <div *ngIf="isLoggedUser" class="upload-avatar">
       <button mat-icon-button (click)="uploadImageClick()" class="upload-avatar-btn">
         <mat-icon>edit</mat-icon>
