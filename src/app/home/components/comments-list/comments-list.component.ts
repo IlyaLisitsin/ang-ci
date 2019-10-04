@@ -30,6 +30,8 @@ export class CommentsListComponent implements OnInit {
   loggedUserId: string;
   likesViewState: Array<string>;
 
+  isAddCommentInProgress = false;
+
   constructor(
     private homeService: HomeService,
     private spinnerService: SpinnerService,
@@ -120,6 +122,28 @@ export class CommentsListComponent implements OnInit {
         comment.likedBy.push(this.loggedUserId);
       }
     );
+  }
+
+  addCommentButtonClick(commentText) {
+    const { postId, postAuthorId } = this.commentsViewState;
+
+    this.isAddCommentInProgress = true;
+    this.homeService.addPostComment({
+      postAuthorId,
+      postId,
+      replyTo: null,
+      text: commentText.value,
+      commentAuthorLogin: this.homeService.loggedUserLogin,
+      commentAuthorAvatar: this.homeService.userAvatar,
+    })
+      .subscribe(
+        (newComment: PostComment) => {
+          this.commentsList.push(newComment);
+          this.isAddCommentInProgress = false;
+          commentText.value = '';
+        },
+        () => this.isAddCommentInProgress = false,
+      );
   }
 
 }

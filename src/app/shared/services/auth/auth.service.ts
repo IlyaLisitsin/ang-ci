@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { WebsocketService } from '../ws/websocket.service';
 import { cookieSessionName } from '../../constants/key-names';
 import { AUTH_APIS } from '../../constants/apis';
+import { SpinnerService } from '../spinner/spinner.service';
 
 interface UserSignInFields {
   email: string;
@@ -43,6 +44,7 @@ export class AuthService {
     private router: Router,
     private cookieService: CookieService,
     private wsService: WebsocketService,
+    private spinnerService: SpinnerService,
   ) { }
 
   public login(userSignInFields: UserSignInFields): Observable<boolean> {
@@ -77,6 +79,7 @@ export class AuthService {
     this.isAuth = false;
     this.cookieService.delete(cookieSessionName);
     this.router.navigate(['sign-in']);
+    this.spinnerService.hideSpinner();
   }
 
   private authCatcher() {

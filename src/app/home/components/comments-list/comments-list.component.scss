@@ -63,4 +63,17 @@
       width: 90%;
     }
   }
+
+  .add-comment-user-avatar {
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .add-comment-section {
+    margin: 0 auto;
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

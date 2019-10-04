@@ -38,6 +38,25 @@
 
     </div>
   </div>
+  <div class="add-comment-section">
+    <img class="add-comment-user-avatar" [src]="homeService.userAvatar" />
+    <textarea
+      #commentText
+      [disabled]="isAddCommentInProgress"
+      class="add-comment-input"
+      matInput rows="1"
+      placeholder="Add comment"
+    ></textarea>
+    <button
+      [disabled]="isAddCommentInProgress || !commentText.value"
+      mat-icon-button
+      (click)="addCommentButtonClick(commentText)"
+    >
+      <mat-icon *ngIf="!isAddCommentInProgress">add</mat-icon>
+      <mat-spinner *ngIf="isAddCommentInProgress" diameter="20"></mat-spinner>
+    </button>
+  </div>
+
 </div>
 
 <app-account-details

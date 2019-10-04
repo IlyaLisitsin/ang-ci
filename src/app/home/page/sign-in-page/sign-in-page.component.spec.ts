@@ -8,6 +8,7 @@ import { SignInPageComponent } from './sign-in-page.component';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { MaterialModule } from '../../../material.module';
 import { WebsocketService } from '../../../shared/services/ws/websocket.service';
+import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 
 
 describe('SignInPageComponent', () => {
@@ -26,6 +27,7 @@ describe('SignInPageComponent', () => {
         AuthService,
         CookieService,
         WebsocketService,
+        SpinnerService,
       ],
       declarations: [ SignInPageComponent ]
     })

@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { HttpInterceptorService } from './http-interceptor.service';
 import { WebsocketService } from './ws/websocket.service';
+import { SpinnerService } from './spinner/spinner.service';
 
 
 describe('HttpInterceptorService', () => {
@@ -20,6 +21,7 @@ describe('HttpInterceptorService', () => {
         CookieService,
         AuthService,
         WebsocketService,
+        SpinnerService,
       ]
     });
   });
