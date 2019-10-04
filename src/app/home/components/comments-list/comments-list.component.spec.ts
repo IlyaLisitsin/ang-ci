@@ -11,6 +11,7 @@ import { HomeService } from '../../services/home/home.service';
 import { SpinnerService } from '../../../shared/services/spinner/spinner.service';
 import { WebsocketService } from '../../../shared/services/ws/websocket.service';
 import { MessagesComponent } from '../messages/messages.component';
+import { AccountMessagesListComponent } from '../account-messages-list/account-messages-list.component';
 
 describe('CommentsListComponent', () => {
   let component: CommentsListComponent;
@@ -29,6 +30,7 @@ describe('CommentsListComponent', () => {
         LikesListComponent,
         TimeAgoPipe,
         MessagesComponent,
+        AccountMessagesListComponent,
       ],
       providers: [
         HomeService,

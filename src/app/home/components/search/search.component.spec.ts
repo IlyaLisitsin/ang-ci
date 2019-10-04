@@ -13,6 +13,7 @@ import { CommentsListComponent } from '../comments-list/comments-list.component'
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
 import { MessagesComponent } from '../messages/messages.component';
 import { WebsocketService } from '../../../shared/services/ws/websocket.service';
+import { AccountMessagesListComponent } from '../account-messages-list/account-messages-list.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -34,6 +35,7 @@ describe('SearchComponent', () => {
         CommentsListComponent,
         TimeAgoPipe,
         MessagesComponent,
+        AccountMessagesListComponent,
       ],
       providers: [
         HomeService,

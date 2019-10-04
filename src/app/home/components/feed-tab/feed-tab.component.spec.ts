@@ -15,6 +15,7 @@ import { CommentsListComponent } from '../comments-list/comments-list.component'
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
 import { WebsocketService } from '../../../shared/services/ws/websocket.service';
 import { MessagesComponent } from '../messages/messages.component';
+import { AccountMessagesListComponent } from '../account-messages-list/account-messages-list.component';
 
 describe('FeedTabComponent', () => {
   let component: FeedTabComponent;
@@ -35,6 +36,7 @@ describe('FeedTabComponent', () => {
         CommentsListComponent,
         TimeAgoPipe,
         MessagesComponent,
+        AccountMessagesListComponent,
       ],
       providers: [
         AuthService,

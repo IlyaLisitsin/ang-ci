@@ -6,7 +6,7 @@
     <button *ngIf="isLoggedUser" class="settings" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>settings</mat-icon>
     </button>
-    <button *ngIf="isLoggedUser" class="message" mat-icon-button (click)="showMessagesView()">
+    <button *ngIf="isLoggedUser" class="message" mat-icon-button (click)="showMessagesListView()">
       <mat-icon>message</mat-icon>
     </button>
     <mat-menu #menu>
@@ -53,6 +53,7 @@
 </div>
 
 <app-messages *ngIf="isMessagesView" [userAvatar]="userAvatar" [recipientId]="currentAccountId" [goBackHandle]="goBackToAccountDetailsView"></app-messages>
+<app-account-messages-list [goBackHandle]="goBackToAccountDetailsView" *ngIf="isLoggedUser && isMessagesListView"></app-account-messages-list>
 
 <ng-template *ngIf="isFeedView">
   <app-feed *ngIf="posts && posts.length" [posts]="posts" [postToScroll]="postToScroll" [goBackHandle]="goBackToAccountDetailsView" [isFromAccountDetails]="true"></app-feed>

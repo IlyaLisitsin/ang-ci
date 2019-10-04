@@ -1,0 +1,9 @@
+:host {
+  .dialog-item {
+    cursor: pointer;
+
+    &:hover {
+      background: blue;
+    }
+  }
+}

@@ -24,6 +24,7 @@ import { LikesListComponent } from '../../components/likes-list/likes-list.compo
 import { CommentsListComponent } from '../../components/comments-list/comments-list.component';
 import { WebsocketService } from '../../../shared/services/ws/websocket.service';
 import { MessagesComponent } from '../../components/messages/messages.component';
+import { AccountMessagesListComponent } from '../../components/account-messages-list/account-messages-list.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -53,6 +54,7 @@ describe('HomePageComponent', () => {
         LikesListComponent,
         CommentsListComponent,
         MessagesComponent,
+        AccountMessagesListComponent,
       ],
       providers: [
         HomeService,

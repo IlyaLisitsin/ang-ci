@@ -1,0 +1,10 @@
+<div *ngIf="isDialogListView">
+  <button (click)="goBackHandle()">back</button>
+  <div *ngFor="let dialog of accountDialogsList" class="dialog-item" (click)="dialogItemClickHandle(dialog.lowerIdHigherId)">
+    <img [src]="dialog.interlocutorAvatar"/>
+    <span>{{ dialog.lastActivity | timeAgo }}</span>
+  </div>
+</div>
+
+<app-messages *ngIf="isMessagesView" [userAvatar]="userAvatar" [recipientId]="currentAccountId" [goBackHandle]="goBackToMessagesList"></app-messages>
+

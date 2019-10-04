@@ -95,4 +95,12 @@ export class HomeService {
     return this.http.get(`${AUTH_APIS.getMessagesHistory}?lowerIdHigherId=${lowerIdHigherId}`);
   }
 
+  getAccountMessagesList(jwtToken: string) {
+    return this.http.get(`${AUTH_APIS.getAccountMessagesList}?token=${jwtToken}`);
+  }
+
+  getUserAvatar(id: string) {
+    return this.http.get(`${AUTH_APIS.getUserAvatar}?id=${id}`);
+  }
+
 }

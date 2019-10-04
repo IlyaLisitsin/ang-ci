@@ -28,6 +28,7 @@ export class AccountDetailsComponent implements OnInit {
   isAccountDetailsView = true;
   isFeedView = false;
   isMessagesView = false;
+  isMessagesListView = false;
   isSubscriptionActionInProgress = false;
 
   isLoggedUser: boolean;
@@ -107,6 +108,7 @@ export class AccountDetailsComponent implements OnInit {
   goBackToAccountDetailsView = () => {
     this.isFeedView = false;
     this.isMessagesView = false;
+    this.isMessagesListView = false;
     this.isAccountDetailsView = true;
   }
 
@@ -149,5 +151,9 @@ export class AccountDetailsComponent implements OnInit {
     this.isAccountDetailsView = false;
   }
 
-  // goBackToAcca
+  showMessagesListView() {
+    this.isMessagesListView = true;
+    this.isFeedView = false;
+    this.isAccountDetailsView = false;
+  }
 }
