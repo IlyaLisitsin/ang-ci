@@ -8,8 +8,12 @@
 </div>
 
 <ng-template #webcam>
-  <webcam [height]="300" [width]="300" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="isWebcamView" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
-    [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
-  <button (click)="triggerSnapshot()">I'm ready</button>
-  <button (click)="goBackButtonClick()">go back</button>
+  <div class="wrapper">
+    <webcam [height]="300" [width]="300" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="isWebcamView" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
+      [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+      <div class="btn-container">
+        <button  class="btn" (click)="triggerSnapshot()">I'm ready</button>
+        <button  class="btn" (click)="goBackButtonClick()">Go back</button>
+      </div>
+  </div>
 </ng-template>

@@ -1,9 +1,24 @@
 :host {
-  .dialog-item {
-    cursor: pointer;
+  .back-btn {
+    position: absolute;
+    top: 2em;
+    left: 3em;
+    color: rgb(0, 0, 0);
+    z-index: 2;
+  }
 
-    &:hover {
-      background: blue;
-    }
+  .user-avatar {
+    align-self: flex-end;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .dialog-item {
+    margin: 2em auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: all 0.25s ease;
   }
 }
