@@ -10,7 +10,7 @@
   }
 
   .send-message-wrapper {
-    padding: 1em;
+    padding: 0 4em;
     background: #fff;
     position: sticky;
     bottom: 0;
@@ -77,10 +77,13 @@
   }
 
   .message-from-logged-user {
+    padding: 1em 4em;
     flex-direction: row-reverse;
   }
 
-  .message-from-unlogged-user {}
+  .message-from-unlogged-user {
+    padding: 1em 4em;
+  }
   @media (max-width: 400px) {
     .message {
       font-size: 0.9em;

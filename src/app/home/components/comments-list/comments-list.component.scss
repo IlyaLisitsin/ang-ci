@@ -71,9 +71,19 @@
 
   .add-comment-section {
     margin: 0 auto;
-    width: 99%;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
+  button {
+    cursor: pointer;
+  }
+
+  .add-comment-input {
+    width: 75%;
+    resize: none;
+  }
+
 }

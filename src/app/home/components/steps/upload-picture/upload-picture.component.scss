@@ -42,10 +42,20 @@
       color: #fff;
     }
   }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+
+      .btn-container {
+        top: 60%;
+      }
+    }
+
 }
 
 ::ng-deep {
-  //video {
-  //  border-radius: 50%;
-  //}
+  .webcam-wrapper {
+    border: 2px solid $color;
+  }
 }
