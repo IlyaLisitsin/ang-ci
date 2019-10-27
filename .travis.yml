@@ -12,7 +12,7 @@ cache:
 #before_script:
 #  - npm install -g @angular/cli
 install:
-  - npm install -g
+  - npm install
 script:
   - ng lint
   - npm run test-headless

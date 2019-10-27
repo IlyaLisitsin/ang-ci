@@ -20,6 +20,7 @@ interface UserSignUpFields {
   login: string;
   email: string;
   password: string;
+
 }
 
 interface UserAuthResponse {
